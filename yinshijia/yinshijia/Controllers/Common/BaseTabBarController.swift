@@ -14,13 +14,10 @@ class BaseTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setChildViewControllers()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         let tabbar = Tabbar(frame: tabBar.bounds)
         self.setValue(tabbar, forKey: "tabBar")
     }
+
 
     private func setChildViewControllers() {
         addChildViewController(HomeViewController(), title: "首页", imageName: "dock_home_unselected", selectedImgName: "dock_home_selected")

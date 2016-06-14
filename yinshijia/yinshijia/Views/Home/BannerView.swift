@@ -10,6 +10,8 @@ import UIKit
 
 class BannerView: UIView {
     
+    
+    
     private var didUpdateConstraints = false
     
     private let imageViewMaxCount = 3

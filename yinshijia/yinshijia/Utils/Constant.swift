@@ -10,6 +10,7 @@
 // 精选下拉刷新  http://api.yinshijia.com/mobile/apiv2/index/choice/1
 // 精选上啦刷新  http://api.yinshijia.com/mobile/apiv2/index/choiceDinner/1/1/8
 // 精选banner   http://api.yinshijia.com/mobile/apiv2/index/campaignItem/50
+// 分类按钮      http://api.yinshijia.com/mobile/apiv2/index/catalog/20
 // 主厨 newChef http://api.yinshijia.com/mobile/apiv2/index/chefList/new/1/1/8
 // 主厨 hotChef http://api.yinshijia.com/mobile/apiv2/index/chefList/hot/1/1/8
 // 主厨 Base    http://api.yinshijia.com/mobile/apiv2/index/chef/1
@@ -80,6 +81,8 @@ struct Constant {
             static let Goods = "goods/list/1/8"
             
             static let ChoiceList = "index/campaignItem/"
+            
+            static let CategoryList = "index/catalog/"
         }
     }
 }

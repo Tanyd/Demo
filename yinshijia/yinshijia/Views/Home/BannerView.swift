@@ -101,7 +101,8 @@ class BannerView: UIView {
     
     func imageViewClick(tap: UITapGestureRecognizer) {
         if bannerImageClick != nil {
-            bannerImageClick!(index: (tap.view! as! BannerImageView).bannerId)
+            let img = tap.view! as! BannerImageView
+            bannerImageClick!(index: img.bannerId)
         }
     }
     
@@ -146,6 +147,7 @@ class BannerView: UIView {
                 imageView.sd_setImageWithURL(NSURL(string: chefBanner[index].imageurl!), placeholderImage: nil)
             }else{
                 imageView.bannerId = choiceBanner[index].bannerId
+                imageView.title = choiceBanner[index].title
                 imageView.sd_setImageWithURL(NSURL(string: choiceBanner[index].banner_image!), placeholderImage: nil)
             }
         }
@@ -211,7 +213,7 @@ extension BannerView: UIScrollViewDelegate {
 class BannerImageView: UIImageView {
     
     var bannerId: Int = 0
-    
+    var title: String?
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

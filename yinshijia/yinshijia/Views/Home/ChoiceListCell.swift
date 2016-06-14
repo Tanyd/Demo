@@ -21,6 +21,17 @@ class ChoiceListCell: ChoiceCell {
         }
     }
   
+    var categoryListModel: CategoryListData?{
+        didSet{
+            titleLable.text = categoryListModel!.dinnerTitle!
+            let timeRange = getDateFormate(categoryListModel!.dinnerStartTime!) + " - " + getDateFormate(categoryListModel!.dinnerEndTime!)
+            time.setTitle("  " + timeRange, forState: .Normal)
+            customMade.setTitle(categoryListModel!.dinnerDistrict!, forState: .Normal)
+            priceLable.text = "¥ " + String(categoryListModel!.dinnerPrice!) + " / " + categoryListModel!.unit!
+            tag = (categoryListModel?.itemId)!
+        }
+    }
+    
     private lazy var priceLable: UILabel = {
         let lable = UILabel.lableCutomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 13)
         return lable

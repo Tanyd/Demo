@@ -28,6 +28,7 @@
 		273D9C9F1D0D680700E511B1 /* XLPlainFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 273D9C9E1D0D680700E511B1 /* XLPlainFlowLayout.m */; };
 		273D9CA11D0D683400E511B1 /* ChefSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D9CA01D0D683400E511B1 /* ChefSectionView.swift */; };
 		27B8C5DC1D0BC28900A9A114 /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B8C5DB1D0BC28900A9A114 /* Choice.swift */; };
+		27BE93E11D103F1600887178 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE93E01D103F1600887178 /* CategoryList.swift */; };
 		27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */; };
 		27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */; };
 		27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */; };
@@ -103,6 +104,7 @@
 		273D9C9E1D0D680700E511B1 /* XLPlainFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLPlainFlowLayout.m; sourceTree = "<group>"; };
 		273D9CA01D0D683400E511B1 /* ChefSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefSectionView.swift; sourceTree = "<group>"; };
 		27B8C5DB1D0BC28900A9A114 /* Choice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
+		27BE93E01D103F1600887178 /* CategoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				273D9C981D0D30F500E511B1 /* Chef.swift */,
 				2700B50A1D0EDE9E00FF83D6 /* Goods.swift */,
 				8BD02FA41D0FDF7000EA45B0 /* ChoiceList.swift */,
+				27BE93E01D103F1600887178 /* CategoryList.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */,
 				270291DB1D0C42B300009ED3 /* HJCornerRadius.m in Sources */,
 				8B7F93E31D0A638F001A2207 /* PageViewController.swift in Sources */,
+				27BE93E11D103F1600887178 /* CategoryList.swift in Sources */,
 				8B7F93C81D0A54D1001A2207 /* Extension.swift in Sources */,
 				27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */,
 				270291DF1D0C729F00009ED3 /* TranslationCollectionViewController.swift in Sources */,

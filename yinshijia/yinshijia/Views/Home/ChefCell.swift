@@ -15,7 +15,6 @@ class ChefCell: UICollectionViewCell {
     
     private var didUpdateConstraints = false
     
-    
     var type: ChefCellType?{
         didSet{
             if type == .chefType{

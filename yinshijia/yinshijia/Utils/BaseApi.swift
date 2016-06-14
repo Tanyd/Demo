@@ -159,6 +159,25 @@ class BaseApi: AFHTTPSessionManager {
         }
     }
 
+    func loadCategoryListBaseData(callBack: BaseApiCallBack, id: Int){
+        let urlPath = Constant.Api.Home.CategoryList + String(id)
+        request(.GET, Urlstring: urlPath, parameters: ["version" : Constant.Api.BaseVersion]) { (result, error) in
+            if error != nil {
+                callBack(result: nil, error: error)
+            }else{
+                let json = JSON(result!)
+                let code = json["code"].number
+                if code == 200 {
+                    let model = CategoryList.yy_modelWithJSON(json.dictionaryObject!)
+                    callBack(result: model, error: nil)
+                }else{
+                    callBack(result: nil, error: BaseError)
+                }
+            }
+        }
+    }
+    
+    
     func request(method: RequestMethod, Urlstring: String,parameters: [String:AnyObject]?, finished: BaseApiCallBack){
         
         if method == RequestMethod.GET {

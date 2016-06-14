@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class ChefBannerView: UIView {
 
     var banner: BannerView!

@@ -16,11 +16,42 @@ class ChoiceListTableViewController: UITableViewController {
             tableView.mj_header.beginRefreshing()
         }
     }
-    var choiceListModel: ChoiceList?{
+    
+    var categoryId: Int?{
+        didSet{
+            tableView.mj_header.beginRefreshing()
+        }
+    }
+    
+    private var choiceListModel: ChoiceList?{
+        didSet{
+            navigationItem.title = choiceListModel?.data?.campaign?.title
+            if choiceListModel?.data?.campaign?.desp != "" {
+                let linesCount = choiceListModel?.data?.campaign?.desp?.componentsSeparatedByString("\n")
+                print(linesCount?.count)
+                let lableSize = NSString(string: (choiceListModel?.data?.campaign?.desp)!).boundingRectWithSize(CGSizeMake(ScreenSize.SCREEN_WIDTH * 0.7, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:headerLable.font], context: nil)
+                headerLable.text = choiceListModel?.data?.campaign?.desp
+                headerLable.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, lableSize.height + 5)
+                tableView.tableHeaderView = headerLable
+            }
+            
+            tableView.reloadData()
+        }
+    }
+    
+    private var categoryListModel: CategoryList?{
         didSet{
             tableView.reloadData()
         }
     }
+    
+    
+    private lazy var headerLable: UILabel = {
+       let lable = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 13)
+        lable.numberOfLines = 0
+        lable.textAlignment = .Center
+        return lable
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +71,25 @@ class ChoiceListTableViewController: UITableViewController {
                 self!.tableView.mj_header.endRefreshing()
                 return
             }
-            let model = result as! ChoiceList
-            self!.choiceListModel = model
+            
+            if self!.bannerId != nil {
+                let model = result as! ChoiceList
+                self!.choiceListModel = model
+            }else if self!.categoryId != nil {
+                let model = result as! CategoryList
+                self!.categoryListModel = model
+            }
+            
+           
             self!.tableView.mj_header.endRefreshing()
         }
-        ChoiceList.loadChoiceListBaseData(callBack,id: bannerId!)
+        
+        if bannerId != nil {
+            ChoiceList.loadChoiceListBaseData(callBack,id: bannerId!)
+        }else if categoryId != nil {
+            CategoryList.loadCategoryListBaseData(callBack, id: categoryId!)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,8 +99,13 @@ class ChoiceListTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return choiceListModel?.data?.item?.count ?? 0
+        if bannerId != nil {
+            return choiceListModel?.data?.item?.count ?? 0
+        }else if categoryId != nil {
+            return categoryListModel?.data?.count ?? 0
+        }else {
+            return 0
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -64,17 +114,26 @@ class ChoiceListTableViewController: UITableViewController {
         if cell == nil {
             cell = ChoiceListCell(style: .Default, reuseIdentifier: identifier)
         }
-        let model = choiceListModel?.data?.item?[indexPath.row]
-        cell!.choiceListModel = model
+        
+        var model: NSObject?
+        var goodsImg: String?
+        if bannerId != nil {
+            model = choiceListModel?.data?.item?[indexPath.row]
+            cell!.choiceListModel = model as? Item
+            goodsImg = ((model as! Item).dinner_imageurl!.componentsSeparatedByString(","))[0]
+        }else if categoryId != nil {
+            model = categoryListModel?.data?[indexPath.row]
+            cell!.categoryListModel = model as? CategoryListData
+            goodsImg = ((model as! CategoryListData).dinnerImage!.componentsSeparatedByString(","))[0]
+        }
         
         if (tableView.dragging || tableView.decelerating) && !(arrayIndex.contains(indexPath)){
             
             cell!.goodsImg.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
             
         }else {
-            let goodsImgArray = model!.dinner_imageurl!.componentsSeparatedByString(",")
-            cell!.goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
-                
+            
+            cell!.goodsImg.sd_setImageWithURL(NSURL(string: goodsImg!), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
                 if !self.arrayIndex.contains(indexPath) {
                     self.arrayIndex.append(indexPath)
                 }

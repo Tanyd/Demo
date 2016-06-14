@@ -8,61 +8,116 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>FDFullscreenPopGesture.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>PureLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>SDCycleScrollView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>YYModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
 		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2C71DE0FB8A6E5BB6EAF9FB037D799CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>31D75DE794C2F1FED23A64DD842B9D16</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>371398F7E80B1C522DA2F05DACF69DCC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4B89917EBC9BFBA1DF8FAAE9ECDAF69C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63F8E552F5ACFFF5B8B33D2F60211412</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6540D2FF90D0FA3481C2122CA7EA5596</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>736E57AD5AEFAAF68D47AE4E8FCB8F68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +147,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C3E13A6869378A763D03E1E80DA659A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C60AE990E3F23D1503E71A4A023C3416</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CECC2C4F4C4AFB277DC94C4BB424DD37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>EA9FCE1BDEFC4B6DAA309D6AD6FAC1E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F210EE772350012047F80B7B4B1A717B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6F9F0D1EE2D796B0E4138A5A5AE3C14</key>
 		<dict>
 			<key>primary</key>
 			<true/>

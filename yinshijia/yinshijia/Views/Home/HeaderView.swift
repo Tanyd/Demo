@@ -9,7 +9,7 @@
 import UIKit
 protocol HeaderViewDelegate: NSObjectProtocol {
     func headerViewBannerDidClick(index: Int)
-    func headerViewCateoryDidClick(index: Int)
+    func headerViewCateoryDidClick(categoryBtn: UIButton)
 }
 class HeaderView: UIView {
 
@@ -41,9 +41,9 @@ class HeaderView: UIView {
             }
         })
         addSubview(banner)
-        categoryView = CategoryView(frame: CGRectZero, categoryClick: { (tag) in
+        categoryView = CategoryView(frame: CGRectZero, categoryClick: { (categoryBtn) in
             if self.delegate != nil && (self.delegate?.respondsToSelector("headerViewCateoryDidClick:"))!{
-                self.delegate?.headerViewCateoryDidClick(tag)
+                self.delegate?.headerViewCateoryDidClick(categoryBtn)
             }
         })
         addSubview(categoryView)
@@ -116,7 +116,7 @@ class CategoryView: UIScrollView {
 
 }
 
-typealias categoryBtnCallBack = ((tag: Int) -> Void)?
+typealias categoryBtnCallBack = ((categoryBtn: UIButton) -> Void)?
 
 class marginView: UIView {
     
@@ -155,7 +155,7 @@ class marginView: UIView {
     
     func btnClick(sender: UIButton) {
         if btnClick != nil {
-            btnClick!(tag: sender.tag)
+            btnClick!(categoryBtn: sender)
         }
     }
     

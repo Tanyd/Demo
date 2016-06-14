@@ -211,6 +211,7 @@ extension ChoiceViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
 
 
 extension ChoiceViewController: HeaderViewDelegate {
+
     func headerViewBannerDidClick(index: Int) {
         DebugPrint("点击了banner \(index)")
         let listVC = ChoiceListTableViewController()
@@ -218,7 +219,11 @@ extension ChoiceViewController: HeaderViewDelegate {
         navigationController?.pushViewController(listVC, animated: true)
     }
     
-    func headerViewCateoryDidClick(index: Int) {
+    func headerViewCateoryDidClick(categoryBtn: UIButton) {
         DebugPrint("点击了CategoryButton \(index)")
+        let listVC = ChoiceListTableViewController()
+        listVC.categoryId = categoryBtn.tag
+        listVC.navigationItem.title = categoryBtn.currentTitle
+        navigationController?.pushViewController(listVC, animated: true)
     }
 }

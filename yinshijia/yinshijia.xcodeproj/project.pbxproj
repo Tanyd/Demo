@@ -31,7 +31,6 @@
 		27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */; };
 		27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */; };
 		27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */; };
-		27D700D81D0BAD0900ED5605 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D700D71D0BAD0900ED5605 /* CustomButton.swift */; };
 		27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */; };
 		27F684291D0BC9A700603199 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F684281D0BC9A700603199 /* BaseApi.swift */; };
 		834210AD60DB606C78A85023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B398C9D62760EB0484300C /* libPods.a */; };
@@ -50,6 +49,10 @@
 		8B7F93E51D0A6E65001A2207 /* BtnPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93E41D0A6E65001A2207 /* BtnPageView.swift */; };
 		8B944CA11D0A52CE0076822D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B944CA01D0A52CE0076822D /* BaseTabBarController.swift */; };
 		8B944CA31D0A52E40076822D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B944CA21D0A52E40076822D /* BaseNavigationController.swift */; };
+		8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */; };
+		8BD02FA31D0FDE2700EA45B0 /* ChoiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD02FA21D0FDE2700EA45B0 /* ChoiceListTableViewController.swift */; };
+		8BD02FA51D0FDF7000EA45B0 /* ChoiceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD02FA41D0FDF7000EA45B0 /* ChoiceList.swift */; };
+		8BD02FA91D0FFABC00EA45B0 /* ChoiceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD02FA81D0FFABC00EA45B0 /* ChoiceListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +106,6 @@
 		27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
-		27D700D71D0BAD0900ED5605 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightNavigationItem.swift; sourceTree = "<group>"; };
 		27F684281D0BC9A700603199 /* BaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
 		56280425BA504C6113327FD7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +125,10 @@
 		8B7F93E41D0A6E65001A2207 /* BtnPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BtnPageView.swift; sourceTree = "<group>"; };
 		8B944CA01D0A52CE0076822D /* BaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		8B944CA21D0A52E40076822D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		8BD02FA21D0FDE2700EA45B0 /* ChoiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceListTableViewController.swift; sourceTree = "<group>"; };
+		8BD02FA41D0FDF7000EA45B0 /* ChoiceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceList.swift; sourceTree = "<group>"; };
+		8BD02FA81D0FFABC00EA45B0 /* ChoiceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceListCell.swift; sourceTree = "<group>"; };
 		F35128F4350D7DC4AA2EC1C7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,6 +239,7 @@
 				273D9C941D0CF5AE00E511B1 /* ChefList.swift */,
 				273D9C981D0D30F500E511B1 /* Chef.swift */,
 				2700B50A1D0EDE9E00FF83D6 /* Goods.swift */,
+				8BD02FA41D0FDF7000EA45B0 /* ChoiceList.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 		8B7F93CB1D0A56E8001A2207 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */,
 				8B1C12211D0AB7A100968DC9 /* Tabbar.swift */,
 				27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */,
 			);
@@ -275,6 +283,7 @@
 				270291CE1D0BEF9700009ED3 /* HeaderView.swift */,
 				270291D01D0BEFC800009ED3 /* BannerView.swift */,
 				270291D61D0C18D900009ED3 /* ChoiceCell.swift */,
+				8BD02FA81D0FFABC00EA45B0 /* ChoiceListCell.swift */,
 				270291E01D0C74BF00009ED3 /* ChefCell.swift */,
 				273D9C961D0D030F00E511B1 /* ChefBannerView.swift */,
 				273D9CA01D0D683400E511B1 /* ChefSectionView.swift */,
@@ -320,6 +329,7 @@
 				8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */,
 				27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */,
 				27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */,
+				8BD02FA21D0FDE2700EA45B0 /* ChoiceListTableViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -360,7 +370,6 @@
 				8B944CA21D0A52E40076822D /* BaseNavigationController.swift */,
 				8B7F93C91D0A5617001A2207 /* BaseViewController.swift */,
 				8B1C121D1D0A9D7400968DC9 /* TranslationTableViewController.swift */,
-				27D700D71D0BAD0900ED5605 /* CustomButton.swift */,
 				270291DE1D0C729F00009ED3 /* TranslationCollectionViewController.swift */,
 			);
 			path = Common;
@@ -623,12 +632,16 @@
 			files = (
 				8B7F93E51D0A6E65001A2207 /* BtnPageView.swift in Sources */,
 				273D9C991D0D30F500E511B1 /* Chef.swift in Sources */,
+				8BD02FA51D0FDF7000EA45B0 /* ChoiceList.swift in Sources */,
 				8B7F93DB1D0A5755001A2207 /* CustomMadeViewController.swift in Sources */,
 				2700B50B1D0EDE9E00FF83D6 /* Goods.swift in Sources */,
 				8B7F93DF1D0A5769001A2207 /* MeViewController.swift in Sources */,
 				27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */,
+				8BD02FA91D0FFABC00EA45B0 /* ChoiceListCell.swift in Sources */,
 				270291DD1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift in Sources */,
+				8BD02FA31D0FDE2700EA45B0 /* ChoiceListTableViewController.swift in Sources */,
 				8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */,
+				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
 				8B7F93DD1D0A5761001A2207 /* OrderViewController.swift in Sources */,
 				27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */,
 				270291DB1D0C42B300009ED3 /* HJCornerRadius.m in Sources */,
@@ -648,7 +661,6 @@
 				27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */,
 				8B1C12201D0AAD4C00968DC9 /* ChoiceViewController.swift in Sources */,
 				8B1C121E1D0A9D7400968DC9 /* TranslationTableViewController.swift in Sources */,
-				27D700D81D0BAD0900ED5605 /* CustomButton.swift in Sources */,
 				8B7F93D91D0A5747001A2207 /* DiscoverViewController.swift in Sources */,
 				8B7F93D71D0A5733001A2207 /* HomeViewController.swift in Sources */,
 				270291D51D0BFC5800009ED3 /* KtCorner.swift in Sources */,

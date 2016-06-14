@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DZNEmptyDataSet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FDFullscreenPopGesture.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>YYModel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,12 +67,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>23A600B8BD1F48D98784A92BD5EC6AB2</key>
+		<key>2C71DE0FB8A6E5BB6EAF9FB037D799CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6141564DEFBB00E26F349465B0005078</key>
+		<key>31D75DE794C2F1FED23A64DD842B9D16</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4B89917EBC9BFBA1DF8FAAE9ECDAF69C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>63F8E552F5ACFFF5B8B33D2F60211412</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>736E57AD5AEFAAF68D47AE4E8FCB8F68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,27 +97,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91C4B4F0FF435D2B47D5C1B9B12CA507</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C60D61B3DA3FCBF9FB4A7F1CC0F34198</key>
+		<key>C3E13A6869378A763D03E1E80DA659A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D5A98BA3F7034A285BAE8440F4661094</key>
+		<key>C60AE990E3F23D1503E71A4A023C3416</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0EE50EF37601F3C648D8190E0586B8E</key>
+		<key>F210EE772350012047F80B7B4B1A717B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6F9F0D1EE2D796B0E4138A5A5AE3C14</key>
 		<dict>
 			<key>primary</key>
 			<true/>

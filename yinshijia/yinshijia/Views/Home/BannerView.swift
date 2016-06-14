@@ -10,8 +10,6 @@ import UIKit
 
 class BannerView: UIView {
     
-    
-    
     private var didUpdateConstraints = false
     
     private let imageViewMaxCount = 3
@@ -117,7 +115,6 @@ class BannerView: UIView {
             let img = allImgs[index]
             img.frame = CGRectMake(ScreenSize.SCREEN_WIDTH * CGFloat(index), 0, ScreenSize.SCREEN_WIDTH, 380.0.fitHeight())
         }
-        
         pageControl.autoAlignAxisToSuperviewAxis(.Vertical)
         pageControl.autoPinEdgeToSuperviewMargin(.Bottom)
         pageControl.autoSetDimension(.Height, toSize: 50.0.fitHeight())
@@ -212,6 +209,7 @@ extension BannerView: UIScrollViewDelegate {
 }
 
 class BannerImageView: UIImageView {
+    
     var bannerId: Int = 0
     
     override init(frame: CGRect) {

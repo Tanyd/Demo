@@ -74,13 +74,12 @@ class ChefViewController: TranslationCollectionViewController {
         bannerView = ChefBannerView(frame: CGRectMake(0, -270.fitHeight(), ScreenSize.SCREEN_WIDTH, 270.0.fitHeight()), bannerClick: { (index) in
             DebugPrint("chef banner 点击\(index)")
         })
-        
         collectionView!.addSubview(bannerView)
         collectionView!.contentInset = UIEdgeInsets(top: 270.fitHeight(), left: 0, bottom: 0, right: 0)
         collectionView!.mj_header.ignoredScrollViewContentInsetTop = 270.fitHeight()
         collectionView!.registerClass(ChefCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView!.registerClass(ChefSectionView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sectionIdentifier)
-        collectionView!.mj_header.beginRefreshing()
+//        collectionView!.mj_header.beginRefreshing()
         view.setNeedsUpdateConstraints()
 
     }

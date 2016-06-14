@@ -140,58 +140,25 @@ class BaseApi: AFHTTPSessionManager {
         }
 
     }
-    
-//    func loadHomeBaseChefHotNewData(callBack: BaseApiCallBack, page: Int, type: ChefApiType) {
-//        
-//        var dic: [String : AnyObject]?
-//        
-//        var urlPath: String!
-//        if type == ChefApiType.Hot {
-//            urlPath = Constant.Api.Home.HotChef
-//        }else {
-//            urlPath = Constant.Api.Home.NewChef
-//        }
-//        
-//        let gp = dispatch_group_create()
-//        dispatch_group_enter(gp)
-//        let range = Range(start: urlPath.endIndex.advancedBy(-3), end: urlPath.endIndex.advancedBy(-2))
-//        urlPath.replaceRange(range, with: String(page))
-//        
-//        request(.GET, Urlstring: urlPath, parameters: ["version" : Constant.Api.BaseVersion]) { (result, error) in
-//            if error != nil {
-//                callBack(result: nil, error: error)
-//            }else{
-//                let json = JSON(result!)
-//                let code = json["code"].number
-//                if code == 200 {
-//                    let model = Chef.yy_modelWithJSON(json.dictionaryObject!)
-//                    dic!["chefList"] = model
-//                }
-//            }
-//            dispatch_group_leave(gp)
-//        }
-//        
-//        dispatch_group_enter(gp)
-//        request(.GET, Urlstring: Constant.Api.Home.ChefBanner, parameters: ["version" : Constant.Api.BaseVersion]) { (result, error) in
-//            if error != nil {
-//                callBack(result: nil, error: error)
-//            }else{
-//                let json = JSON(result!)
-//                let code = json["code"].number
-//                if code == 200 {
-//                    let model = ChefBanner.yy_modelWithJSON(json.dictionaryObject!)
-//                    dic!["chefBanner"] = model
-//                }
-//            }
-//            dispatch_group_leave(gp)
-//        }
-//        
-//        dispatch_group_notify(gp, dispatch_get_global_queue(0, 0)) { 
-//            callBack(result: dic!, error: nil)
-//        }
-//    }
-    
-    
+
+    func loadChoiceListBaseData(callBack: BaseApiCallBack, id: Int){
+        let urlPath = Constant.Api.Home.ChoiceList + String(id)
+        request(.GET, Urlstring: urlPath, parameters: ["version" : Constant.Api.BaseVersion]) { (result, error) in
+            if error != nil {
+                callBack(result: nil, error: error)
+            }else{
+                let json = JSON(result!)
+                let code = json["code"].number
+                if code == 200 {
+                    let model = ChoiceList.yy_modelWithJSON(json.dictionaryObject!)
+                    callBack(result: model, error: nil)
+                }else{
+                    callBack(result: nil, error: BaseError)
+                }
+            }
+        }
+    }
+
     func request(method: RequestMethod, Urlstring: String,parameters: [String:AnyObject]?, finished: BaseApiCallBack){
         
         if method == RequestMethod.GET {

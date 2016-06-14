@@ -14,7 +14,11 @@ class ChoiceViewController: TranslationTableViewController {
     private var choicePage = 0
     private let choiceMaxPage = 5
     private var arrayIndex = [NSIndexPath]()
-
+    private var isLoding: Bool = false {
+        didSet{
+            tableView.reloadEmptyDataSet()
+        }
+    }
     var choiceModel: Choice?{
         didSet{
             headerView.categorys = (choiceModel?.data?.catalog)!
@@ -33,14 +37,19 @@ class ChoiceViewController: TranslationTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        tableView.mj_header.beginRefreshing()
+//        tableView.mj_header.beginRefreshing()
     }
 
     private func setUI() {
         tableView.registerClass(ChoiceCell.self, forCellReuseIdentifier: String(ChoiceCell))
         headerView = HeaderView(frame: CGRectMake(0, 0, 0, 540.0.fitHeight()))
+        headerView.hidden = true
         headerView.delegate = self
         tableView.tableHeaderView = headerView
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
     }
     
     override func tableRefreshHeader() {
@@ -53,6 +62,8 @@ class ChoiceViewController: TranslationTableViewController {
             let model = result as! Choice
             self!.choiceModel = model
             self!.tableView.mj_header.endRefreshing()
+            self!.isLoding = false
+            self!.headerView.hidden = false
         }
         Choice.loadChoiceBaseData(callBack)
     }
@@ -87,35 +98,40 @@ class ChoiceViewController: TranslationTableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = ChoiceCell.choiceCellWithTableView(tableView)
+        let identifier = String(ChoiceCell)
+        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ChoiceCell
+        if cell == nil {
+            cell = ChoiceCell(style: .Default, reuseIdentifier: identifier)
+        }
         let model = choiceModel?.data?.dinnerList?[indexPath.row]
-        cell.model = model
+        cell!.choiceModel = model
         
         if (tableView.dragging || tableView.decelerating) && !(arrayIndex.contains(indexPath)){
             
-            cell.goodsImg.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
-            cell.userIcon.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "headerview"))
+            cell!.goodsImg.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
+            cell!.userIcon.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "headerview"))
             
         }else {
             let goodsImgArray = model!.themeDinnerImageurl!.componentsSeparatedByString(",")
-            cell.goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
+            cell!.goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
                 
                 if !self.arrayIndex.contains(indexPath) {
                     self.arrayIndex.append(indexPath)
                 }
             })
-            cell.userIcon.sd_setImageWithURL(NSURL(string: model!.themeDinnerChefImageurl!), placeholderImage: UIImage(named: "headerview"))
+            cell!.userIcon.sd_setImageWithURL(NSURL(string: model!.themeDinnerChefImageurl!), placeholderImage: UIImage(named: "headerview"))
             }
         
-        cell.dinnerChefClick = { (chefID) in
+        cell!.dinnerChefClick = { (chefID) in
             DebugPrint("点击了chef id\(chefID)")
         }
         
-        return cell
+        return cell!
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return tableView.fd_heightForCellWithIdentifier(String(ChoiceCell), cacheByIndexPath: indexPath, configuration: nil)
+
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -146,10 +162,60 @@ class ChoiceViewController: TranslationTableViewController {
     }
 }
 
+extension ChoiceViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{
+    
+    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        if isLoding == true {
+            return NSAttributedString(string: "拼命加载中ing...", attributes: [NSFontAttributeName:UIFont(name: Constant.Common.DefaultFont, size: 13)!,NSForegroundColorAttributeName:UIColor.lightGrayColor()])
+        }else{
+            return NSAttributedString(string: "网络故障，请尝试刷新", attributes: [NSFontAttributeName:UIFont(name: Constant.Common.DefaultFont, size: 13)!,NSForegroundColorAttributeName:UIColor.lightGrayColor()])
+        }
+    }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        if isLoding == true {
+            return UIImage(named: "loading")
+        }else{
+            return UIImage(named: "placeholder_remote")
+        }
+    }
+    
+    func verticalOffsetForEmptyDataSet(scrollView: UIScrollView!) -> CGFloat {
+        return -50
+    }
+    
+    func emptyDataSetShouldAnimateImageView(scrollView: UIScrollView!) -> Bool {
+        return isLoding
+    }
+    
+    func imageAnimationForEmptyDataSet(scrollView: UIScrollView!) -> CAAnimation! {
+        let animation = CABasicAnimation(keyPath: "transform")
+        animation.fromValue = NSValue(CATransform3D: CATransform3DIdentity)
+        animation.toValue = NSValue(CATransform3D: CATransform3DMakeRotation(CGFloat(M_PI_2), 0.0, 0.0, 1.0))
+        animation.duration = 0.25
+        animation.cumulative = true
+        animation.repeatCount = MAXFLOAT
+        return animation
+    }
+    
+    func emptyDataSetDidTapView(scrollView: UIScrollView!) {
+        isLoding = true
+        tableRefreshHeader()
+    }
+   
+    func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+        isLoding = true
+        tableRefreshHeader()
+    }
+}
+
 
 extension ChoiceViewController: HeaderViewDelegate {
     func headerViewBannerDidClick(index: Int) {
         DebugPrint("点击了banner \(index)")
+        let listVC = ChoiceListTableViewController()
+        listVC.bannerId = index
+        navigationController?.pushViewController(listVC, animated: true)
     }
     
     func headerViewCateoryDidClick(index: Int) {

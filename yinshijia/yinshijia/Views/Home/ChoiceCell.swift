@@ -7,25 +7,31 @@
 //
 
 import UIKit
-
+enum ChoiceCellType {
+    case choice
+    case choiceList
+}
 class ChoiceCell: UITableViewCell {
     
-    private var didUpdateConstraints = false
+    var didUpdateConstraints = false
+    
     var dinnerChefClick: ((chefID: Int) -> Void)?
-    var model: Dinnerlist?{
+    
+    var choiceModel: Dinnerlist?{
         didSet{
-            let price = "¥" + String(model!.themeDinnerMinPrice) + "/" + model!.themeDinnerUnit!
+            let price = "¥" + String(choiceModel!.themeDinnerMinPrice) + "/" + choiceModel!.themeDinnerUnit!
             priceView.setTitle(price, forState: .Normal)
-            titleLable.text = model!.themeDinnerTitle!
-            location.setTitle("  " + model!.themeDinnerDistrict!, forState: .Normal)
-            let timeRange = getDateFormate(model!.themeDinnerStartTime!) + " - " + getDateFormate(model!.themeDinnerEndTime!)
+            titleLable.text = choiceModel!.themeDinnerTitle!
+            location.setTitle("  " + choiceModel!.themeDinnerDistrict!, forState: .Normal)
+            let timeRange = getDateFormate(choiceModel!.themeDinnerStartTime!) + " - " + getDateFormate(choiceModel!.themeDinnerEndTime!)
             time.setTitle("  " + timeRange, forState: .Normal)
-            userIcon.tag = (model?.themeDinnerChefId)!
-            tag = (model?.themeDinnerId)!
+            userIcon.tag = (choiceModel?.themeDinnerChefId)!
+            tag = (choiceModel?.themeDinnerId)!
         }
     }
+
     
-    private func getDateFormate(date: String) -> String{
+    func getDateFormate(date: String) -> String{
         let t = "yyyy-MM-dd HH:mm:ss"
         let formate = NSDateFormatter()
         formate.dateFormat = t
@@ -42,23 +48,22 @@ class ChoiceCell: UITableViewCell {
         return img
     }()
     
-    private lazy var priceView: UIButton = {
+    lazy var priceView: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.titleLabel?.font = UIFont.systemFontOfSize(14)
-        btn.setBackgroundImage(UIImage(named: "hotDinner_toast"), forState: .Normal)
         btn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn.userInteractionEnabled = false
         return btn
     }()
     
-    private lazy var customMade: UIButton = {
+  
+    
+    lazy var customMade: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setTitle("定制", forState: .Normal)
-        btn.titleLabel?.font = UIFont.systemFontOfSize(11)
-        btn.setTitleColor(Constant.Common.OrangeColor, forState: .Normal)
-        btn.layer.borderWidth = 1
-        btn.layer.borderColor = Constant.Common.OrangeColor.CGColor
         btn.layer.cornerRadius = 2
+        btn.layer.borderWidth = 1
+        btn.titleLabel?.font = UIFont.systemFontOfSize(11)
         btn.userInteractionEnabled = false
         return btn
     }()
@@ -81,12 +86,12 @@ class ChoiceCell: UITableViewCell {
         }
     }
     
-    private lazy var titleLable: UILabel = {
+    lazy var titleLable: UILabel = {
         let lable = UILabel.lableCutomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.colorFromHex(0x222222), fontSize: 16)
         return lable
     }()
     
-    private lazy var location: UIButton = {
+    lazy var location: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         btn.setImage(UIImage(named: "cell_location"), forState: .Normal)
@@ -95,7 +100,7 @@ class ChoiceCell: UITableViewCell {
         return btn
     }()
     
-    private lazy var time: UIButton = {
+    lazy var time: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         btn.setImage(UIImage(named: "cell_clock"), forState: .Normal)
@@ -103,18 +108,13 @@ class ChoiceCell: UITableViewCell {
         btn.userInteractionEnabled = false
         return btn
     }()
-    
-    class func choiceCellWithTableView(tableView: UITableView) -> ChoiceCell {
-        let identifier = String(ChoiceCell)
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ChoiceCell
-        if cell == nil {
-            cell = ChoiceCell(style: .Default, reuseIdentifier: identifier) 
-        }
-        return cell!
-    }
+ 
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        customMade.setTitleColor(Constant.Common.OrangeColor, forState: .Normal)
+        customMade.layer.borderColor = Constant.Common.OrangeColor.CGColor
+        priceView.setBackgroundImage(UIImage(named: "hotDinner_toast"), forState: .Normal)
         contentView.addSubview(goodsImg)
         goodsImg.addSubview(priceView)
         contentView.addSubview(customMade)
@@ -123,9 +123,12 @@ class ChoiceCell: UITableViewCell {
         contentView.addSubview(time)
         contentView.addSubview(userIcon)
         setNeedsUpdateConstraints()
+
     }
     
+
     override func updateConstraints() {
+
         if !didUpdateConstraints {
             goodsImg.autoPinEdgeToSuperviewEdge(.Left)
             goodsImg.autoPinEdgeToSuperviewEdge(.Right)
@@ -139,22 +142,22 @@ class ChoiceCell: UITableViewCell {
             userIcon.autoSetDimensionsToSize(CGSize(width: 114.0.fitWidth(), height: 114.0.fitWidth()))
             userIcon.autoPinEdge(.Top, toEdge: .Top, ofView: goodsImg, withOffset: 500.0.fitHeight() - 114.0.fitWidth() * 0.5)
             
-            customMade.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0.fitWidth())
             customMade.autoPinEdge(.Top, toEdge: .Bottom, ofView: goodsImg, withOffset: 30.0.fitHeight())
             customMade.autoSetDimension(.Width, toSize: 75.0.fitWidth())
             customMade.autoSetDimension(.Height, toSize: 40.0.fitHeight())
-            
-            titleLable.autoPinEdge(.Left, toEdge: .Right, ofView: customMade, withOffset: 20.0.fitWidth())
+            customMade.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0.fitWidth())
+
             titleLable.autoPinEdge(.Top, toEdge: .Bottom, ofView: goodsImg, withOffset: 30.0.fitHeight())
-            
+            titleLable.autoPinEdge(.Left, toEdge: .Right, ofView: customMade, withOffset: 20.0.fitWidth())
+
             location.autoPinEdge(.Left, toEdge: .Left, ofView: customMade)
             location.autoPinEdge(.Top, toEdge: .Bottom, ofView: customMade ,withOffset: 30.0.fitHeight())
             location.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 30.0.fitHeight())
-            
+
             time.autoPinEdge(.Left, toEdge: .Right, ofView: location, withOffset: 20.0.fitWidth())
             time.autoPinEdge(.Top, toEdge: .Top, ofView: location)
             time.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: location)
-            
+
             didUpdateConstraints = true
         }
         super.updateConstraints()

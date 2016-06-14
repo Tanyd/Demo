@@ -7,12 +7,14 @@
 //
 
 
-// 精选下拉刷新  http://api.yinshijia.com/mobile/apiv2/index/choice/1?version=3.4.3
-// 精选上啦刷新  http://api.yinshijia.com/mobile/apiv2/index/choiceDinner/1/1/8?version=3.4.3
+// 精选下拉刷新  http://api.yinshijia.com/mobile/apiv2/index/choice/1
+// 精选上啦刷新  http://api.yinshijia.com/mobile/apiv2/index/choiceDinner/1/1/8
+// 精选banner   http://api.yinshijia.com/mobile/apiv2/index/campaignItem/50
 // 主厨 newChef http://api.yinshijia.com/mobile/apiv2/index/chefList/new/1/1/8
 // 主厨 hotChef http://api.yinshijia.com/mobile/apiv2/index/chefList/hot/1/1/8
 // 主厨 Base    http://api.yinshijia.com/mobile/apiv2/index/chef/1
 // 市集         http://api.yinshijia.com/mobile/apiv2/goods/list/1/8
+
 
 import UIKit
 
@@ -76,6 +78,8 @@ struct Constant {
             static let NewChef = "index/chefList/new/1/1/8"
             
             static let Goods = "goods/list/1/8"
+            
+            static let ChoiceList = "index/campaignItem/"
         }
     }
 }

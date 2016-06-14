@@ -86,7 +86,7 @@ class ChefViewController: TranslationCollectionViewController {
         collectionView!.mj_header.ignoredScrollViewContentInsetTop = 270.fitHeight()
         collectionView!.registerClass(ChefCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView!.registerClass(ChefSectionView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sectionIdentifier)
-        collectionView!.mj_header.beginRefreshing()
+//        collectionView!.mj_header.beginRefreshing()
         view.setNeedsUpdateConstraints()
 
     }

@@ -33,12 +33,13 @@ class ChoiceViewController: TranslationTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        tableView.mj_header.beginRefreshing()
+//        tableView.mj_header.beginRefreshing()
     }
 
     private func setUI() {
         tableView.registerClass(ChoiceCell.self, forCellReuseIdentifier: String(ChoiceCell))
         headerView = HeaderView(frame: CGRectMake(0, 0, 0, 540.0.fitHeight()))
+        headerView.delegate = self
         tableView.tableHeaderView = headerView
     }
     
@@ -89,7 +90,7 @@ class ChoiceViewController: TranslationTableViewController {
         let cell = ChoiceCell.choiceCellWithTableView(tableView)
         let model = choiceModel?.data?.dinnerList?[indexPath.row]
         cell.model = model
- 
+        
         if (tableView.dragging || tableView.decelerating) && !(arrayIndex.contains(indexPath)){
             
             cell.goodsImg.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
@@ -105,6 +106,11 @@ class ChoiceViewController: TranslationTableViewController {
             })
             cell.userIcon.sd_setImageWithURL(NSURL(string: model!.themeDinnerChefImageurl!), placeholderImage: UIImage(named: "headerview"))
             }
+        
+        cell.dinnerChefClick = { (chefID) in
+            DebugPrint("点击了chef id\(chefID)")
+        }
+        
         return cell
     }
     
@@ -112,6 +118,11 @@ class ChoiceViewController: TranslationTableViewController {
         return tableView.fd_heightForCellWithIdentifier(String(ChoiceCell), cacheByIndexPath: indexPath, configuration: nil)
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChoiceCell
+        DebugPrint("点击了dinner \(cell.tag)")
+    }
     
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
@@ -132,5 +143,16 @@ class ChoiceViewController: TranslationTableViewController {
             }
         }
         tableView.reloadRowsAtIndexPaths(newRows, withRowAnimation: .Fade)
+    }
+}
+
+
+extension ChoiceViewController: HeaderViewDelegate {
+    func headerViewBannerDidClick(index: Int) {
+        DebugPrint("点击了banner \(index)")
+    }
+    
+    func headerViewCateoryDidClick(index: Int) {
+        DebugPrint("点击了CategoryButton \(index)")
     }
 }

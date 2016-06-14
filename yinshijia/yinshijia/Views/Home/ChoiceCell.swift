@@ -11,19 +11,17 @@ import UIKit
 class ChoiceCell: UITableViewCell {
     
     private var didUpdateConstraints = false
-    
+    var dinnerChefClick: ((chefID: Int) -> Void)?
     var model: Dinnerlist?{
         didSet{
-//            let goodsImgArray = model!.themeDinnerImageurl!.componentsSeparatedByString(",")
-//            goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"))
-//            userIcon.sd_setImageWithURL(NSURL(string: model!.themeDinnerChefImageurl!), placeholderImage: UIImage(named: "headerview"))
             let price = "¥" + String(model!.themeDinnerMinPrice) + "/" + model!.themeDinnerUnit!
             priceView.setTitle(price, forState: .Normal)
             titleLable.text = model!.themeDinnerTitle!
             location.setTitle("  " + model!.themeDinnerDistrict!, forState: .Normal)
             let timeRange = getDateFormate(model!.themeDinnerStartTime!) + " - " + getDateFormate(model!.themeDinnerEndTime!)
             time.setTitle("  " + timeRange, forState: .Normal)
-            tag = (model?.chefId)!
+            userIcon.tag = (model?.themeDinnerChefId)!
+            tag = (model?.themeDinnerId)!
         }
     }
     
@@ -39,12 +37,12 @@ class ChoiceCell: UITableViewCell {
     }
     
     
-    var goodsImg: UIImageView = {
+    lazy var goodsImg: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
         return img
     }()
     
-    private var priceView: UIButton = {
+    private lazy var priceView: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.titleLabel?.font = UIFont.systemFontOfSize(14)
         btn.setBackgroundImage(UIImage(named: "hotDinner_toast"), forState: .Normal)
@@ -53,7 +51,7 @@ class ChoiceCell: UITableViewCell {
         return btn
     }()
     
-    private var customMade: UIButton = {
+    private lazy var customMade: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setTitle("定制", forState: .Normal)
         btn.titleLabel?.font = UIFont.systemFontOfSize(11)
@@ -65,21 +63,30 @@ class ChoiceCell: UITableViewCell {
         return btn
     }()
 
-    var userIcon: UIImageView = {
+    lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
         img.layer.borderWidth = 2.0
         img.layer.borderColor = UIColor.whiteColor().CGColor
         img.layer.cornerRadius = 57.0.fitWidth()
         img.layer.masksToBounds = true
+        img.userInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
+        img.addGestureRecognizer(tap)
         return img
     }()
     
-    private var titleLable: UILabel = {
+    func userIconDidClick(sender: UITapGestureRecognizer) {
+        if dinnerChefClick != nil {
+            dinnerChefClick!(chefID: sender.view!.tag)
+        }
+    }
+    
+    private lazy var titleLable: UILabel = {
         let lable = UILabel.lableCutomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.colorFromHex(0x222222), fontSize: 16)
         return lable
     }()
     
-    private var location: UIButton = {
+    private lazy var location: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         btn.setImage(UIImage(named: "cell_location"), forState: .Normal)
@@ -88,7 +95,7 @@ class ChoiceCell: UITableViewCell {
         return btn
     }()
     
-    private var time: UIButton = {
+    private lazy var time: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         btn.setImage(UIImage(named: "cell_clock"), forState: .Normal)

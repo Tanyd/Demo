@@ -31,7 +31,7 @@ class MarketViewController: TranslationCollectionViewController {
     
     private func setUI() {
         collectionView!.registerClass(ChefCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        collectionView!.mj_header.beginRefreshing()
+//        collectionView!.mj_header.beginRefreshing()
         view.setNeedsUpdateConstraints()
         
     }

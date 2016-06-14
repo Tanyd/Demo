@@ -7,9 +7,13 @@
 //
 
 import UIKit
-
+protocol HeaderViewDelegate: NSObjectProtocol {
+    func headerViewBannerDidClick(index: Int)
+    func headerViewCateoryDidClick(index: Int)
+}
 class HeaderView: UIView {
 
+    weak var delegate: HeaderViewDelegate?
     private var banner: BannerView!
     private var categoryView: CategoryView!
     var categorys = [Catalog](){
@@ -37,9 +41,17 @@ class HeaderView: UIView {
     }
     
     private func setUI() {
-        banner = BannerView(frame: CGRectZero)
+        banner = BannerView(frame: CGRectZero, focusImageViewClick: { (index) in
+            if self.delegate != nil && (self.delegate?.respondsToSelector("headerViewBannerDidClick:"))!{
+                self.delegate?.headerViewBannerDidClick(index)
+            }
+        })
         addSubview(banner)
-        categoryView = CategoryView(frame: CGRectZero)
+        categoryView = CategoryView(frame: CGRectZero, categoryClick: { (tag) in
+            if self.delegate != nil && (self.delegate?.respondsToSelector("headerViewCateoryDidClick:"))!{
+                self.delegate?.headerViewCateoryDidClick(tag)
+            }
+        })
         addSubview(categoryView)
     }
     
@@ -65,7 +77,14 @@ class CategoryView: UIScrollView {
             layoutIfNeeded()
         }
     }
+    private var btnClick: categoryBtnCallBack
     private let btnWidth = 180.0.fitWidth()
+    
+    
+    convenience init(frame: CGRect, categoryClick: categoryBtnCallBack) {
+        self.init(frame: frame)
+        btnClick = categoryClick
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,7 +100,7 @@ class CategoryView: UIScrollView {
         }
         for var index = 0; index < categorys.count; index++ {
             let model = categorys[index]
-            let view = marginView(frame: CGRectZero)
+            let view = marginView(frame: CGRectZero, categoryBtnClick: btnClick)
             view.catalog = categorys[index]
             addSubview(view)
             views.append(view)
@@ -103,19 +122,27 @@ class CategoryView: UIScrollView {
 
 }
 
+typealias categoryBtnCallBack = ((tag: Int) -> Void)?
+
 class marginView: UIView {
     
     private var btn: UIButton!
     private var marginTop = 19.0.fitHeight()
     private var marginLeft = 13.0.fitWidth()
     private let btnWidth = 180.0.fitWidth()
-
+    private var btnClick: categoryBtnCallBack
+    
     var catalog: Catalog?{
         didSet{
             btn.setTitle(catalog!.catalogTitle, forState: .Normal)
             btn.sd_setBackgroundImageWithURL(NSURL(string: catalog!.catalogImage!), forState: .Normal)
             btn.tag = catalog!.catalogId
         }
+    }
+    
+    convenience init(frame: CGRect, categoryBtnClick: categoryBtnCallBack) {
+        self.init(frame:frame)
+        btnClick = categoryBtnClick
     }
     
     override init(frame: CGRect) {
@@ -125,11 +152,17 @@ class marginView: UIView {
     
     private func setUI() {
         btn = UIButton(type: .Custom)
-        btn.userInteractionEnabled = false
         btn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn.titleLabel?.font = UIFont(name: Constant.Common.BoldFont, size: 10)
         btn.sizeToFit()
+        btn.addTarget(self, action: "btnClick:", forControlEvents: .TouchUpInside)
         addSubview(btn)
+    }
+    
+    func btnClick(sender: UIButton) {
+        if btnClick != nil {
+            btnClick!(tag: sender.tag)
+        }
     }
     
     override func layoutSubviews() {

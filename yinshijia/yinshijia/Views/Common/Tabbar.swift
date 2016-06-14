@@ -12,7 +12,6 @@ protocol TabbarDelegate: NSObjectProtocol {
 }
 class Tabbar: UITabBar {
 
-    
     private let btnWidth: CGFloat = ScreenSize.SCREEN_WIDTH * 0.2
     private let btnHeight: CGFloat = 49
     weak var kdelegate: TabbarDelegate?

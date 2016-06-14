@@ -65,7 +65,9 @@ struct Constant {
         static let BaseUrl = "http://api.yinshijia.com/mobile/apiv2/"
         
         static let BaseVersion = "3.4.3"
-
+        
+        static let BaseParameters = ["version" : Constant.Api.BaseVersion]
+        
         struct Home {
             
             static let BaseChoice = "index/choice/1"

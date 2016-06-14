@@ -79,7 +79,7 @@ class ChefViewController: TranslationCollectionViewController {
         collectionView!.mj_header.ignoredScrollViewContentInsetTop = 270.fitHeight()
         collectionView!.registerClass(ChefCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView!.registerClass(ChefSectionView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sectionIdentifier)
-//        collectionView!.mj_header.beginRefreshing()
+        collectionView!.mj_header.beginRefreshing()
         view.setNeedsUpdateConstraints()
 
     }
@@ -133,10 +133,11 @@ class ChefViewController: TranslationCollectionViewController {
             
             self!.collectionView!.mj_footer.endRefreshing()
         }
-        
         if cureentChefType == .chefHot {
+            hotPage++
             ChefList.loadChefListMoreData(callBack, page: hotPage, type: .chefHot)
         }else{
+            newPage++
             ChefList.loadChefListMoreData(callBack, page: newPage, type: .chefNew)
         }
     }

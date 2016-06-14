@@ -37,7 +37,7 @@ class ChoiceViewController: TranslationTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-//        tableView.mj_header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
 
     private func setUI() {
@@ -81,8 +81,8 @@ class ChoiceViewController: TranslationTableViewController {
                 --self!.choicePage
                 return
             }
-            let model = result as! [Dinnerlist]
-            self!.dinnerLists = model
+            let model = result as! ChoiceOnlyDinnerlists
+            self!.dinnerLists = model.data!
             self!.tableView.mj_footer.endRefreshing()
         }
         Choice.loadChoiceMoreData(callBack, page: choicePage)

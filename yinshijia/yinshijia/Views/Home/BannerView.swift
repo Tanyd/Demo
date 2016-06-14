@@ -20,25 +20,44 @@ class BannerView: UIView {
     
     private var timer: NSTimer?
     
-    private var allImgs = [UIImageView]()
+    private var allImgs = [BannerImageView]()
     
     var bannerImageClick:((index: Int) -> ())?
     
-    var imgUrls = [String]() {
+    var choiceBanner = [Banner]() {
         didSet{
+            
             if ((timer?.valid) != nil) {
                 timer?.invalidate()
                 timer = nil
             }
             
-            if imgUrls.count > 0 {
-                pageControl.numberOfPages = (imgUrls.count)
+            if choiceBanner.count > 0 {
+                pageControl.numberOfPages = (choiceBanner.count)
                 pageControl.currentPage = 0
                 updatePageScrollView()
                 startTimer()
             }
         }
     }
+    
+    var chefBanner = [ChefBanner]() {
+        didSet{
+            if ((timer?.valid) != nil) {
+                timer?.invalidate()
+                timer = nil
+            }
+            
+            if chefBanner.count > 0 {
+                pageControl.numberOfPages = (chefBanner.count)
+                pageControl.currentPage = 0
+                updatePageScrollView()
+                startTimer()
+            }
+        }
+
+    }
+    
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,7 +81,7 @@ class BannerView: UIView {
         addSubview(imageScrollView)
         
         for _ in 0..<imageViewMaxCount {
-            let imageView = UIImageView()
+            let imageView = BannerImageView(frame: CGRectZero)
             imageView.contentMode = .ScaleAspectFill
             imageView.userInteractionEnabled = true
             let tap = UITapGestureRecognizer(target: self, action: "imageViewClick:")
@@ -82,7 +101,7 @@ class BannerView: UIView {
     
     func imageViewClick(tap: UITapGestureRecognizer) {
         if bannerImageClick != nil {
-            bannerImageClick!(index: tap.view!.tag)
+            bannerImageClick!(index: (tap.view! as! BannerImageView).bannerId)
         }
     }
     
@@ -121,12 +140,16 @@ class BannerView: UIView {
             } else if index >= pageControl.numberOfPages {
                 index = 0
             }
-            
             imageView.tag = index
             // MARK: 更新img
-            imageView.sd_setImageWithURL(NSURL(string: imgUrls[index]), placeholderImage: nil)
+            if chefBanner.count != 0 {
+                imageView.bannerId = chefBanner[index].bannerId
+                imageView.sd_setImageWithURL(NSURL(string: chefBanner[index].imageurl!), placeholderImage: nil)
+            }else{
+                imageView.bannerId = choiceBanner[index].bannerId
+                imageView.sd_setImageWithURL(NSURL(string: choiceBanner[index].banner_image!), placeholderImage: nil)
+            }
         }
-        
         imageScrollView.contentOffset = CGPointMake(imageScrollView.width, 0)
     }
     
@@ -184,6 +207,16 @@ extension BannerView: UIScrollViewDelegate {
     func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
         updatePageScrollView()
     }
+}
+
+class BannerImageView: UIImageView {
+    var bannerId: Int = 0
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

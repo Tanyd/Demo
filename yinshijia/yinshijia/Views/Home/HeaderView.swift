@@ -23,13 +23,7 @@ class HeaderView: UIView {
     }
     var banners = [Banner](){
         didSet{
-            var imgs = [String]()
-            for img in banners {
-                if let imgUrl = img.banner_image {
-                    imgs.append(imgUrl)
-                }
-            }
-            banner.imgUrls = imgs
+            banner.choiceBanner = banners
         }
     }
     private let bannerHeight = 350.0.fitHeight()

@@ -31,7 +31,7 @@ class MarketViewController: TranslationCollectionViewController {
     
     private func setUI() {
         collectionView!.registerClass(ChefCell.self, forCellWithReuseIdentifier: cellIdentifier)
-//        collectionView!.mj_header.beginRefreshing()
+        collectionView!.mj_header.beginRefreshing()
         view.setNeedsUpdateConstraints()
         
     }
@@ -102,6 +102,12 @@ class MarketViewController: TranslationCollectionViewController {
         }
         
         return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ChefCell
+        DebugPrint("chef cell  点击\(cell.tag)")
     }
     
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {

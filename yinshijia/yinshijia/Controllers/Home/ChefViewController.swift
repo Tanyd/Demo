@@ -44,13 +44,7 @@ class ChefViewController: TranslationCollectionViewController {
     }
     private var chefModel: Chef?{
         didSet{
-            var imgs = [String]()
-            for img in (chefModel?.data?.banner)! {
-                if let imgUrl = img.imageurl {
-                    imgs.append(imgUrl)
-                }
-            }
-            bannerView.banner.imgUrls = imgs
+            bannerView.banner.chefBanner = (chefModel?.data?.banner)!
             collectionView!.reloadData()
             collectionView?.hidden = false
             
@@ -78,7 +72,7 @@ class ChefViewController: TranslationCollectionViewController {
 
     private func setUI() {
         bannerView = ChefBannerView(frame: CGRectMake(0, -270.fitHeight(), ScreenSize.SCREEN_WIDTH, 270.0.fitHeight()), bannerClick: { (index) in
-            
+            DebugPrint("chef banner 点击\(index)")
         })
         
         collectionView!.addSubview(bannerView)
@@ -86,7 +80,7 @@ class ChefViewController: TranslationCollectionViewController {
         collectionView!.mj_header.ignoredScrollViewContentInsetTop = 270.fitHeight()
         collectionView!.registerClass(ChefCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView!.registerClass(ChefSectionView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sectionIdentifier)
-//        collectionView!.mj_header.beginRefreshing()
+        collectionView!.mj_header.beginRefreshing()
         view.setNeedsUpdateConstraints()
 
     }
@@ -146,8 +140,6 @@ class ChefViewController: TranslationCollectionViewController {
         }else{
             ChefList.loadChefListMoreData(callBack, page: newPage, type: .chefNew)
         }
-        
-        
     }
  
     override func didReceiveMemoryWarning() {
@@ -212,6 +204,11 @@ class ChefViewController: TranslationCollectionViewController {
         return CGSizeMake(ScreenSize.SCREEN_WIDTH, 85.fitHeight())
     }
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ChefCell
+        DebugPrint("chef cell  点击\(cell.tag)")
+    }
     
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {

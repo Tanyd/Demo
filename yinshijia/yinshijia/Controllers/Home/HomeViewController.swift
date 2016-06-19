@@ -60,7 +60,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func setUI() {
-        titleView = BtnPageView(frame: CGRect(x: 0, y: 64, width: Int(ScreenSize.SCREEN_WIDTH), height: titleViewHeight))
+        titleView = BtnPageView(frame:  CGRect(x: 0, y: 64, width: Int(ScreenSize.SCREEN_WIDTH), height: titleViewHeight), buttonTitles: ["精选","主厨","推荐"])
         titleView.delegate = self
         view.addSubview(titleView)
         
@@ -152,8 +152,7 @@ extension HomeViewController: PageViewControllerDataSource, PageViewControllerDe
         let vc1 = ChoiceViewController()
         allChildsVC.append(vc1)
         vc1.view.tag = 0
-//        vc1.view.backgroundColor = UIColor.redColor()
-        let layout = UICollectionViewLayout()
+
         let vc2 = ChefViewController()
         allChildsVC.append(vc2)
         vc2.view.tag = 1

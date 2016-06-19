@@ -16,6 +16,12 @@
 		270291DD1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291DC1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift */; };
 		270291DF1D0C729F00009ED3 /* TranslationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291DE1D0C729F00009ED3 /* TranslationCollectionViewController.swift */; };
 		270291E11D0C74BF00009ED3 /* ChefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291E01D0C74BF00009ED3 /* ChefCell.swift */; };
+		27105F8C1D14EFDA00362F3E /* DinnerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27105F8B1D14EFDA00362F3E /* DinnerDetailViewController.swift */; };
+		27105F8E1D14F1A400362F3E /* DinnerDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27105F8D1D14F1A400362F3E /* DinnerDetailTableView.swift */; };
+		27105F901D150F0500362F3E /* DinnerDetailIntroductionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27105F8F1D150F0500362F3E /* DinnerDetailIntroductionCell.swift */; };
+		27105F921D1512C600362F3E /* ChefInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27105F911D1512C600362F3E /* ChefInfoCell.swift */; };
+		27105F941D15165B00362F3E /* FeatureDinnerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27105F931D15165B00362F3E /* FeatureDinnerTableView.swift */; };
+		27105F961D15175300362F3E /* FeatureDinnerDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27105F951D15175300362F3E /* FeatureDinnerDetailCell.swift */; };
 		27165A2D1D09AE8000019140 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27165A2C1D09AE8000019140 /* AppDelegate.swift */; };
 		27165A321D09AE8000019140 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27165A301D09AE8000019140 /* Main.storyboard */; };
 		27165A341D09AE8000019140 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27165A331D09AE8000019140 /* Assets.xcassets */; };
@@ -33,6 +39,10 @@
 		27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */; };
 		27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */; };
 		27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */; };
+		27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */; };
+		27E7EC841D163BE500E3F126 /* MoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */; };
+		27E7EC861D163E8300E3F126 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC851D163E8300E3F126 /* MenuCell.swift */; };
+		27E7EC881D163EC500E3F126 /* MenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC871D163EC500E3F126 /* MenuTable.swift */; };
 		27F684291D0BC9A700603199 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F684281D0BC9A700603199 /* BaseApi.swift */; };
 		834210AD60DB606C78A85023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B398C9D62760EB0484300C /* libPods.a */; };
 		8B1C121E1D0A9D7400968DC9 /* TranslationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C121D1D0A9D7400968DC9 /* TranslationTableViewController.swift */; };
@@ -85,6 +95,12 @@
 		270291DC1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceOnlyDinnerlists.swift; sourceTree = "<group>"; };
 		270291DE1D0C729F00009ED3 /* TranslationCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationCollectionViewController.swift; sourceTree = "<group>"; };
 		270291E01D0C74BF00009ED3 /* ChefCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefCell.swift; sourceTree = "<group>"; };
+		27105F8B1D14EFDA00362F3E /* DinnerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinnerDetailViewController.swift; sourceTree = "<group>"; };
+		27105F8D1D14F1A400362F3E /* DinnerDetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinnerDetailTableView.swift; sourceTree = "<group>"; };
+		27105F8F1D150F0500362F3E /* DinnerDetailIntroductionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinnerDetailIntroductionCell.swift; sourceTree = "<group>"; };
+		27105F911D1512C600362F3E /* ChefInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefInfoCell.swift; sourceTree = "<group>"; };
+		27105F931D15165B00362F3E /* FeatureDinnerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureDinnerTableView.swift; sourceTree = "<group>"; };
+		27105F951D15175300362F3E /* FeatureDinnerDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureDinnerDetailCell.swift; sourceTree = "<group>"; };
 		27165A291D09AE8000019140 /* yinshijia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yinshijia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27165A2C1D09AE8000019140 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27165A311D09AE8000019140 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -109,6 +125,10 @@
 		27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
 		27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightNavigationItem.swift; sourceTree = "<group>"; };
+		27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureDinnerCell.swift; sourceTree = "<group>"; };
+		27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoCell.swift; sourceTree = "<group>"; };
+		27E7EC851D163E8300E3F126 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		27E7EC871D163EC500E3F126 /* MenuTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTable.swift; sourceTree = "<group>"; };
 		27F684281D0BC9A700603199 /* BaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
 		56280425BA504C6113327FD7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8B1C12151D0A950600968DC9 /* yinshijia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yinshijia-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -290,6 +310,15 @@
 				270291E01D0C74BF00009ED3 /* ChefCell.swift */,
 				273D9C961D0D030F00E511B1 /* ChefBannerView.swift */,
 				273D9CA01D0D683400E511B1 /* ChefSectionView.swift */,
+				27105F8D1D14F1A400362F3E /* DinnerDetailTableView.swift */,
+				27105F8F1D150F0500362F3E /* DinnerDetailIntroductionCell.swift */,
+				27105F911D1512C600362F3E /* ChefInfoCell.swift */,
+				27105F931D15165B00362F3E /* FeatureDinnerTableView.swift */,
+				27105F951D15175300362F3E /* FeatureDinnerDetailCell.swift */,
+				27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */,
+				27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */,
+				27E7EC851D163E8300E3F126 /* MenuCell.swift */,
+				27E7EC871D163EC500E3F126 /* MenuTable.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -333,6 +362,7 @@
 				27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */,
 				27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */,
 				8BD02FA21D0FDE2700EA45B0 /* ChoiceListTableViewController.swift */,
+				27105F8B1D14EFDA00362F3E /* DinnerDetailViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -641,11 +671,13 @@
 				8B7F93DF1D0A5769001A2207 /* MeViewController.swift in Sources */,
 				27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */,
 				8BD02FA91D0FFABC00EA45B0 /* ChoiceListCell.swift in Sources */,
+				27105F941D15165B00362F3E /* FeatureDinnerTableView.swift in Sources */,
 				270291DD1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift in Sources */,
 				8BD02FA31D0FDE2700EA45B0 /* ChoiceListTableViewController.swift in Sources */,
 				8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */,
 				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
 				8B7F93DD1D0A5761001A2207 /* OrderViewController.swift in Sources */,
+				27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */,
 				27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */,
 				270291DB1D0C42B300009ED3 /* HJCornerRadius.m in Sources */,
 				8B7F93E31D0A638F001A2207 /* PageViewController.swift in Sources */,
@@ -663,16 +695,24 @@
 				8B7F93C61D0A53F2001A2207 /* Constant.swift in Sources */,
 				27F684291D0BC9A700603199 /* BaseApi.swift in Sources */,
 				27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */,
+				27105F901D150F0500362F3E /* DinnerDetailIntroductionCell.swift in Sources */,
 				8B1C12201D0AAD4C00968DC9 /* ChoiceViewController.swift in Sources */,
+				27105F961D15175300362F3E /* FeatureDinnerDetailCell.swift in Sources */,
 				8B1C121E1D0A9D7400968DC9 /* TranslationTableViewController.swift in Sources */,
 				8B7F93D91D0A5747001A2207 /* DiscoverViewController.swift in Sources */,
+				27105F921D1512C600362F3E /* ChefInfoCell.swift in Sources */,
 				8B7F93D71D0A5733001A2207 /* HomeViewController.swift in Sources */,
+				27E7EC841D163BE500E3F126 /* MoreInfoCell.swift in Sources */,
 				270291D51D0BFC5800009ED3 /* KtCorner.swift in Sources */,
 				273D9CA11D0D683400E511B1 /* ChefSectionView.swift in Sources */,
 				270291D11D0BEFC800009ED3 /* BannerView.swift in Sources */,
+				27105F8E1D14F1A400362F3E /* DinnerDetailTableView.swift in Sources */,
 				270291D71D0C18D900009ED3 /* ChoiceCell.swift in Sources */,
 				273D9C9F1D0D680700E511B1 /* XLPlainFlowLayout.m in Sources */,
+				27E7EC861D163E8300E3F126 /* MenuCell.swift in Sources */,
+				27E7EC881D163EC500E3F126 /* MenuTable.swift in Sources */,
 				8B7F93CA1D0A5617001A2207 /* BaseViewController.swift in Sources */,
+				27105F8C1D14EFDA00362F3E /* DinnerDetailViewController.swift in Sources */,
 				270291E11D0C74BF00009ED3 /* ChefCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

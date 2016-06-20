@@ -10,27 +10,35 @@ import UIKit
 
 class DinnerDetailViewController: BaseViewController {
 
-
+    private var dinnerTable: DinnerDetailTableView!
+    var chefDinnerID: Int?{
+        didSet{
+            loadBaseDate()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
+    }
+    
+    private func loadBaseDate() {
+        let callBack: BaseApiCallBack = {[weak self](result, error) in
+            guard error == nil else {
+                return
+            }
+            self!.dinnerTable.model = result as? ChefDinner
+        }
+        ChefDinner.loadDetailDinner(callBack, id: chefDinnerID!)
+    }
+    
+    private func setUI() {
+        dinnerTable = DinnerDetailTableView(frame: view.bounds, style: .Plain)
+        view.addSubview(dinnerTable)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ 
 }

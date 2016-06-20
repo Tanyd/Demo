@@ -19,7 +19,6 @@ class BtnPageView: UIView {
     private var midBtn: buttonNoHighlighted!
     private var rightBtn: buttonNoHighlighted!
     private var selectedBtn: buttonNoHighlighted!
-    private var titles = [String]()
     weak var delegate: BtnPageViewDelegate?
     
     override init(frame: CGRect) {
@@ -29,15 +28,17 @@ class BtnPageView: UIView {
     
     convenience init(frame: CGRect,buttonTitles: [String]) {
         self.init(frame: frame)
-        self.titles = buttonTitles
+        for index in 0...buttonTitles.count - 1 {
+            (subviews[index] as! buttonNoHighlighted).setTitle(buttonTitles[index], forState: .Normal)
+        }
     }
     
     private func setUI() {
-        leftBtn = setupButton(titles[0], tag: 0)
+        leftBtn = setupButton(nil, tag: 0)
         leftBtn.selected = true
         selectedBtn = leftBtn
-        midBtn = setupButton(titles[1], tag: 1)
-        rightBtn = setupButton(titles[2], tag: 2)
+        midBtn = setupButton(nil, tag: 1)
+        rightBtn = setupButton(nil, tag: 2)
         setBottomLine()
     }
     
@@ -47,9 +48,11 @@ class BtnPageView: UIView {
         addSubview(bottomLine)
     }
     
-    private func setupButton(title: String,tag: Int) -> buttonNoHighlighted{
+    private func setupButton(title: String?,tag: Int) -> buttonNoHighlighted{
         let btn = buttonNoHighlighted(type: .Custom)
-        btn.setTitle(title, forState: .Normal)
+        if title != nil {
+            btn.setTitle(title, forState: .Normal)
+        }
         btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         btn.setTitleColor(Constant.Common.OrangeColor, forState: .Selected)
         btn.titleLabel?.font = UIFont.systemFontOfSize(14)

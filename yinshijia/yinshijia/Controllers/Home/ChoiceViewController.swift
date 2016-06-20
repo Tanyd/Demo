@@ -112,14 +112,16 @@ class ChoiceViewController: TranslationTableViewController {
             cell!.userIcon.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "headerview"))
             
         }else {
-            let goodsImgArray = model!.themeDinnerImageurl!.componentsSeparatedByString(",")
+            let img = model!.themeDinnerImageurl == nil ? model?.chefImageurl : model!.themeDinnerImageurl
+            let goodsImgArray = img!.componentsSeparatedByString(",")
             cell!.goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
                 
                 if !self.arrayIndex.contains(indexPath) {
                     self.arrayIndex.append(indexPath)
                 }
             })
-            cell!.userIcon.sd_setImageWithURL(NSURL(string: model!.themeDinnerChefImageurl!), placeholderImage: UIImage(named: "headerview"))
+            let chefImg = model!.themeDinnerChefImageurl == nil ? model?.chefImageurl : model!.themeDinnerChefImageurl
+            cell!.userIcon.sd_setImageWithURL(NSURL(string: chefImg!), placeholderImage: UIImage(named: "headerview"))
             }
         
         cell!.dinnerChefClick = { (chefID) in
@@ -141,6 +143,9 @@ class ChoiceViewController: TranslationTableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChoiceCell
         DebugPrint("点击了dinner \(cell.tag)")
+        let toView = DinnerDetailViewController()
+        toView.chefDinnerID = cell.tag
+        navigationController?.pushViewController(toView, animated: true)
     }
     
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {

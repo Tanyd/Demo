@@ -11,7 +11,23 @@ import UIKit
 class ChefInfoCell: UITableViewCell {
 
     private var didUpdateConstraints = false
+    var icon: String? {
+        didSet{
+           chefIcon.sd_setImageWithURL(NSURL(string: (icon?.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
+        }
+    }
     
+    var introduction: String? {
+        didSet{
+            contentLable.text = introduction
+        }
+    }
+    
+    var shopName: String? {
+        didSet{
+            nameLale.text = shopName
+        }
+    }
     private lazy var titleLable: UILabel = {
         let title = UILabel.lableCutomer("主厨介绍", fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
         title.numberOfLines = 0
@@ -57,8 +73,8 @@ class ChefInfoCell: UITableViewCell {
             nameLale.autoPinEdge(.Top, toEdge: .Bottom, ofView: chefIcon, withOffset: 30.0.fitHeight())
             nameLale.autoAlignAxisToSuperviewAxis(.Vertical)
             
-            contentLable.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0.fitWidth())
-            contentLable.autoPinEdgeToSuperviewEdge(.Right, withInset: 20.0.fitWidth())
+            contentLable.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
+            contentLable.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             contentLable.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLale, withOffset: 30.0.fitHeight())
             contentLable.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 45.0.fitHeight())
             

@@ -12,10 +12,11 @@ class FeatureDinnerTableView: UITableView {
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
+        setUI()
     }
     
     private func setUI() {
-        var titleLable = UILabel.lableCutomer("特色菜品", fontType: nil, color: UIColor.blackColor(), fontSize: 15)
+        let titleLable = UILabel.lableCutomer("特色菜品", fontType: nil, color: UIColor.blackColor(), fontSize: 15)
         titleLable.textAlignment = .Center
         titleLable.frame = CGRectMake(0, 0, 0, 145.0.fitHeight())
         tableHeaderView = titleLable

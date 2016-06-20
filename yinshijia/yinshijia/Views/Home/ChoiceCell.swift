@@ -19,11 +19,16 @@ class ChoiceCell: UITableViewCell {
     
     var choiceModel: Dinnerlist?{
         didSet{
-            let price = "¥" + String(choiceModel!.themeDinnerMinPrice) + "/" + choiceModel!.themeDinnerUnit!
+            let priceStr = choiceModel!.themeDinnerMinPrice == 0 ? String(choiceModel!.price!) : String(choiceModel!.themeDinnerMinPrice)
+            let price = "¥" + priceStr + "/" + (choiceModel!.themeDinnerUnit == nil ? "位" : choiceModel!.themeDinnerUnit!)
             priceView.setTitle(price, forState: .Normal)
-            titleLable.text = choiceModel!.themeDinnerTitle!
-            location.setTitle("  " + choiceModel!.themeDinnerDistrict!, forState: .Normal)
-            let timeRange = getDateFormate(choiceModel!.themeDinnerStartTime!) + " - " + getDateFormate(choiceModel!.themeDinnerEndTime!)
+            let title = choiceModel!.themeDinnerTitle == nil ? choiceModel!.title : choiceModel!.themeDinnerTitle
+            titleLable.text = title
+            let distrc = choiceModel!.themeDinnerDistrict == nil ? choiceModel!.district : choiceModel!.themeDinnerDistrict
+            location.setTitle("  " + distrc!, forState: .Normal)
+            let startTime = choiceModel!.themeDinnerStartTime == nil ? choiceModel?.datetime : choiceModel!.themeDinnerStartTime
+            let endTime = choiceModel!.themeDinnerEndTime == nil ? choiceModel?.endOrderTime : choiceModel!.themeDinnerEndTime
+            let timeRange = getDateFormate(startTime!) + " - " + getDateFormate(endTime!)
             time.setTitle("  " + timeRange, forState: .Normal)
             userIcon.tag = (choiceModel?.themeDinnerChefId)!
             tag = (choiceModel?.themeDinnerId)!

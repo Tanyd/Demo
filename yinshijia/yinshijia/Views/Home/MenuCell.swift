@@ -11,7 +11,12 @@ import UIKit
 class MenuCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-
+    var model: Plainmenu?{
+        didSet{
+            titleLable.text = model?.title
+            contentLable.text = model?.desp
+        }
+    }
     private lazy var titleLable: UILabel = {
         let title = UILabel.lableCutomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
         title.textAlignment = .Center

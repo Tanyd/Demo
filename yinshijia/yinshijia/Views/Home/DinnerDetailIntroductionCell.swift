@@ -11,7 +11,24 @@ import UIKit
 class DinnerDetailIntroductionCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-    
+    var title: String?{
+        didSet{
+            titleLable.text = title
+        }
+    }
+    var tags: String?{
+        didSet{
+            let strs = tags?.componentsSeparatedByString(",")
+            if strs?.count > 0 {
+                
+            }
+        }
+    }
+    var introduction: String?{
+        didSet{
+            contentLable.text = introduction
+        }
+    }
     private lazy var titleLable: UILabel = {
        let title = UILabel.lableCutomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
         title.numberOfLines = 0
@@ -21,7 +38,6 @@ class DinnerDetailIntroductionCell: UITableViewCell {
     private lazy var contentLable: UILabel = {
        let content = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
         content.numberOfLines = 0
-        content.sizeToFit()
         return content
     }()
     
@@ -42,8 +58,8 @@ class DinnerDetailIntroductionCell: UITableViewCell {
     
     override func updateConstraints() {
         if !didUpdateConstraints {
-            titleLable.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0.fitWidth())
-            titleLable.autoPinEdgeToSuperviewEdge(.Right, withInset: 20.0.fitWidth())
+            titleLable.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
+            titleLable.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             titleLable.autoPinEdgeToSuperviewEdge(.Top, withInset: 60.0.fitHeight())
             
             contentLable.autoPinEdge(.Left, toEdge: .Left, ofView: titleLable)

@@ -51,12 +51,16 @@ class BaseApi: AFHTTPSessionManager {
         loadMoreDataWithPage(callBack, urlPath: Constant.Api.Home.Goods, page: page, classType: Goods.classForCoder())
     }
 
-    func loadChoiceListBaseData(callBack: BaseApiCallBack, id: Int){
+    func loadChoiceListBaseData(callBack: BaseApiCallBack, id: Int) {
         loadBaseDataWithID(callBack, urlPath: Constant.Api.Home.ChoiceList, id: id, classType: ChoiceList.classForCoder())
     }
 
-    func loadCategoryListBaseData(callBack: BaseApiCallBack, id: Int){
+    func loadCategoryListBaseData(callBack: BaseApiCallBack, id: Int) {
         loadBaseDataWithID(callBack, urlPath: Constant.Api.Home.CategoryList, id: id, classType: CategoryList.classForCoder())
+    }
+    
+    func loadDetailDinner(callBack: BaseApiCallBack, id: Int) {
+        loadBaseDataWithID(callBack, urlPath: Constant.Api.Home.DetailDinner, id: id, classType: ChefDinner.classForCoder())
     }
     
     //MARK: base 请求

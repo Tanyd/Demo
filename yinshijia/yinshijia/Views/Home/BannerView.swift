@@ -58,7 +58,23 @@ class BannerView: UIView {
 
     }
     
- 
+    var imgs = [String]() {
+        didSet{
+            if ((timer?.valid) != nil) {
+                timer?.invalidate()
+                timer = nil
+            }
+            
+            if imgs.count > 0 {
+                pageControl.numberOfPages = (imgs.count)
+                pageControl.currentPage = 0
+                updatePageScrollView()
+                startTimer()
+            }
+        }
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -112,9 +128,13 @@ class BannerView: UIView {
         
         imageScrollView.frame = bounds
         
+        var height: CGFloat = 380.0.fitHeight()
+        if imgs.count > 0 {
+            height = 600.0.fitHeight()
+        }
         for index in 0..<imageViewMaxCount {
             let img = allImgs[index]
-            img.frame = CGRectMake(ScreenSize.SCREEN_WIDTH * CGFloat(index), 0, ScreenSize.SCREEN_WIDTH, 380.0.fitHeight())
+            img.frame = CGRectMake(ScreenSize.SCREEN_WIDTH * CGFloat(index), 0, ScreenSize.SCREEN_WIDTH, height)
         }
         pageControl.autoAlignAxisToSuperviewAxis(.Vertical)
         pageControl.autoPinEdgeToSuperviewMargin(.Bottom)
@@ -145,10 +165,12 @@ class BannerView: UIView {
             if chefBanner.count != 0 {
                 imageView.bannerId = chefBanner[index].bannerId
                 imageView.sd_setImageWithURL(NSURL(string: chefBanner[index].imageurl!), placeholderImage: nil)
-            }else{
+            }else if choiceBanner.count != 0{
                 imageView.bannerId = choiceBanner[index].bannerId
                 imageView.title = choiceBanner[index].title
                 imageView.sd_setImageWithURL(NSURL(string: choiceBanner[index].banner_image!), placeholderImage: nil)
+            }else if imgs.count != 0{
+                imageView.sd_setImageWithURL(NSURL(string: imgs[index]), placeholderImage: nil)
             }
         }
         imageScrollView.contentOffset = CGPointMake(imageScrollView.width, 0)

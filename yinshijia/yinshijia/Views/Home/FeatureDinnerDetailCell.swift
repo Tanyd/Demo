@@ -11,7 +11,13 @@ import UIKit
 class FeatureDinnerDetailCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-    
+    var model: Menu?{
+        didSet{
+            dinnerImg.sd_setImageWithURL(NSURL(string: (model?.image)!), placeholderImage: nil)
+            titleLable.text = model?.title
+            contentLable.text = model?.desp
+        }
+    }
     private lazy var dinnerImg: UIImageView = {
        let img = UIImageView.newAutoLayoutView()
         return img
@@ -42,8 +48,8 @@ class FeatureDinnerDetailCell: UITableViewCell {
         if !didUpdateConstraints {
             
             dinnerImg.autoPinEdgeToSuperviewEdge(.Top)
-            dinnerImg.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0.fitWidth())
-            dinnerImg.autoPinEdgeToSuperviewEdge(.Right, withInset: 20.0.fitWidth())
+            dinnerImg.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
+            dinnerImg.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             dinnerImg.autoSetDimension(.Height, toSize: 555.0.fitHeight())
             
             titleLable.autoAlignAxisToSuperviewAxis(.Vertical)

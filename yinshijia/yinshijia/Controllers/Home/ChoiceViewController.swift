@@ -130,8 +130,11 @@ class ChoiceViewController: TranslationTableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.fd_heightForCellWithIdentifier(String(ChoiceCell), cacheByIndexPath: indexPath, configuration: nil)
-
+       return tableView.fd_heightForCellWithIdentifier(String(ChoiceCell), cacheByIndexPath: indexPath) { (cell) in
+            let cell = cell as! ChoiceCell
+            let model = self.choiceModel?.data?.dinnerList?[indexPath.row]
+            cell.choiceModel = model
+        }
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

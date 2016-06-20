@@ -148,8 +148,16 @@ class ChoiceListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
-        return tableView.fd_heightForCellWithIdentifier(String(ChoiceListCell), cacheByIndexPath: indexPath, configuration: nil)
+        return tableView.fd_heightForCellWithIdentifier(String(ChoiceListCell), cacheByIndexPath: indexPath) { (cell) in
+            let cell = cell as! ChoiceListCell
+            if self.bannerId != nil {
+                let model = self.choiceListModel?.data?.item?[indexPath.row]
+                cell.choiceListModel = model
+            }else if self.categoryId != nil {
+                let model = self.categoryListModel?.data?[indexPath.row]
+                cell.categoryListModel = model
+            }
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

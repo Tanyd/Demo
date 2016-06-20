@@ -29,30 +29,22 @@ class BaseApi: AFHTTPSessionManager {
         return tools
     }
     
-        // 首页 api 请求
+    //MARK: 首页 api 请求
     func loadHomeChoiceBaseData(callBack: BaseApiCallBack) {
         loadBaseData(callBack, urlPath: Constant.Api.Home.BaseChoice, classType: Choice.classForCoder())
     }
     
-    
     func loadHomeChoiceMoreData(callBack: BaseApiCallBack, page: Int) {
         loadMoreDataWithPage(callBack, urlPath: Constant.Api.Home.MoreChoice, page: page, classType: ChoiceOnlyDinnerlists.classForCoder())
     }
-    
     
     func loadHomeBaseChefData(callBack: BaseApiCallBack) {
         loadBaseData(callBack, urlPath: Constant.Api.Home.BaseChef, classType: Chef.classForCoder())
     }
     
     func loadHomeChefListMoreData(callBack: BaseApiCallBack, page: Int, type: ChefSectionViewType) {
-        var urlPath: String!
-        if type == .chefHot {
-            urlPath = Constant.Api.Home.HotChef
-            loadMoreDataWithPage(callBack, urlPath: urlPath, page: page, classType: ChefList.classForCoder())
-        }else {
-            urlPath = Constant.Api.Home.NewChef
-            loadMoreDataWithPage(callBack, urlPath: urlPath, page: page, classType: ChefList.classForCoder())
-        }
+        let urlPath = (type == .chefHot) ? Constant.Api.Home.HotChef : Constant.Api.Home.NewChef
+        loadMoreDataWithPage(callBack, urlPath: urlPath, page: page, classType: ChefList.classForCoder())
     }
     
     func loadGoodsData(callBack: BaseApiCallBack, page: Int) {
@@ -65,38 +57,6 @@ class BaseApi: AFHTTPSessionManager {
 
     func loadCategoryListBaseData(callBack: BaseApiCallBack, id: Int){
         loadBaseDataWithID(callBack, urlPath: Constant.Api.Home.CategoryList, id: id, classType: CategoryList.classForCoder())
-    }
-    
-    
-    //MARK: base api request
-    func request(method: RequestMethod, Urlstring: String,parameters: [String:AnyObject]?, finished: BaseApiCallBack){
-        
-        if method == RequestMethod.GET {
-            
-            GET(Urlstring, parameters: parameters, progress: nil , success: { ( _, result) -> Void in
-                
-                finished(result: result, error: nil)
-                
-                }, failure: { ( _, error) -> Void in
-                    
-                    DebugPrint(error)
-                    //                    MBProgressHUD.showError("请检查您的网络设置")
-                    finished(result: nil, error: error)
-            })
-            
-        }else{
-            
-            POST(Urlstring, parameters: parameters, progress: nil, success: { (_, result) -> Void in
-                
-                finished(result: result, error: nil)
-                
-                }, failure: { (_, error) -> Void in
-                    
-                    DebugPrint(error)
-                    //                    MBProgressHUD.showError("请检查您的网络设置")
-                    finished(result: nil, error: error)
-            })
-        }
     }
     
     //MARK: base 请求
@@ -148,5 +108,33 @@ class BaseApi: AFHTTPSessionManager {
         }
     }
     
+    //MARK: base api request
+    func request(method: RequestMethod, Urlstring: String,parameters: [String:AnyObject]?, finished: BaseApiCallBack){
+        
+        if method == RequestMethod.GET {
+            
+            GET(Urlstring, parameters: parameters, progress: nil , success: { ( _, result) -> Void in
+                
+                finished(result: result, error: nil)
+                
+                }, failure: { ( _, error) -> Void in
+                    
+                    DebugPrint(error)
+                    finished(result: nil, error: error)
+            })
+            
+        }else{
+            
+            POST(Urlstring, parameters: parameters, progress: nil, success: { (_, result) -> Void in
+                
+                finished(result: result, error: nil)
+                
+                }, failure: { (_, error) -> Void in
+                    
+                    DebugPrint(error)
+                    finished(result: nil, error: error)
+            })
+        }
+    }
 }
 

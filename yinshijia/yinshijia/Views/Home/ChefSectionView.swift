@@ -10,7 +10,6 @@ import UIKit
 
 class ChefSectionView: UICollectionReusableView {
  
-    
     private var didUpdateConstraints = false
     private var titleLable: UILabel!
     private var hotButton: UIButton!

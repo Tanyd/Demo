@@ -19,6 +19,7 @@ class BtnPageView: UIView {
     private var midBtn: buttonNoHighlighted!
     private var rightBtn: buttonNoHighlighted!
     private var selectedBtn: buttonNoHighlighted!
+    private var titles = [String]()
     weak var delegate: BtnPageViewDelegate?
     
     override init(frame: CGRect) {
@@ -26,12 +27,17 @@ class BtnPageView: UIView {
         setUI()
     }
     
+    convenience init(frame: CGRect,buttonTitles: [String]) {
+        self.init(frame: frame)
+        self.titles = buttonTitles
+    }
+    
     private func setUI() {
-        leftBtn = setupButton("精选", tag: 0)
+        leftBtn = setupButton(titles[0], tag: 0)
         leftBtn.selected = true
         selectedBtn = leftBtn
-        midBtn = setupButton("主厨", tag: 1)
-        rightBtn = setupButton("市集", tag: 2)
+        midBtn = setupButton(titles[1], tag: 1)
+        rightBtn = setupButton(titles[2], tag: 2)
         setBottomLine()
     }
     

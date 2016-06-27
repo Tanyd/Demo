@@ -643,48 +643,7 @@ extension String{
         fmt.dateFormat = "HH:mm"
         return fmt.stringFromDate(date)
     }
-    static func StringFromFloat(timeline: Float) ->String{
-        let second : Int = Int(timeline)
-        var secondStr : String = ""
-        var minuteStr : String = ""
-        var hourStr : String = ""
-        if second < 3600 {
-            let minute :Int =  second/60
-            let sec : Int = second - (minute * 60)
-            if minute < 10 {
-                minuteStr = "0\(minute)"
-            }else{
-                minuteStr = "\(minute)"
-            }
-            if sec < 10 {
-                secondStr = "0\(sec)"
-            }else{
-                secondStr = "\(sec)"
-            }
-            return "\(minuteStr):\(secondStr)"
-        }else{//大于一个小时
-            let hour : Int = second/3600
-            let minute : Int = second - (hour * 3600)
-            let sec : Int = second - (hour * 3600) - (minute * 60)
-            
-            if hour < 10 {
-                hourStr = "0\(hour)"
-            }else{
-                hourStr = "\(hour)"
-            }
-            if minute < 10 {
-                minuteStr = "0\(minute)"
-            }else{
-                minuteStr = "\(minute)"
-            }
-            if sec < 10 {
-                secondStr = "0\(sec)"
-            }else{
-                secondStr = "\(sec)"
-            }
-            return "\(hourStr):\(minuteStr):\(secondStr)"
-        }
-    }
+
 }
 
 extension NSObject {

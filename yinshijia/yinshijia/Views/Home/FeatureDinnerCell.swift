@@ -13,16 +13,28 @@ class FeatureDinnerCell: UITableViewCell {
     private var didUpdateConstraints = false
     var model = [Menu](){
         didSet{
+            var totalH: CGFloat = 0
+            for menu in model{
+                let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height
+                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
+                let cellH = 720.0.fitHeight() + titleH + despH
+                totalH += cellH
+            }
+            childTableH = totalH + 15
+            updateConstraints()
+            updateConstraintsIfNeeded()
             featureTable.reloadData()
         }
     }
     var childTableH: CGFloat = 0
+    var childTableConstraint: NSLayoutConstraint?
     private lazy var featureTable: FeatureDinnerTableView = {
         let table = FeatureDinnerTableView(frame: CGRectZero, style: .Plain)
         table.delegate = self
-        table.bounces = false
+        table.scrollEnabled = false
         table.dataSource = self
-        table.registerClass(FeatureDinnerDetailCell.self, forCellReuseIdentifier: String(FeatureDinnerDetailCell))
+        table.estimatedRowHeight = 70
+        table.rowHeight = UITableViewAutomaticDimension
         table.fd_debugLogEnabled = true
         return table
     }()
@@ -32,26 +44,18 @@ class FeatureDinnerCell: UITableViewCell {
         contentView.addSubview(featureTable)
         setNeedsUpdateConstraints()
     }
-    
-//    func configureCellModel(model: [Menu]) {
-//        self.model = model
-//        for index in 0...model.count - 1 {
-//            let H = featureTable.fd_heightForCellWithIdentifier(String(FeatureDinnerDetailCell), cacheByIndexPath: NSIndexPath(forRow: index, inSection: 0), configuration: { (cell) in
-//                (cell as! FeatureDinnerDetailCell).model = self.model[index]
-//            })
-//            childTableH += H
-//        }
-//        featureTable.autoSetDimension(.Height, toSize: childTableH)
-//        layoutIfNeeded()
-//        featureTable.reloadData()
-//    }
-    
+
     override func updateConstraints() {
         if !didUpdateConstraints {
-            featureTable.autoSetDimension(.Height, toSize: 970)
-            featureTable.autoPinEdgesToSuperviewEdges()
+            featureTable.autoPinEdgeToSuperviewEdge(.Right)
+            featureTable.autoPinEdgeToSuperviewEdge(.Top)
+            featureTable.autoPinEdgeToSuperviewEdge(.Left)
+            NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: { 
+                featureTable.autoPinEdgeToSuperviewEdge(.Bottom)
+            })
             didUpdateConstraints = true
         }
+        childTableConstraint = featureTable.autoSetDimension(.Height, toSize: childTableH)
         super.updateConstraints()
     }
     
@@ -85,10 +89,5 @@ extension FeatureDinnerCell: UITableViewDelegate, UITableViewDataSource {
         cell?.model = model[indexPath.row]
         return cell!
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerDetailCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-            (cell as! FeatureDinnerDetailCell).model = self.model[indexPath.row]
-        })
-    }
+
 }

@@ -24,15 +24,10 @@ class DinnerDetailTableView: UITableView {
     }
     
     private func setUI(){
+        estimatedRowHeight = 100
         banner = BannerView(frame: CGRectMake(0, -64, ScreenSize.SCREEN_WIDTH, 600.0.fitHeight()), focusImageViewClick: { (index) in
             
         })
-        registerClass(DinnerDetailIntroductionCell.self, forCellReuseIdentifier: String(DinnerDetailIntroductionCell))
-        registerClass(ChefInfoCell.self, forCellReuseIdentifier: String(ChefInfoCell))
-//        if model?.data?.menu?.count > 0 {
-            registerClass(FeatureDinnerCell.self, forCellReuseIdentifier: String(FeatureDinnerCell))
-//        }
-        registerClass(MoreInfoCell.self, forCellReuseIdentifier: String(MoreInfoCell))
         tableHeaderView = banner
         delegate = self
         dataSource = self
@@ -52,7 +47,7 @@ extension DinnerDetailTableView:  UITableViewDataSource, UITableViewDelegate {
         var cell: UITableViewCell?
         switch indexPath.row {
         case 0:
-            cell = tableView.dequeueReusableCellWithIdentifier(String(DinnerDetailIntroductionCell)) as! DinnerDetailIntroductionCell
+            cell = tableView.dequeueReusableCellWithIdentifier(String(DinnerDetailIntroductionCell)) as? DinnerDetailIntroductionCell
             if cell == nil {
                 cell = DinnerDetailIntroductionCell(style: .Default, reuseIdentifier: String(DinnerDetailIntroductionCell))
             }
@@ -90,34 +85,10 @@ extension DinnerDetailTableView:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0:
-            return tableView.fd_heightForCellWithIdentifier(String(DinnerDetailIntroductionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! DinnerDetailIntroductionCell
-                cell.title = self.model?.data?.baseInfo?.title
-                cell.tags = self.model?.data?.baseInfo?.tag
-                cell.introduction = self.model?.data?.baseInfo?.desp
-            })
-        case 1:
-            return tableView.fd_heightForCellWithIdentifier(String(ChefInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! ChefInfoCell
-                cell.shopName = self.model?.data?.baseInfo?.shopName
-                cell.icon = self.model?.data?.baseInfo?.imageurl
-                cell.introduction = self.model?.data?.baseInfo?.introduce
-            })
-        case 2:
-            return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! FeatureDinnerCell
-                cell.model = (self.model?.data?.menu)!
-            })
-//        case 3:
-//            return tableView.fd_heightForCellWithIdentifier(String(MoreInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-//                let cell = cell as! MoreInfoCell
-//                cell.plainMenus = (self.model?.data?.plainMenu)!
-//            })
-        default:
+        if indexPath.row == 2 && model?.data?.menu?.count == 0 {
             return 0
+        }else {
+            return UITableViewAutomaticDimension
         }
-
     }
 }

@@ -20,14 +20,17 @@ class DinnerDetailTableView: UITableView {
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
+        
         setUI()
     }
     
     private func setUI(){
-        estimatedRowHeight = 100
         banner = BannerView(frame: CGRectMake(0, -64, ScreenSize.SCREEN_WIDTH, 600.0.fitHeight()), focusImageViewClick: { (index) in
             
         })
+        registerClass(DinnerDetailIntroductionCell.self, forCellReuseIdentifier: String(DinnerDetailIntroductionCell))
+        registerClass(ChefInfoCell.self, forCellReuseIdentifier: String(ChefInfoCell))
+        registerClass(FeatureDinnerCell.self, forCellReuseIdentifier: String(FeatureDinnerCell))
         tableHeaderView = banner
         delegate = self
         dataSource = self
@@ -52,25 +55,21 @@ extension DinnerDetailTableView:  UITableViewDataSource, UITableViewDelegate {
                 cell = DinnerDetailIntroductionCell(style: .Default, reuseIdentifier: String(DinnerDetailIntroductionCell))
             }
             let cell = cell as! DinnerDetailIntroductionCell
-            cell.title = model?.data?.baseInfo?.title
-            cell.tags = model?.data?.baseInfo?.tag
-            cell.introduction = model?.data?.baseInfo?.desp
+            cell.configureModel(model)
         case 1:
             cell = tableView.dequeueReusableCellWithIdentifier(String(ChefInfoCell)) as? ChefInfoCell
             if cell == nil {
                 cell = ChefInfoCell(style: .Default, reuseIdentifier: String(ChefInfoCell))
             }
             let cell = cell as! ChefInfoCell
-            cell.shopName = model?.data?.baseInfo?.shopName
-            cell.icon = model?.data?.baseInfo?.imageurl
-            cell.introduction = model?.data?.baseInfo?.introduce
+            cell.configureModel(model)
         case 2:
             cell = tableView.dequeueReusableCellWithIdentifier(String(FeatureDinnerCell)) as? FeatureDinnerCell
             if cell == nil {
                 cell = FeatureDinnerCell(style: .Default, reuseIdentifier: String(FeatureDinnerCell))
             }
             let cell = cell as! FeatureDinnerCell
-            cell.model = (model?.data?.menu)!
+            cell.configureModel(model)
 //        case 3:
 //            cell = tableView.dequeueReusableCellWithIdentifier(String(MoreInfoCell)) as? MoreInfoCell
 //            if cell == nil {
@@ -85,10 +84,33 @@ extension DinnerDetailTableView:  UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 2 && model?.data?.menu?.count == 0 {
+
+        switch indexPath.row {
+        case 0:
+            return tableView.fd_heightForCellWithIdentifier(String(DinnerDetailIntroductionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                let cell = cell as! DinnerDetailIntroductionCell
+                cell.configureModel(self.model)
+            })
+
+        case 1:
+            return tableView.fd_heightForCellWithIdentifier(String(ChefInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                let cell = cell as! ChefInfoCell
+                cell.configureModel(self.model)
+            })
+            
+        case 2:
+            if model?.data?.menu?.count > 0 {
+                return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                    let cell = cell as! FeatureDinnerCell
+                    cell.configureModel(self.model)
+                })
+            }else {
+                return 0
+            }
+           
+        default:
             return 0
-        }else {
-            return UITableViewAutomaticDimension
         }
+        
     }
 }

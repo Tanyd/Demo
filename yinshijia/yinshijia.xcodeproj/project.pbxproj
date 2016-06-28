@@ -38,7 +38,6 @@
 		27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */; };
 		27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */; };
 		27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */; };
-		27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */; };
 		27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */; };
 		27E7EC841D163BE500E3F126 /* MoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */; };
 		27E7EC861D163E8300E3F126 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC851D163E8300E3F126 /* MenuCell.swift */; };
@@ -48,6 +47,7 @@
 		8B1C121E1D0A9D7400968DC9 /* TranslationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C121D1D0A9D7400968DC9 /* TranslationTableViewController.swift */; };
 		8B1C12201D0AAD4C00968DC9 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */; };
 		8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C12211D0AB7A100968DC9 /* Tabbar.swift */; };
+		8B28037D1D221180002B5ED7 /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B28037C1D221180002B5ED7 /* HomeNavigationBar.swift */; };
 		8B7F93C61D0A53F2001A2207 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93C51D0A53F2001A2207 /* Constant.swift */; };
 		8B7F93C81D0A54D1001A2207 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93C71D0A54D1001A2207 /* Extension.swift */; };
 		8B7F93CA1D0A5617001A2207 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93C91D0A5617001A2207 /* BaseViewController.swift */; };
@@ -127,7 +127,6 @@
 		27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
-		27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightNavigationItem.swift; sourceTree = "<group>"; };
 		27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureDinnerCell.swift; sourceTree = "<group>"; };
 		27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoCell.swift; sourceTree = "<group>"; };
 		27E7EC851D163E8300E3F126 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		8B1C121D1D0A9D7400968DC9 /* TranslationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationTableViewController.swift; sourceTree = "<group>"; };
 		8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		8B1C12211D0AB7A100968DC9 /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		8B28037C1D221180002B5ED7 /* HomeNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		8B7F93C51D0A53F2001A2207 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8B7F93C71D0A54D1001A2207 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		8B7F93C91D0A5617001A2207 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -287,7 +287,6 @@
 			children = (
 				8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */,
 				8B1C12211D0AB7A100968DC9 /* Tabbar.swift */,
-				27D700D91D0BB2C600ED5605 /* RightNavigationItem.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -328,6 +327,7 @@
 				27E7EC871D163EC500E3F126 /* MenuTable.swift */,
 				8BE377701D1796BE000905A6 /* EnvironmentInfoView.swift */,
 				8BC8184E1D17A1D8003E9D3E /* AddressInfoView.swift */,
+				8B28037C1D221180002B5ED7 /* HomeNavigationBar.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -689,7 +689,6 @@
 				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
 				8B7F93DD1D0A5761001A2207 /* OrderViewController.swift in Sources */,
 				27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */,
-				27D700DA1D0BB2C600ED5605 /* RightNavigationItem.swift in Sources */,
 				270291DB1D0C42B300009ED3 /* HJCornerRadius.m in Sources */,
 				8B7F93E31D0A638F001A2207 /* PageViewController.swift in Sources */,
 				27BE93E11D103F1600887178 /* CategoryList.swift in Sources */,
@@ -723,6 +722,7 @@
 				273D9C9F1D0D680700E511B1 /* XLPlainFlowLayout.m in Sources */,
 				27E7EC861D163E8300E3F126 /* MenuCell.swift in Sources */,
 				27E7EC881D163EC500E3F126 /* MenuTable.swift in Sources */,
+				8B28037D1D221180002B5ED7 /* HomeNavigationBar.swift in Sources */,
 				8B7F93CA1D0A5617001A2207 /* BaseViewController.swift in Sources */,
 				27105F8C1D14EFDA00362F3E /* DinnerDetailViewController.swift in Sources */,
 				270291E11D0C74BF00009ED3 /* ChefCell.swift in Sources */,

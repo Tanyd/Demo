@@ -11,23 +11,7 @@ import UIKit
 class ChefInfoCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-    var icon: String? {
-        didSet{
-           chefIcon.sd_setImageWithURL(NSURL(string: (icon?.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
-        }
-    }
-    
-    var introduction: String? {
-        didSet{
-            contentLable.text = introduction
-        }
-    }
-    
-    var shopName: String? {
-        didSet{
-            nameLale.text = shopName
-        }
-    }
+   
     private lazy var titleLable: UILabel = {
         let title = UILabel.lableCutomer("主厨介绍", fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
         title.numberOfLines = 0
@@ -59,6 +43,14 @@ class ChefInfoCell: UITableViewCell {
         contentView.addSubview(nameLale)
         contentView.addSubview(chefIcon)
         setNeedsUpdateConstraints()
+    }
+    
+    func configureModel(model: ChefDinner?) {
+        if model != nil {
+            nameLale.text = model?.data?.baseInfo?.shopName
+            chefIcon.sd_setImageWithURL(NSURL(string: (model?.data?.baseInfo?.imageurl!.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
+            contentLable.text = model?.data?.baseInfo?.introduce
+        }
     }
     
     override func updateConstraints() {

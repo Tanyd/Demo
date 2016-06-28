@@ -16,3 +16,4 @@
 #import "XLPlainFlowLayout.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import <CommonCrypto/CommonDigest.h>

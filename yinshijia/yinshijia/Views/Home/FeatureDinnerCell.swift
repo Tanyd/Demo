@@ -11,21 +11,7 @@ import UIKit
 class FeatureDinnerCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-    var model = [Menu](){
-        didSet{
-            var totalH: CGFloat = 0
-            for menu in model{
-                let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height
-                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
-                let cellH = 720.0.fitHeight() + titleH + despH
-                totalH += cellH
-            }
-            childTableH = totalH + 15
-            updateConstraints()
-            updateConstraintsIfNeeded()
-            featureTable.reloadData()
-        }
-    }
+    var model = [Menu]()
     var childTableH: CGFloat = 0
     var childTableConstraint: NSLayoutConstraint?
     private lazy var featureTable: FeatureDinnerTableView = {
@@ -45,6 +31,23 @@ class FeatureDinnerCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
 
+    func configureModel(model: ChefDinner?) {
+        if model?.data?.menu?.count > 0 {
+            self.model = (model?.data?.menu)!
+            var totalH: CGFloat = 0
+            for menu in self.model {
+                let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height + 5
+                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
+                let cellH = 720.0.fitHeight() + titleH + despH + 5
+                totalH += cellH
+            }
+            childTableH = totalH
+            updateConstraints()
+            updateConstraintsIfNeeded()
+            featureTable.reloadData()
+        }
+    }
+    
     override func updateConstraints() {
         if !didUpdateConstraints {
             featureTable.autoPinEdgeToSuperviewEdge(.Right)

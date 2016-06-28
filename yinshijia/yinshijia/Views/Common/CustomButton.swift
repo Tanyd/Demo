@@ -8,11 +8,10 @@
 
 import UIKit
 
-class LeftImgButton: UIButton {
+class LeftItem: UIButton {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        sizeToFit()
         titleLabel?.frame.origin.x = 0
         imageView?.frame.origin.x = titleLabel!.frame.size.width + 4
     }

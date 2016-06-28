@@ -10,49 +10,32 @@ import UIKit
 
 class HomeViewController: BaseViewController {
 
-   
+    private var pageVC: PageViewController!
+    private var titleView: BtnPageView!
+    private var navigationBar: HomeNavigationBar!
+    private var allChildsVC = [UIViewController]()
+    private var toTopIcon: UIButton!
     private var currentViewIndex = 0
     private let titleViewHeight = 64
     private var didScroll = false
     private var didOriginal = true
     private var choicePage = 0
     private let choiceMaxPage = 5
-    private var pageVC: PageViewController!
-    private var titleView: BtnPageView!
-    private var allChildsVC = [UIViewController]()
-    private var toTopIcon: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationItems()
         setUI()
         addNotification()
+    }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    private func setNavigationItems() {
-       
-        let rightView = RightNavigationItem(frame: CGRect(x: 0, y: 0, width: 60, height: 40), searchClick: {
-            DebugPrint("search")
-            }) { 
-                DebugPrint("bell")
-        }
-        
-        let leftItem = LeftImgButton(type: .Custom)
-        leftItem.setImage(UIImage(named: "city_arrow"), forState: .Normal)
-        leftItem.setTitleColor(UIColor.colorFromHex(0x070707), forState: .Normal)
-        leftItem.setTitle("成都", forState: .Normal)
-        leftItem.titleLabel!.font = UIFont.systemFontOfSize(13)
-        leftItem.addTarget(self, action: "cityChangeClick", forControlEvents: .TouchUpInside)
-        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
-        spacer.width = -10
-        navigationItem.rightBarButtonItems = [spacer, UIBarButtonItem(customView: rightView)]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftItem)
-        navigationItem.titleView = UIImageView(image: UIImage(named: "title_logo"))
-    }
-    
-    func cityChangeClick() {
-        DebugPrint("changeCity")
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        tabBarController?.tabBar.transform = CGAffineTransformIdentity
     }
     
     private func addNotification() {
@@ -60,6 +43,15 @@ class HomeViewController: BaseViewController {
     }
     
     private func setUI() {
+        navigationBar = HomeNavigationBar(frame: CGRect(x: 0, y: 20, width: ScreenSize.SCREEN_WIDTH, height: 44),searchClick: {
+                            print("searchClick")
+            }, bellClick: { 
+                print("bellClick")
+            }) {
+                print("cityChange")
+        }
+        view.addSubview(navigationBar)
+        
         titleView = BtnPageView(frame:  CGRect(x: 0, y: 64, width: Int(ScreenSize.SCREEN_WIDTH), height: titleViewHeight), buttonTitles: ["精选","主厨","推荐"])
         titleView.delegate = self
         view.addSubview(titleView)
@@ -119,7 +111,7 @@ class HomeViewController: BaseViewController {
     
     private func translationUp() {
         tabBarController?.tabBar.transform = CGAffineTransformMakeTranslation(0, 70)
-        navigationController?.navigationBar.transform = CGAffineTransformMakeTranslation(0, -64)
+        navigationBar.transform = CGAffineTransformMakeTranslation(0, -64)
         pageVC.view.transform = CGAffineTransformMakeTranslation(0, -64)
         titleView.transform = CGAffineTransformMakeTranslation(0, -64)
         toTopIcon.transform = CGAffineTransformMakeTranslation(0, -64)
@@ -129,7 +121,7 @@ class HomeViewController: BaseViewController {
     
     private func translationDown() {
         tabBarController?.tabBar.transform = CGAffineTransformIdentity
-        navigationController?.navigationBar.transform = CGAffineTransformIdentity
+        navigationBar.transform = CGAffineTransformIdentity
         pageVC.view.transform = CGAffineTransformIdentity
         titleView.transform = CGAffineTransformIdentity
         toTopIcon.transform = CGAffineTransformIdentity

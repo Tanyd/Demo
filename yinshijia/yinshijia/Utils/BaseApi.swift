@@ -114,11 +114,13 @@ class BaseApi: AFHTTPSessionManager {
     
     //MARK: base api request
     func request(method: RequestMethod, Urlstring: String,parameters: [String:AnyObject]?, finished: BaseApiCallBack){
-        
+      
         if method == RequestMethod.GET {
             
             GET(Urlstring, parameters: parameters, progress: nil , success: { ( _, result) -> Void in
-                
+                print("URL=\(Constant.Api.BaseUrl)" + "\(Urlstring)")
+                print("parameters=\(parameters)")
+                print("Result=\(result)")
                 finished(result: result, error: nil)
                 
                 }, failure: { ( _, error) -> Void in
@@ -130,7 +132,9 @@ class BaseApi: AFHTTPSessionManager {
         }else{
             
             POST(Urlstring, parameters: parameters, progress: nil, success: { (_, result) -> Void in
-                
+                print("URL=\(Constant.Api.BaseUrl)" + "\(Urlstring)")
+                print("parameters=\(parameters)")
+                print("Result=\(result)")
                 finished(result: result, error: nil)
                 
                 }, failure: { (_, error) -> Void in

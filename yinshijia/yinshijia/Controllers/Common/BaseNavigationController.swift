@@ -12,9 +12,6 @@ class BaseNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nav = UINavigationBar.appearance()
-        nav.backgroundColor = UIColor.colorFromHex(0xffffff)
-        nav.translucent = false
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(UIImage(named: "rejuBackD")?.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 0)), forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -60), forBarMetrics: .Default)
     }

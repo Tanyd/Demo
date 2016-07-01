@@ -10,9 +10,7 @@
 		2700B50B1D0EDE9E00FF83D6 /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2700B50A1D0EDE9E00FF83D6 /* Goods.swift */; };
 		270291CF1D0BEF9700009ED3 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291CE1D0BEF9700009ED3 /* HeaderView.swift */; };
 		270291D11D0BEFC800009ED3 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291D01D0BEFC800009ED3 /* BannerView.swift */; };
-		270291D51D0BFC5800009ED3 /* KtCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291D41D0BFC5800009ED3 /* KtCorner.swift */; };
 		270291D71D0C18D900009ED3 /* ChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291D61D0C18D900009ED3 /* ChoiceCell.swift */; };
-		270291DB1D0C42B300009ED3 /* HJCornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 270291DA1D0C42B300009ED3 /* HJCornerRadius.m */; };
 		270291DD1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291DC1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift */; };
 		270291DF1D0C729F00009ED3 /* TranslationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291DE1D0C729F00009ED3 /* TranslationCollectionViewController.swift */; };
 		270291E11D0C74BF00009ED3 /* ChefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270291E01D0C74BF00009ED3 /* ChefCell.swift */; };
@@ -91,10 +89,7 @@
 		2700B50A1D0EDE9E00FF83D6 /* Goods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
 		270291CE1D0BEF9700009ED3 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		270291D01D0BEFC800009ED3 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
-		270291D41D0BFC5800009ED3 /* KtCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KtCorner.swift; sourceTree = "<group>"; };
 		270291D61D0C18D900009ED3 /* ChoiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceCell.swift; sourceTree = "<group>"; };
-		270291D91D0C42B300009ED3 /* HJCornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCornerRadius.h; sourceTree = "<group>"; };
-		270291DA1D0C42B300009ED3 /* HJCornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCornerRadius.m; sourceTree = "<group>"; };
 		270291DC1D0C538900009ED3 /* ChoiceOnlyDinnerlists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceOnlyDinnerlists.swift; sourceTree = "<group>"; };
 		270291DE1D0C729F00009ED3 /* TranslationCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationCollectionViewController.swift; sourceTree = "<group>"; };
 		270291E01D0C74BF00009ED3 /* ChefCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefCell.swift; sourceTree = "<group>"; };
@@ -186,15 +181,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		270291D81D0C42B300009ED3 /* HJCornerRadius */ = {
-			isa = PBXGroup;
-			children = (
-				270291D91D0C42B300009ED3 /* HJCornerRadius.h */,
-				270291DA1D0C42B300009ED3 /* HJCornerRadius.m */,
-			);
-			path = HJCornerRadius;
-			sourceTree = "<group>";
-		};
 		27165A201D09AE8000019140 = {
 			isa = PBXGroup;
 			children = (
@@ -421,8 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				273D9C9C1D0D680700E511B1 /* XLPlainFlowLayout */,
-				270291D81D0C42B300009ED3 /* HJCornerRadius */,
-				270291D41D0BFC5800009ED3 /* KtCorner.swift */,
 				27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */,
 			);
 			path = Lib;
@@ -689,7 +673,6 @@
 				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
 				8B7F93DD1D0A5761001A2207 /* OrderViewController.swift in Sources */,
 				27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */,
-				270291DB1D0C42B300009ED3 /* HJCornerRadius.m in Sources */,
 				8B7F93E31D0A638F001A2207 /* PageViewController.swift in Sources */,
 				27BE93E11D103F1600887178 /* CategoryList.swift in Sources */,
 				8B7F93C81D0A54D1001A2207 /* Extension.swift in Sources */,
@@ -714,7 +697,6 @@
 				8B7F93D71D0A5733001A2207 /* HomeViewController.swift in Sources */,
 				8BE377731D1797E0000905A6 /* ChefDinner.swift in Sources */,
 				27E7EC841D163BE500E3F126 /* MoreInfoCell.swift in Sources */,
-				270291D51D0BFC5800009ED3 /* KtCorner.swift in Sources */,
 				273D9CA11D0D683400E511B1 /* ChefSectionView.swift in Sources */,
 				270291D11D0BEFC800009ED3 /* BannerView.swift in Sources */,
 				27105F8E1D14F1A400362F3E /* DinnerDetailTableView.swift in Sources */,
@@ -874,7 +856,7 @@
 				INFOPLIST_FILE = yinshijia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = swift.yinshijia;
+				PRODUCT_BUNDLE_IDENTIFIER = swiftApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "yinshijia/yinshijia-Bridging-Header.h";
@@ -893,7 +875,7 @@
 				INFOPLIST_FILE = yinshijia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = swift.yinshijia;
+				PRODUCT_BUNDLE_IDENTIFIER = swiftApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "yinshijia/yinshijia-Bridging-Header.h";

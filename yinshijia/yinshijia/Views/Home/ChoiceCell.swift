@@ -75,10 +75,7 @@ class ChoiceCell: UITableViewCell {
 
     lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
-        img.layer.borderWidth = 2.0
-        img.layer.borderColor = UIColor.whiteColor().CGColor
-        img.layer.cornerRadius = 57.0.fitWidth()
-        img.layer.masksToBounds = true
+        img.image = UIImage(named: "headerview")!.jm_imageWithRoundedCornersAndSize(CGSize(width: 114.0.fitWidth(), height: 114.0.fitWidth()), andCornerRadius: 57.0.fitWidth())
         img.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
         img.addGestureRecognizer(tap)

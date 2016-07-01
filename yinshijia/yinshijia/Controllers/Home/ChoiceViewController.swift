@@ -121,7 +121,19 @@ class ChoiceViewController: TranslationTableViewController {
                 }
             })
             let chefImg = model!.themeDinnerChefImageurl == nil ? model?.chefImageurl : model!.themeDinnerChefImageurl
-            cell!.userIcon.sd_setImageWithURL(NSURL(string: chefImg!), placeholderImage: UIImage(named: "headerview"))
+            SDWebImageManager.sharedManager().downloadImageWithURL(NSURL(string: chefImg!), options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (image, error, cacheType, finish, url) in
+                if image != nil {
+                    
+                    cell!.userIcon.jm_setJMRadius(JMRadius(topLeftRadius: 57.0.fitWidth(), topRightRadius: 57.0.fitWidth(),
+                        bottomLeftRadius: 57.0.fitWidth(),
+                        bottomRightRadius: 57.0.fitWidth()),
+                        withBorderColor: UIColor.whiteColor(),
+                        borderWidth: 2.0,
+                        backgroundColor: nil,
+                        backgroundImage: image,
+                        contentMode: .ScaleToFill)
+                    }
+                })
             }
         
         cell!.dinnerChefClick = { (chefID) in

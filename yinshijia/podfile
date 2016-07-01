@@ -10,3 +10,4 @@ pod "pop"
 pod "UITableView+FDTemplateLayoutCell"
 pod "DZNEmptyDataSet"
 pod "FDFullscreenPopGesture"
+pod 'JMRoundedCorner'

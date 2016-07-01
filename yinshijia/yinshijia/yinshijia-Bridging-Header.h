@@ -12,8 +12,8 @@
 #import <MJRefresh/MJRefresh.h>
 #import <AFNetworking/AFNetworking.h>
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
-#import "HJCornerRadius.h"
 #import "XLPlainFlowLayout.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "UIView+RoundedCorner.h"

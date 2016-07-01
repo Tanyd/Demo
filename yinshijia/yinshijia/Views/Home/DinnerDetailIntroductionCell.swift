@@ -40,6 +40,7 @@ class DinnerDetailIntroductionCell: UITableViewCell {
     }
     
     func configureModel(model: ChefDinner?) {
+        if marksView.subviews.count > 0 {return}
         if model?.data?.baseInfo?.tag?.length() > 0 {
             titleLable.text = model?.data?.baseInfo?.title
             contentLable.text = model?.data?.baseInfo?.desp

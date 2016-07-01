@@ -36,6 +36,7 @@ class DinnerDetailViewController: BaseViewController {
             }
             self!.model = result as? ChefDinner
             self!.banner?.imgs = (self!.model?.data?.baseInfo?.theme_images?.componentsSeparatedByString(","))!
+            self!.navigationController?.title = (result as? ChefDinner)?.data?.baseInfo?.title
             self!.dinnerTable.reloadData()
         }
         ChefDinner.loadDetailDinner(callBack, id: chefDinnerID!)
@@ -69,6 +70,7 @@ class DinnerDetailViewController: BaseViewController {
         dinnerTable.registerClass(DinnerDetailIntroductionCell.self, forCellReuseIdentifier: String(DinnerDetailIntroductionCell))
         dinnerTable.registerClass(ChefInfoCell.self, forCellReuseIdentifier: String(ChefInfoCell))
         dinnerTable.registerClass(FeatureDinnerCell.self, forCellReuseIdentifier: String(FeatureDinnerCell))
+        dinnerTable.registerClass(MoreInfoCell.self, forCellReuseIdentifier: String(MoreInfoCell))
         dinnerTable.tableHeaderView = banner
         dinnerTable.delegate = self
         dinnerTable.dataSource = self
@@ -110,7 +112,7 @@ class DinnerDetailViewController: BaseViewController {
 
 extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (model == nil ? 0 : 3)
+        return (model == nil ? 0 : 4)
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
@@ -136,13 +138,13 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
             }
             let cell = cell as! FeatureDinnerCell
             cell.configureModel(model)
-            //        case 3:
-            //            cell = tableView.dequeueReusableCellWithIdentifier(String(MoreInfoCell)) as? MoreInfoCell
-            //            if cell == nil {
-            //                cell = MoreInfoCell(style: .Default, reuseIdentifier: String(MoreInfoCell))
-            //            }
-            //            let cell = cell as! MoreInfoCell
-        //            cell.plainMenus = (model?.data?.plainMenu)!
+        case 3:
+            cell = tableView.dequeueReusableCellWithIdentifier(String(MoreInfoCell)) as? MoreInfoCell
+            if cell == nil {
+                cell = MoreInfoCell(style: .Default, reuseIdentifier: String(MoreInfoCell))
+            }
+            let cell = cell as! MoreInfoCell
+            cell.configureModel(model)
         default:
             break
         }
@@ -173,7 +175,11 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
             }else {
                 return 0
             }
-            
+        case 3:
+            return tableView.fd_heightForCellWithIdentifier(String(MoreInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                let cell = cell as! MoreInfoCell
+                cell.configureModel(self.model)
+            })
         default:
             return 0
         }

@@ -11,9 +11,9 @@ import UIKit
 class FeatureDinnerCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-    var model = [Menu]()
-    var childTableH: CGFloat = 0
-    var childTableConstraint: NSLayoutConstraint?
+    private var model = [Menu]()
+    private var childTableH: CGFloat = 0
+    private var childTableConstraint: NSLayoutConstraint?
     private lazy var featureTable: FeatureDinnerTableView = {
         let table = FeatureDinnerTableView(frame: CGRectZero, style: .Plain)
         table.delegate = self

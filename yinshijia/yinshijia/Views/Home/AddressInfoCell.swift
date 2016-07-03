@@ -8,10 +8,17 @@
 
 import UIKit
 
-class AddressInfoView: UIView {
+class AddressInfoCell: UITableViewCell {
     
     private var didUpdateConstraints = false
-
+    
+    var addressModel: (String,String)?{
+        didSet{
+            addressButton.setTitle(addressModel?.0, forState: .Normal)
+            mapView.sd_setImageWithURL(NSURL(string: (addressModel?.1)!), placeholderImage: nil)
+        }
+    }
+    
     private lazy var titleLable: UILabel = {
         let title = UILabel.lableCutomer("饭局地址", fontType: nil, color: UIColor.blackColor(), fontSize: 17)
         title.textAlignment = .Center
@@ -20,32 +27,42 @@ class AddressInfoView: UIView {
     
     private lazy var mapView: UIImageView = {
         let map = UIImageView()
-        map.backgroundColor = UIColor.redColor()
+        map.contentMode = .ScaleAspectFill
+        map.clipsToBounds = true
         return map
     }()
     
     private lazy var addressButton: UIButton = {
         let address = UIButton(type: .Custom)
+        address.userInteractionEnabled = false
+        address.contentHorizontalAlignment = .Left
         address.setImage(UIImage(named: "choose_location"), forState: .Normal)
         address.titleEdgeInsets = UIEdgeInsetsMake(0, 30.0.fitWidth(), 0, 0)
         address.userInteractionEnabled = false
+        address.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        address.titleLabel?.font = UIFont.systemFontOfSize(12)
         return address
     }()
     
-    private lazy var moreButton: UIButton = {
-        let more = UIButton(type: .Custom)
-        more.setBackgroundImage(UIImage(named: "more_arrow"), forState: .Normal)
-        more.userInteractionEnabled = false
+    private lazy var moreArrow: UIImageView = {
+        let more = UIImageView(image: UIImage(named: "more_arrow"))
         return more
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(titleLable)
-        addSubview(mapView)
-        addSubview(addressButton)
-        addSubview(moreButton)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(titleLable)
+        contentView.addSubview(mapView)
+        contentView.addSubview(addressButton)
+        addressButton.addSubview(moreArrow)
         setNeedsUpdateConstraints()
+    }
+  
+    func configureModel(model: ChefDinner?) {
+        if model != nil {
+            addressButton.setTitle(model?.data?.baseInfo!.address, forState: .Normal)
+            mapView.sd_setImageWithURL(NSURL(string: (model?.data?.baseInfo!.addressURL)!), placeholderImage: nil)
+        }
     }
     
     override func updateConstraints() {
@@ -56,7 +73,7 @@ class AddressInfoView: UIView {
             mapView.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
             mapView.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             mapView.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLable, withOffset: 45.0.fitHeight())
-            mapView.autoSetDimension(.Height, toSize: 275.0.fitHeight())
+            mapView.autoSetDimension(.Height, toSize: 305.0.fitHeight())
             
             addressButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: mapView, withOffset: 30.0.fitHeight())
             addressButton.autoPinEdge(.Left, toEdge: .Left, ofView: mapView)
@@ -64,9 +81,9 @@ class AddressInfoView: UIView {
             addressButton.autoSetDimension(.Height, toSize: 100.0.fitHeight())
             addressButton.autoPinEdgeToSuperviewEdge(.Bottom)
             
-            moreButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
-            moreButton.autoPinEdge(.Top, toEdge: .Top, ofView: addressButton)
-            moreButton.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressButton)
+            moreArrow.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
+            moreArrow.autoAlignAxisToSuperviewAxis(.Horizontal)
+            moreArrow.autoSetDimension(.Width, toSize: 30.0.fitWidth())
             didUpdateConstraints = true
         }
         super.updateConstraints()

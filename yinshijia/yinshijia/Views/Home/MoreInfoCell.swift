@@ -7,23 +7,17 @@
 //
 
 import UIKit
-
+protocol MoreInfoCellDelegate: NSObjectProtocol {
+    func moreInfoCellDidChangeView(height: CGFloat)
+}
 class MoreInfoCell: UITableViewCell {
     
     private var didUpdateConstraints = false
     private var menuTableH: CGFloat = 0
     private var envorViewH: CGFloat = 0
-    var plainMenus = [Plainmenu]()
-    var amenities = [Amenities]() {
-        didSet{
-            
-        }
-    }
-    var address: String? {
-        didSet{
-            
-        }
-    }
+    weak var delegate: MoreInfoCellDelegate?
+    var amenities = [Amenities]()
+    var address: String?
     private lazy var buttonPage: BtnPageView = {
         let page = BtnPageView(frame:  CGRectZero, buttonTitles: ["菜单","环境","信息"])
         page.delegate = self
@@ -32,10 +26,7 @@ class MoreInfoCell: UITableViewCell {
     
     private lazy var menuTable: MenuTable = {
         let menu = MenuTable(frame: CGRectZero, style: .Plain)
-        menu.registerClass(MenuCell.self, forCellReuseIdentifier: String(MenuCell))
         menu.tag = 0
-        menu.dataSource = self
-        menu.delegate = self
         return menu
     }()
     
@@ -45,8 +36,8 @@ class MoreInfoCell: UITableViewCell {
         return view
     }()
     
-    private lazy var addressView: AddressInfoView = {
-        let view = AddressInfoView(frame: CGRectZero)
+    private lazy var extInfoView: ExtInfoView = {
+        let view = ExtInfoView(frame: CGRectZero)
         view.tag = 2
         return view
     }()
@@ -58,69 +49,90 @@ class MoreInfoCell: UITableViewCell {
     
     func configureModel(model: ChefDinner?) {
         if model?.data?.plainMenu?.count > 0 {
-            plainMenus = (model?.data?.plainMenu!)!
             var totalH: CGFloat = 0
-            for menu in self.plainMenus {
+            for menu in (model?.data?.plainMenu!)! {
                 let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height + 5
                 let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
                 let cellH = titleH + despH + 5 + 25.0.fitHeight() + 60.0.fitHeight()
                 totalH += cellH
             }
             menuTableH = totalH
-            menuTable.reloadData()
+            menuTable.plainMenus = (model?.data?.plainMenu!)!
         }
+        
+        if environmentView.enviromentModel != nil {return}
         if model?.data?.amenities?.count > 0 {
             let lines = (model?.data?.amenities?.count)! / 2 + (model?.data?.amenities?.count)! % 2
             let totalH = CGFloat(lines) * 40.0.fitHeight()
             if model?.data?.envImage?.count > 0 {
-                envorViewH = 550.0.fitHeight() 
+                envorViewH = 550.0.fitHeight() + totalH + 40.0.fitHeight() + 35.0.fitHeight() * 2.0
+            }else{
+                envorViewH = totalH + 40.0.fitHeight() + 35.0.fitHeight() * 2.0
             }
         }
         environmentView.enviromentModel = ((model?.data?.amenities),model?.data?.envImage)
+        
+        if extInfoView.extInfos.count > 0 {return}
+        var tempArray = [[String]]()
+        if model?.data?.baseInfo!.themeYinshijiaExtInfo?.count > 0 {
+            var tempArr = [String]()
+            tempArr.append((model?.data?.baseInfo?.themeYinshijiaExtInfo?[0])!)
+            tempArr.append((model?.data?.baseInfo?.themeYinshijiaExtInfo?[1])!)
+            tempArray.append(tempArr)
+        }
+        var tempArr = [String]()
+        tempArr.append((model?.data?.baseInfo!.transportion_info)!)
+        tempArr.append((model?.data?.baseInfo!.parking_info)!)
+        tempArray.append(tempArr)
+        extInfoView.extInfos = tempArray
     }
     
     private func setUI() {
         contentView.addSubview(buttonPage)
         contentView.addSubview(menuTable)
-//        contentView.addSubview(environmentView)
-//        environmentView.hidden = true
-//        contentView.addSubview(addressView)
-//        addressView.hidden = true
+        environmentView.hidden = true
+        extInfoView.hidden = true
         setNeedsUpdateConstraints()
     }
     
     override func updateConstraints() {
         if !didUpdateConstraints {
-            
             buttonPage.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
             buttonPage.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             buttonPage.autoPinEdgeToSuperviewEdge(.Top)
             buttonPage.autoSetDimension(.Height, toSize: 100.0.fitHeight())
-            
+            didUpdateConstraints = true
+        }
+    
+        if !menuTable.hidden {
             menuTable.autoPinEdge(.Top, toEdge: .Bottom, ofView: buttonPage, withOffset: 30.0.fitHeight())
             menuTable.autoPinEdge(.Left, toEdge: .Left, ofView: buttonPage)
             menuTable.autoPinEdge(.Right, toEdge: .Right, ofView: buttonPage)
             NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: {
                 menuTable.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 30.0.fitHeight())
             })
-            menuTable.autoSetDimension(.Height, toSize: menuTableH)
             
+            menuTable.autoSetDimension(.Height, toSize: menuTableH)
+        }
+            
+        if !environmentView.hidden {
             environmentView.autoPinEdge(.Top, toEdge: .Bottom, ofView: buttonPage, withOffset: 30.0.fitHeight())
             environmentView.autoPinEdge(.Left, toEdge: .Left, ofView: buttonPage)
             environmentView.autoPinEdge(.Right, toEdge: .Right, ofView: buttonPage)
-            environmentView.autoSetDimension(.Height, toSize: 1000.0.fitHeight())
             NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: {
                 environmentView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 30.0.fitHeight())
             })
             environmentView.autoSetDimension(.Height, toSize: envorViewH)
-
-//            addressView.autoPinEdge(.Top, toEdge: .Bottom, ofView: buttonPage, withOffset: 30.0.fitHeight())
-//            addressView.autoPinEdge(.Left, toEdge: .Left, ofView: buttonPage)
-//            addressView.autoPinEdge(.Right, toEdge: .Right, ofView: buttonPage)
-//            addressView.autoSetDimension(.Height, toSize: 550.0.fitHeight())
-//            addressView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 30.0.fitHeight())
-
-            didUpdateConstraints = true
+        }
+        
+        if !extInfoView.hidden {
+            extInfoView.autoPinEdge(.Top, toEdge: .Bottom, ofView: buttonPage)
+            extInfoView.autoPinEdge(.Left, toEdge: .Left, ofView: buttonPage)
+            extInfoView.autoPinEdge(.Right, toEdge: .Right, ofView: buttonPage)
+            NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: {
+                extInfoView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 30.0.fitHeight())
+            })
+            extInfoView.autoSetDimension(.Height, toSize: 450.0.fitHeight())
         }
         super.updateConstraints()
     }
@@ -141,27 +153,35 @@ class MoreInfoCell: UITableViewCell {
 
 }
 
-extension MoreInfoCell: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plainMenus.count ?? 0
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(String(MenuCell)) as? MenuCell
-        if cell == nil {
-            cell = MenuCell(style: .Default, reuseIdentifier: String(MenuCell))
-        }
-        cell?.selectionStyle = .None
-        cell?.model = plainMenus[indexPath.row]
-        return cell!
-    }
-}
-
 extension MoreInfoCell: BtnPageViewDelegate {
     func btnPageViewDidTouchButton(fromIndex: Int, toIndex: Int) {
-        let fromView = contentView.viewWithTag(fromIndex)
-        fromView?.hidden = true
-        let toView = contentView.viewWithTag(toIndex)
-        toView?.hidden = false
+        if toIndex == 0{
+            contentView.addSubview(menuTable)
+            menuTable.hidden = false
+            environmentView.removeFromSuperview()
+            environmentView.hidden = true
+            extInfoView.removeFromSuperview()
+            extInfoView.hidden = true
+        }else if toIndex == 1 {
+            contentView.addSubview(environmentView)
+            environmentView.hidden = false
+            menuTable.removeFromSuperview()
+            menuTable.hidden = true
+            extInfoView.removeFromSuperview()
+            extInfoView.hidden = true
+        }else if toIndex == 2{
+            contentView.addSubview(extInfoView)
+            extInfoView.hidden = false
+            menuTable.removeFromSuperview()
+            menuTable.hidden = true
+            environmentView.removeFromSuperview()
+            environmentView.hidden = true
+        }
+       
+        updateConstraints()
+        let c = contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        if delegate != nil && (delegate?.respondsToSelector("moreInfoCellDidChangeView:"))! {
+            delegate?.moreInfoCellDidChangeView(c)
+        }
     }
 }

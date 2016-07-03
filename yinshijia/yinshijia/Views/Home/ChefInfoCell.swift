@@ -33,6 +33,7 @@ class ChefInfoCell: UITableViewCell {
     private lazy var chefIcon: UIImageView = {
         let icon = UIImageView.newAutoLayoutView()
         icon.layer.cornerRadius = 130.0.fitHeight() * 0.5
+        icon.clipsToBounds = true
         return icon
     }()
     

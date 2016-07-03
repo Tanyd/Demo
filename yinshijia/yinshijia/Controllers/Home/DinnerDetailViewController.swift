@@ -66,12 +66,14 @@ class DinnerDetailViewController: BaseViewController {
         banner = BannerView(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 600.0.fitHeight()), focusImageViewClick: { (index) in
             
         })
+        dinnerTable.separatorStyle = .None
         dinnerTable.registerClass(DinnerDetailIntroductionCell.self, forCellReuseIdentifier: String(DinnerDetailIntroductionCell))
         dinnerTable.registerClass(ChefInfoCell.self, forCellReuseIdentifier: String(ChefInfoCell))
         dinnerTable.registerClass(FeatureDinnerCell.self, forCellReuseIdentifier: String(FeatureDinnerCell))
         dinnerTable.registerClass(MoreInfoCell.self, forCellReuseIdentifier: String(MoreInfoCell))
         dinnerTable.registerClass(AddressInfoCell.self, forCellReuseIdentifier: String(AddressInfoCell))
         dinnerTable.registerClass(OrderDescriptionCell.self, forCellReuseIdentifier: String(OrderDescriptionCell))
+        dinnerTable.registerClass(CommentCell.self, forCellReuseIdentifier: String(CommentCell))
         dinnerTable.tableHeaderView = banner
         dinnerTable.delegate = self
         dinnerTable.dataSource = self
@@ -112,7 +114,7 @@ class DinnerDetailViewController: BaseViewController {
 
 extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (model == nil ? 0 : 6)
+        return (model == nil ? 0 : 7)
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
@@ -160,6 +162,13 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
             }
             let cell = cell as! OrderDescriptionCell
             cell.configureModel(model)
+        case 6:
+            cell = tableView.dequeueReusableCellWithIdentifier(String(CommentCell)) as? CommentCell
+            if cell == nil {
+                cell = CommentCell(style: .Default, reuseIdentifier: String(CommentCell))
+            }
+            let cell = cell as! CommentCell
+            cell.configureModel(model)
         default:
             break
         }
@@ -203,6 +212,11 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
         case 5:
             return tableView.fd_heightForCellWithIdentifier(String(OrderDescriptionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! OrderDescriptionCell
+                cell.configureModel(self.model)
+            })
+        case 6:
+            return tableView.fd_heightForCellWithIdentifier(String(CommentCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                let cell = cell as! CommentCell
                 cell.configureModel(self.model)
             })
         default:

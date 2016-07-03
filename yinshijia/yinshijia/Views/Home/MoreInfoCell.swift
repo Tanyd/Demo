@@ -44,7 +44,11 @@ class MoreInfoCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUI()
+        contentView.addSubview(buttonPage)
+        contentView.addSubview(menuTable)
+        environmentView.hidden = true
+        extInfoView.hidden = true
+        setNeedsUpdateConstraints()
     }
     
     func configureModel(model: ChefDinner?) {
@@ -87,13 +91,7 @@ class MoreInfoCell: UITableViewCell {
         extInfoView.extInfos = tempArray
     }
     
-    private func setUI() {
-        contentView.addSubview(buttonPage)
-        contentView.addSubview(menuTable)
-        environmentView.hidden = true
-        extInfoView.hidden = true
-        setNeedsUpdateConstraints()
-    }
+ 
     
     override func updateConstraints() {
         if !didUpdateConstraints {

@@ -103,7 +103,7 @@ class BaseApi: AFHTTPSessionManager {
                 let json = JSON(result!)
                 let code = json["code"].number
                 if code == 200 {
-                    let model = classType.yy_modelWithJSON(json.dictionaryObject!)
+                    let model = classType.yy_modelWithJSON(result!)
                     callBack(result: model, error: nil)
                 }else{
                     callBack(result: nil, error: BaseError)

@@ -23,7 +23,7 @@ class ChefDinner: NSObject {
 }
 class DinnerData: NSObject, YYModel {
 
-    var historyCustomMadeDinner: [String]?
+    var historyCustomMadeDinner: [Historycustommadedinner]?
 
     var shareContent: String?
 
@@ -35,7 +35,7 @@ class DinnerData: NSObject, YYModel {
 
     var isFavorite: Int = 0
 
-    var historyDinner: [String]?
+    var historyDinner: [Historydinner]?
 
     var comment: [Comment]?
 
@@ -54,7 +54,9 @@ class DinnerData: NSObject, YYModel {
     var environmentText: String?
 
     static func modelContainerPropertyGenericClass() -> [String : AnyObject]? {
-        return ["envImage": Envimage.classForCoder(),
+        return ["historyCustomMadeDinner": Historycustommadedinner.classForCoder(),
+                "historyDinner": Historydinner.classForCoder(),
+                "envImage": Envimage.classForCoder(),
                 "comment": Comment.classForCoder(),
                 "kitchenImage": Kitchenimage.classForCoder(),
                 "menu": Menu.classForCoder(),
@@ -227,3 +229,30 @@ class Comment: NSObject {
 
 }
 
+class Historycustommadedinner: NSObject {
+    
+    var imageurl: String?
+    
+    var shopName: String?
+    
+    var price: Int = 0
+    
+    var dinnertime: String?
+    
+    var name: String?
+    
+}
+
+class Historydinner: NSObject {
+    
+    var dinnerId: Int = 0
+    
+    var title: String?
+    
+    var price: Int = 0
+    
+    var datetime: String?
+    
+    var imageurl: String?
+    
+}

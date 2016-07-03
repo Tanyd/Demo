@@ -29,9 +29,10 @@ class FeatureDinnerCell: UITableViewCell {
             for menu in (model?.data?.menu)! {
                 let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height + 5
                 let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
-                let cellH = 720.0.fitHeight() + titleH + despH + 5
+                let cellH = 720.0.fitHeight() + titleH + despH
                 totalH += cellH
             }
+            if model?.data?.menu?.count == 1 {totalH += 50.0.fitHeight()}
             childTableH = totalH
             featureTable.model = (model?.data?.menu)!
         }

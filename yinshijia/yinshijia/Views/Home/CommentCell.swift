@@ -25,15 +25,28 @@ class CommentCell: UITableViewCell {
     }
     
     func configureModel(model: ChefDinner?) {
-        if model?.data?.comment?.count > 0 {
             var totalH: CGFloat = 0
-            for comment in (model?.data?.comment)! {
-                let despH = (comment.content! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 70.0.fitWidth(), height: CGFloat.max)).height
-                totalH += despH + 80.0.fitHeight() + 120.0.fitHeight() + 25.0.fitHeight() + 70.0.fitHeight()
+        if model?.data?.comment?.count == 0 {
+            totalH = 0
+        }else if model?.data?.comment?.count > 2 {
+                for index in 0...1 {
+                    let comment = model?.data?.comment![index]
+                    let despH = (comment!.content! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 130.0.fitWidth(), height: CGFloat.max)).height
+                    totalH += despH + 315.0.fitHeight()
+                }
+            }else{
+                for comment in (model?.data?.comment)! {
+                    let despH = (comment.content! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 130.0.fitWidth(), height: CGFloat.max)).height
+                    totalH += despH + 315.0.fitHeight()
+                }
             }
-            commentH = totalH
-            commentTable.commentModels = (model?.data?.comment)!
+        
+        if model?.data?.comment?.count > 2 {
+            commentH = totalH + 145.0.fitHeight() * 2.0 + 2
+        }else {
+            commentH = totalH + 145.0.fitHeight() + 2
         }
+        commentTable.commentModels = (model?.data?.comment)!
     }
     override func updateConstraints() {
         if !didUpdateConstraints{

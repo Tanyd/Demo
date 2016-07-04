@@ -23,12 +23,15 @@ class CustomeCommentCell: UITableViewCell {
                     self.userIcon.jm_setCornerRadius(40.0.fitWidth(), withImage: image)
                 }
             })
+            for index in 0...(commentModel?.rank)! - 1 {
+                let start = rankView.subviews[index] as! UIButton
+                start.selected = true
+            }
         }
     }
     
     private lazy var rankView: UIView = {
         let view = UIView.newAutoLayoutView()
-        view.backgroundColor = UIColor.redColor()
         for index in 0...4 {
             let start = UIButton(type: .Custom)
             start.setImage(UIImage(named: "comment_fullstar"), forState: .Selected)
@@ -40,9 +43,9 @@ class CustomeCommentCell: UITableViewCell {
         return view
     }()
     
-    private lazy var commentBackView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = UIColor.lightGrayColor()
+    private lazy var commentBackView: UIImageView = {
+        let view = UIImageView.newAutoLayoutView()
+        view.image = UIImage(named: "comment_bubble")
         return view
     }()
     
@@ -99,7 +102,7 @@ class CustomeCommentCell: UITableViewCell {
             
             userIcon.autoPinEdgeToSuperviewEdge(.Left, withInset: 35.0.fitWidth())
             userIcon.autoPinEdgeToSuperviewEdge(.Top, withInset: 30.0.fitHeight())
-            userIcon.autoSetDimensionsToSize(CGSize(width: 80.0.fitWidth(), height: 80.0.fitWidth()))
+            userIcon.autoSetDimensionsToSize(CGSize(width: 85.0.fitHeight(), height: 85.0.fitHeight()))
             
             userName.autoPinEdge(.Left, toEdge: .Right, ofView: userIcon, withOffset: 25.0.fitWidth())
             userName.autoPinEdgeToSuperviewEdge(.Top, withInset: 35.0.fitHeight())

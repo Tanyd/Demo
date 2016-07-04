@@ -27,13 +27,11 @@ class FeatureDinnerCell: UITableViewCell {
         if model?.data?.menu?.count > 0 {
             var totalH: CGFloat = 0
             for menu in (model?.data?.menu)! {
-                let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height + 5
-                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
-                let cellH = 720.0.fitHeight() + titleH + despH
+                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
+                let cellH = 720.0.fitHeight() + despH
                 totalH += cellH
             }
-            if model?.data?.menu?.count == 1 {totalH += 50.0.fitHeight()}
-            childTableH = totalH
+            childTableH = totalH + 145.0.fitHeight()
             featureTable.model = (model?.data?.menu)!
         }
     }

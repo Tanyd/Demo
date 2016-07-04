@@ -26,7 +26,7 @@ class ChefInfoCell: UITableViewCell {
     }()
     
     private lazy var nameLale: UILabel = {
-        let name = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blueColor(), fontSize: 13)
+        let name = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
         return name
     }()
     

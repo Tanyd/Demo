@@ -55,12 +55,12 @@ class MoreInfoCell: UITableViewCell {
         if model?.data?.plainMenu?.count > 0 {
             var totalH: CGFloat = 0
             for menu in (model?.data?.plainMenu!)! {
-                let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height + 5
-                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
-                let cellH = titleH + despH + 5 + 25.0.fitHeight() + 60.0.fitHeight()
+                let titleH = (menu.title! as NSString).getTextRectSize(UIFont.systemFontOfSize(14), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height
+                let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH, height: CGFloat.max)).height
+                let cellH = titleH + despH + 25.0.fitHeight() + 60.0.fitHeight()
                 totalH += cellH
             }
-            menuTableH = totalH
+            menuTableH = totalH + 145.0.fitHeight()
             menuTable.plainMenus = (model?.data?.plainMenu!)!
         }
         

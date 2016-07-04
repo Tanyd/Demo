@@ -66,7 +66,6 @@ class DinnerDetailViewController: BaseViewController {
         banner = BannerView(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 600.0.fitHeight()), focusImageViewClick: { (index) in
             
         })
-        dinnerTable.separatorStyle = .None
         dinnerTable.registerClass(DinnerDetailIntroductionCell.self, forCellReuseIdentifier: String(DinnerDetailIntroductionCell))
         dinnerTable.registerClass(ChefInfoCell.self, forCellReuseIdentifier: String(ChefInfoCell))
         dinnerTable.registerClass(FeatureDinnerCell.self, forCellReuseIdentifier: String(FeatureDinnerCell))
@@ -77,7 +76,13 @@ class DinnerDetailViewController: BaseViewController {
         dinnerTable.tableHeaderView = banner
         dinnerTable.delegate = self
         dinnerTable.dataSource = self
+        dinnerTable.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 90.0.fitHeight(), right: 0)
         view.addSubview(dinnerTable)
+        
+        let madeButton = CustomMadeView(frame: CGRectMake(0, ScreenSize.SCREEN_HEIGHT - 90.0.fitHeight(), ScreenSize.SCREEN_WIDTH, 90.0.fitHeight())) { 
+            
+        }
+        view.addSubview(madeButton)
     }
 
     func backItemClick() {
@@ -172,6 +177,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
         default:
             break
         }
+        cell?.selectionStyle = .None
         return cell!
     }
     

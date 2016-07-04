@@ -49,6 +49,7 @@ extension FeatureDinnerTableView: UITableViewDelegate, UITableViewDataSource {
             cell = FeatureDinnerDetailCell(style: .Default, reuseIdentifier: String(FeatureDinnerDetailCell))
         }
         cell?.model = model[indexPath.row]
+        cell?.selectionStyle = .None
         return cell!
     }
 }

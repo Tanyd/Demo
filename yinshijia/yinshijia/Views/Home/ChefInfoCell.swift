@@ -32,8 +32,6 @@ class ChefInfoCell: UITableViewCell {
     
     private lazy var chefIcon: UIImageView = {
         let icon = UIImageView.newAutoLayoutView()
-        icon.layer.cornerRadius = 130.0.fitHeight() * 0.5
-        icon.clipsToBounds = true
         return icon
     }()
     
@@ -49,7 +47,9 @@ class ChefInfoCell: UITableViewCell {
     func configureModel(model: ChefDinner?) {
         if model != nil {
             nameLale.text = model?.data?.baseInfo?.shopName
-            chefIcon.sd_setImageWithURL(NSURL(string: (model?.data?.baseInfo?.imageurl!.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
+            chefIcon.sd_setImageWithURL(NSURL(string: (model?.data?.baseInfo?.imageurl!.componentsSeparatedByString(",")[0])!), placeholderImage: UIImage(named: "headerview"), completed: { (image, error, cacheType, url) in
+                self.chefIcon.image = UIImage.circleImageWithImage(image)
+            })
             contentLable.text = model?.data?.baseInfo?.introduce
         }
     }

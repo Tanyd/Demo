@@ -105,37 +105,6 @@ class ChoiceViewController: TranslationTableViewController {
         }
         let model = choiceModel?.data?.dinnerList?[indexPath.row]
         cell!.choiceModel = model
-        
-        if (tableView.dragging || tableView.decelerating) && !(arrayIndex.contains(indexPath)){
-            
-            cell!.goodsImg.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
-            cell!.userIcon.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "headerview"))
-            
-        }else {
-            let img = model!.themeDinnerImageurl == nil ? model?.chefImageurl : model!.themeDinnerImageurl
-            let goodsImgArray = img!.componentsSeparatedByString(",")
-            cell!.goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
-                
-                if !self.arrayIndex.contains(indexPath) {
-                    self.arrayIndex.append(indexPath)
-                }
-            })
-            let chefImg = model!.themeDinnerChefImageurl == nil ? model?.chefImageurl : model!.themeDinnerChefImageurl
-            SDWebImageManager.sharedManager().downloadImageWithURL(NSURL(string: chefImg!), options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (image, error, cacheType, finish, url) in
-                if image != nil {
-                    
-                    cell!.userIcon.jm_setJMRadius(JMRadius(topLeftRadius: 57.0.fitWidth(), topRightRadius: 57.0.fitWidth(),
-                        bottomLeftRadius: 57.0.fitWidth(),
-                        bottomRightRadius: 57.0.fitWidth()),
-                        withBorderColor: UIColor.whiteColor(),
-                        borderWidth: 2.0,
-                        backgroundColor: nil,
-                        backgroundImage: image,
-                        contentMode: .ScaleToFill)
-                    }
-                })
-            }
-        
         cell!.dinnerChefClick = { (chefID) in
             DebugPrint("点击了chef id\(chefID)")
         }
@@ -160,26 +129,6 @@ class ChoiceViewController: TranslationTableViewController {
         navigationController?.pushViewController(toView, animated: true)
     }
     
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            downloadImg()
-        }
-    }
-    
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        downloadImg()
-    }
-    
-    private func  downloadImg() {
-        let visibleRows = tableView.indexPathsForVisibleRows
-        var newRows = [NSIndexPath]()
-        for path in visibleRows! {
-            if !self.arrayIndex.contains(path) {
-                newRows.append(path)
-            }
-        }
-        tableView.reloadRowsAtIndexPaths(newRows, withRowAnimation: .Fade)
-    }
 }
 
 extension ChoiceViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate{

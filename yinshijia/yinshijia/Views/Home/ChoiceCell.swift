@@ -19,6 +19,19 @@ class ChoiceCell: UITableViewCell {
     
     var choiceModel: Dinnerlist?{
         didSet{
+            let chefImg = choiceModel!.themeDinnerChefImageurl == nil ? choiceModel?.chefImageurl : choiceModel!.themeDinnerChefImageurl
+            userIcon.sd_setImageWithURL(NSURL(string: chefImg!), placeholderImage: UIImage(named: "headerview")) { (image, error, cacheType, url) in
+                self.userIcon.image = UIImage.circleWithImageAndSize(image,
+                                                                     borderWidth: 2.0,
+                                                                     borderColor: UIColor.whiteColor(),
+                                                                     size: CGSize(width: 114.0.fitWidth(), height: 114.0.fitWidth()))
+
+            }
+            
+            let img = choiceModel!.themeDinnerImageurl == nil ? choiceModel!.chefImageurl : choiceModel!.themeDinnerImageurl
+            let goodsImgArray = img!.componentsSeparatedByString(",")
+            goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"))
+            
             let priceStr = choiceModel!.themeDinnerMinPrice == 0 ? String(choiceModel!.price!) : String(choiceModel!.themeDinnerMinPrice)
             let price = "¥" + priceStr + "/" + (choiceModel!.themeDinnerUnit == nil ? "位" : choiceModel!.themeDinnerUnit!)
             priceView.setTitle(price, forState: .Normal)
@@ -75,7 +88,6 @@ class ChoiceCell: UITableViewCell {
 
     lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
-        img.image = UIImage(named: "headerview")!.jm_imageWithRoundedCornersAndSize(CGSize(width: 114.0.fitWidth(), height: 114.0.fitWidth()), andCornerRadius: 57.0.fitWidth())
         img.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
         img.addGestureRecognizer(tap)

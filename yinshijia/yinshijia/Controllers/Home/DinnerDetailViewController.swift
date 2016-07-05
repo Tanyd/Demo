@@ -25,6 +25,7 @@ class DinnerDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.showWithStatus("加载中", maskType: .Clear, style: .Light)
         setNaviagtionBarAppearance()
         setUI()
     }
@@ -39,6 +40,7 @@ class DinnerDetailViewController: BaseViewController {
             self!.title = self!.model?.data?.baseInfo?.title
             self!.customeMadeView.model = self!.model?.data?.baseInfo
             self!.dinnerTable.reloadData()
+            SVProgressHUD.dismiss()
         }
         ChefDinner.loadDetailDinner(callBack, id: chefDinnerID!)
     }
@@ -174,6 +176,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
                 cell = CommentCell(style: .Default, reuseIdentifier: String(CommentCell))
             }
             let cell = cell as! CommentCell
+            cell.delegate = self
             cell.configureModel(model)
         default:
             break
@@ -229,15 +232,21 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
         default:
             return 0
         }
-        
     }
 }
 
-extension DinnerDetailViewController: MoreInfoCellDelegate {
+extension DinnerDetailViewController: MoreInfoCellDelegate, CommentCellDelegate {
+    
     func moreInfoCellDidChangeView(height: CGFloat) {
         dinnerTable.reloadData()
         dinnerTable.fd_indexPathHeightCache.cacheHeight(height, byIndexPath: NSIndexPath(forRow: 3, inSection: 0))
-
     }
-
+    
+    func commentCellDidClick() {
+        let commentVC = CustomeCommentTableViewController(style: .Plain)
+        commentVC.comments = (model?.data?.comment!)!
+        navigationController?.pushViewController(commentVC, animated: true)
+    }
 }
+
+

@@ -7,14 +7,21 @@
 //
 
 import UIKit
-
+protocol CommentCellDelegate: NSObjectProtocol {
+    func commentCellDidClick()
+}
 class CommentCell: UITableViewCell {
 
     private var didUpdateConstraints = false
     private var commentH: CGFloat = 0
-
+    weak var delegate: CommentCellDelegate?
+    
     private lazy var commentTable: CustomeCommentTableView = {
-       let table = CustomeCommentTableView(frame: CGRectZero, style: .Plain)
+        let table = CustomeCommentTableView(frame: CGRectZero, style: .Plain, loadMoreComments: {
+            if self.delegate != nil && (self.delegate?.respondsToSelector("commentCellDidClick"))!{
+                self.delegate!.commentCellDidClick()
+            }
+        })
         return table
     }()
     
@@ -48,6 +55,7 @@ class CommentCell: UITableViewCell {
         }
         commentTable.commentModels = (model?.data?.comment)!
     }
+    
     override func updateConstraints() {
         if !didUpdateConstraints{
             

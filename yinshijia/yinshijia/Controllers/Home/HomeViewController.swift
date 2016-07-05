@@ -42,6 +42,10 @@ class HomeViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeUI:", name: BaseTranslationViewControllerNotification.NotificationName, object: nil)
     }
     
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     private func setUI() {
         navigationBar = HomeNavigationBar(frame: CGRect(x: 0, y: 20, width: ScreenSize.SCREEN_WIDTH, height: 44),searchClick: {
                             print("searchClick")

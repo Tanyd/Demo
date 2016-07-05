@@ -15,4 +15,4 @@
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import <CommonCrypto/CommonDigest.h>
-#import "UIView+RoundedCorner.h"
+#import <HJCornerRadius/HJCornerRadius.h>

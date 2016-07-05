@@ -10,4 +10,4 @@ pod "pop"
 pod "UITableView+FDTemplateLayoutCell"
 pod "DZNEmptyDataSet"
 pod "FDFullscreenPopGesture"
-pod 'JMRoundedCorner'
+pod 'HJCornerRadius', :git => "https://github.com/panghaijiao/HJCornerRadius.git"

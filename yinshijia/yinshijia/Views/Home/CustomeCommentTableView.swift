@@ -11,6 +11,7 @@ import UIKit
 class CustomeCommentTableView: UITableView {
 
     private var titleView: UILabel!
+    private var footerClick: (()->())!
     
     var commentModels = [Comment](){
         didSet{
@@ -40,10 +41,15 @@ class CustomeCommentTableView: UITableView {
         btn.center = CGPointMake(ScreenSize.SCREEN_WIDTH * 0.5, 145.0.fitHeight() * 0.5)
         btn.bounds.size = CGSizeMake(245.0.fitWidth(), 65.0.fitHeight())
         btn.layer.cornerRadius = 30.0.fitWidth()
+        btn.addTarget(self, action: "footerDidClick", forControlEvents: .TouchUpInside)
         footer.addSubview(btn)
         return footer
     }()
     
+    convenience init(frame: CGRect, style: UITableViewStyle, loadMoreComments: ()->()) {
+        self.init(frame: frame, style: style)
+        self.footerClick = loadMoreComments
+    }
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -60,6 +66,10 @@ class CustomeCommentTableView: UITableView {
         titleView.textAlignment = .Center
         titleView.frame = CGRectMake(0, 0, 0, 145.0.fitHeight())
         tableHeaderView = titleView
+    }
+    
+    func footerDidClick() {
+        footerClick()
     }
     
     required init?(coder aDecoder: NSCoder) {

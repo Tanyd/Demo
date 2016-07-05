@@ -33,6 +33,7 @@ class ChefCell: UICollectionViewCell {
     
     var chefModel: Cheflist?{
         didSet{
+            icon.sd_setImageWithURL(NSURL(string: chefModel!.imageurl!), placeholderImage: UIImage(named: "wutu"))
             name.text = chefModel!.name
             schedule.text = String(chefModel!.orderedCount) + " | "
             love.text = String(chefModel!.likeCount)

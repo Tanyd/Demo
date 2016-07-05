@@ -19,7 +19,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JMRoundedCorner.xcscheme</key>
+		<key>HJCornerRadius.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -72,17 +72,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0B095DECBA69CFDB0ACB1E7A4AD7A3D2</key>
+		<key>0D1F6A2C40DF8EE3C347BE14C1EF7510</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0F0E946C4BBAE8E705DBBC9778B31F2A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2221800E20BEF9E07450E1A1832F9639</key>
+		<key>17F22CA70D26ACC87A80393334EDAB24</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,27 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F7CB40BB3B9FA9F956ED268434D6F5A</key>
+		<key>434F7B7567D3447D6EBEE29AFDDBA5C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>404A667956ABECB9BF73AF675E89450E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>44D64E73D11D5368F58CD00CF1BAF2B6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5058A62BA06E56CA78A079D59882464E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6AAA58AC3EAF0270EC6D0BB3739A0215</key>
+		<key>4BE2A8FEA0D1491371768CAC450C08A0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +107,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>78B57D9E362680CDF8D83BF54C1F3153</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B58AE9150F017AC1E3E69371EC850776</key>
+		<key>B54C0E560E3E32B4C1A89762BA2D95CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D329159DD9360F869F6D75B1BC1B0ACE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4D2F5EBBA6AAD1E63608EFAA23B56B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E596DE382EB6A43A6021C1B03D024E3F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

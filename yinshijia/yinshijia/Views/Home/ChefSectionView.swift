@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//MARK: hot new 切换BUG
 class ChefSectionView: UICollectionReusableView {
  
     private var didUpdateConstraints = false
@@ -62,6 +62,7 @@ class ChefSectionView: UICollectionReusableView {
     }
     
     func buttonClick(sender: UIButton) {
+        if sender == selectedBtn {return}
         if chefBtnClick != nil {
             selectedBtn!.selected = false
             sender.selected = true

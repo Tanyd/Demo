@@ -16,7 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - DZNEmptyDataSet (1.8.1)
   - FDFullscreenPopGesture (1.1)
-  - JMRoundedCorner (1.2.1)
+  - HJCornerRadius (0.0.1)
   - MJRefresh (3.1.9)
   - pop (1.0.9)
   - PureLayout (3.0.2)
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - AFNetworking
   - DZNEmptyDataSet
   - FDFullscreenPopGesture
-  - JMRoundedCorner
+  - HJCornerRadius (from `https://github.com/panghaijiao/HJCornerRadius.git`)
   - MJRefresh
   - pop
   - PureLayout
@@ -43,11 +43,20 @@ DEPENDENCIES:
   - UITableView+FDTemplateLayoutCell
   - YYModel
 
+EXTERNAL SOURCES:
+  HJCornerRadius:
+    :git: https://github.com/panghaijiao/HJCornerRadius.git
+
+CHECKOUT OPTIONS:
+  HJCornerRadius:
+    :commit: 5ff8f7683173e64556e6ac28a3556dda228b08db
+    :git: https://github.com/panghaijiao/HJCornerRadius.git
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  JMRoundedCorner: 214e56c2a7e3a0916e8d6040c66d85519cc1be87
+  HJCornerRadius: 54432a8217ce62b21eb49eec93222420e5c4b22b
   MJRefresh: c5f1f1653e5a1b932c90f78074f2bc86f3f9bd5e
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd

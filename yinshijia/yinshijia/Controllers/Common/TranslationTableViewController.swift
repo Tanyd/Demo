@@ -30,6 +30,7 @@ class TranslationTableViewController: UITableViewController {
     func setupRefresh() {
         let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "tableRefreshHeader")
         tableView.mj_header = header
+        header
         let footer = MJRefreshBackStateFooter(refreshingTarget: self, refreshingAction: "tableRefreshFooter")
         footer.setTitle("没有更多数据", forState: MJRefreshState.NoMoreData)
         tableView.mj_footer = footer
@@ -41,10 +42,6 @@ class TranslationTableViewController: UITableViewController {
     
     func tableRefreshFooter() {
        
-    }
-
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     private func setUI() {

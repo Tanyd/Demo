@@ -170,20 +170,6 @@ class ChefViewController: TranslationCollectionViewController {
             model = chefModel?.data?.chefList![indexPath.item]
             cell.chefModel = chefModel?.data?.chefList![indexPath.item]
         }
-        
-        if (collectionView.dragging || collectionView.decelerating) && !(arrayIndex.contains(indexPath)){
-            
-            cell.icon.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
-            
-        }else {
-            cell.icon.sd_setImageWithURL(NSURL(string: model!.imageurl!), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
-                
-                if !self.arrayIndex.contains(indexPath) {
-                    self.arrayIndex.append(indexPath)
-                }
-            })
-        }
-        
         return cell
     }
     
@@ -209,26 +195,6 @@ class ChefViewController: TranslationCollectionViewController {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ChefCell
         DebugPrint("chef cell  点击\(cell.tag)")
     }
-    
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            downloadImg()
-        }
-    }
-    
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        downloadImg()
-    }
-    
-    private func  downloadImg() {
-        let visibleRows = collectionView!.indexPathsForVisibleItems()
-        var newRows = [NSIndexPath]()
-        for path in visibleRows {
-            if !self.arrayIndex.contains(path) {
-                newRows.append(path)
-            }
-        }
-        collectionView!.reloadItemsAtIndexPaths(newRows)
-    }
+
 }
 

@@ -358,6 +358,55 @@ extension UIImage {
         return newImage!
     }
     
+    class func circleImageWithImage(image: UIImage) -> UIImage{
+        let newSize = image.size
+        UIGraphicsBeginImageContextWithOptions(newSize, false,UIScreen.mainScreen().scale)
+        let path = UIBezierPath(ovalInRect: CGRectMake(0, 0, newSize.width, newSize.height))
+        path.addClip()
+        image.drawAtPoint(CGPointZero)
+        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImg
+    }
+    
+    class func circleImage(imageName: String) -> UIImage? {
+        let img = UIImage(named: imageName)
+        if img == nil {return nil}
+        let newSize = img!.size
+        UIGraphicsBeginImageContextWithOptions(newSize, false,UIScreen.mainScreen().scale)
+        let path = UIBezierPath(ovalInRect: CGRectMake(0, 0, newSize.width, newSize.height))
+        path.addClip()
+        img!.drawAtPoint(CGPointZero)
+        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+       return newImg
+    }
+    
+    class func circleWithImageAndSize(image: UIImage, borderWidth: CGFloat,borderColor: UIColor,size: CGSize) -> UIImage{
+        let oldImg = image
+        let imageW = size.width + 2 * borderWidth
+        let imageH = size.height + 2 * borderWidth
+        let imageSize = CGSizeMake(imageW, imageH)
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, 0.0)
+        
+        let ctx = UIGraphicsGetCurrentContext()
+        borderColor.set()
+        let bigRadius = imageW * 0.5
+        let centerX = bigRadius
+        let centerY = bigRadius
+        CGContextAddArc(ctx, centerX, centerY, bigRadius, 0, CGFloat(M_PI) * 2, 0)
+        CGContextFillPath(ctx)
+        
+        let smallRadius = bigRadius - borderWidth
+        CGContextAddArc(ctx, centerX, centerY, smallRadius, 0, CGFloat(M_PI) * 2, 0)
+        CGContextClip(ctx)
+        
+        oldImg.drawInRect(CGRect(x: borderWidth, y: borderWidth, width: size.width, height: size.height))
+        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImg
+
+    }
     // 圆圆环图
     class func circleWithImage(image: UIImage, borderWidth: CGFloat,borderColor: UIColor) -> UIImage{
         let oldImg = image
@@ -467,22 +516,6 @@ extension UIImage {
         return image
     }
     
-    //   class func cutImage(image: UIImage, cutRect: CGRect) -> UIImage {
-    //
-    //        UIGraphicsBeginImageContextWithOptions(cutRect.size, false, 0.0)
-    //        // 获取上下文
-    //        let context = UIGraphicsGetCurrentContext()
-    //        // 转换坐标原点到左下角
-    //        CGContextTranslateCTM(context, 0.0, cutRect.size.height)
-    //        CGContextScaleCTM(context, 1.0, -1.0)
-    //        // 设置绘制模式
-    //        CGContextSetBlendMode(context, .Copy)
-    //        // 绘图
-    //        CGContextDrawImage(context, cutRect, image.CGImage)
-    //        let image = UIGraphicsGetImageFromCurrentImageContext()
-    //        UIGraphicsEndImageContext()
-    //        return image
-    //    }
 }
 
 

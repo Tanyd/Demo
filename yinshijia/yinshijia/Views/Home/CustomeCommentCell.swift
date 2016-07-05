@@ -14,14 +14,17 @@ class CustomeCommentCell: UITableViewCell {
     
     var commentModel: Comment? {
         didSet{
+            
+            for start in rankView.subviews {
+                (start as! UIButton).selected = false
+            }
+            
             userName.text = commentModel?.name
             timerLable.text = commentModel?.createtime
             dinnerName.text = "定制饭局:" + (commentModel?.shopName)!
             contenText.text = commentModel!.content
-            SDWebImageManager.sharedManager().downloadImageWithURL(NSURL(string: commentModel!.headImageurl!), options: SDWebImageOptions(rawValue:0), progress: nil, completed: { (image, error, cacheType, finish, url) in
-                if image != nil {
-                    self.userIcon.jm_setCornerRadius(40.0.fitWidth(), withImage: image)
-                }
+            userIcon.sd_setImageWithURL(NSURL(string: commentModel!.headImageurl!), placeholderImage: UIImage(named: "headerview"), completed: { (image, error, cacheType, url) in
+                self.userIcon.image = UIImage.circleImageWithImage(image)
             })
             for index in 0...(commentModel?.rank)! - 1 {
                 let start = rankView.subviews[index] as! UIButton
@@ -57,7 +60,7 @@ class CustomeCommentCell: UITableViewCell {
     
     private lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
-        img.image = UIImage(named: "headerview")!.jm_imageWithRoundedCornersAndSize(CGSize(width: 80.0.fitWidth(), height: 80.0.fitWidth()), andCornerRadius: 4.0.fitWidth())
+//        img.aliCornerRadius = 40.0.fitWidth()
         img.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
         img.addGestureRecognizer(tap)
@@ -95,7 +98,6 @@ class CustomeCommentCell: UITableViewCell {
         contentView.addSubview(dinnerName)
         setNeedsUpdateConstraints()
     }
-    
     
     override func updateConstraints() {
         if !didUpdateConstraints{

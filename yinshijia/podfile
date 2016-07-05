@@ -1,7 +1,6 @@
 platform :ios, '8.0'
 pod "PureLayout"
 pod "SDWebImage"
-pod "SDCycleScrollView"
 pod "MJRefresh"
 pod 'SVProgressHUD'
 pod "YYModel"
@@ -11,3 +10,4 @@ pod "UITableView+FDTemplateLayoutCell"
 pod "DZNEmptyDataSet"
 pod "FDFullscreenPopGesture"
 pod 'HJCornerRadius', :git => "https://github.com/panghaijiao/HJCornerRadius.git"
+pod 'IDMPhotoBrowser'

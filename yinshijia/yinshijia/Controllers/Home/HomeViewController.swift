@@ -26,6 +26,7 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         setUI()
         addNotification()
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +53,7 @@ class HomeViewController: BaseViewController {
             }, bellClick: { 
                 print("bellClick")
             }) {
+                SocialView.shareInstance().showSocialView()
                 print("cityChange")
         }
         view.addSubview(navigationBar)

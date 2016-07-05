@@ -60,7 +60,6 @@ class CustomeCommentCell: UITableViewCell {
     
     private lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
-//        img.aliCornerRadius = 40.0.fitWidth()
         img.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
         img.addGestureRecognizer(tap)

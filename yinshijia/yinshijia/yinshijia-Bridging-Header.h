@@ -16,3 +16,4 @@
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import <CommonCrypto/CommonDigest.h>
 #import <HJCornerRadius/HJCornerRadius.h>
+#import <IDMPhotoBrowser/IDMPhotoBrowser.h>

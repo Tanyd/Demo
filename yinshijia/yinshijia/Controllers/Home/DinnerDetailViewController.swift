@@ -40,6 +40,8 @@ class DinnerDetailViewController: BaseViewController {
             self!.title = self!.model?.data?.baseInfo?.title
             self!.customeMadeView.model = self!.model?.data?.baseInfo
             self!.dinnerTable.reloadData()
+            self!.dinnerTable.hidden = false
+            self!.customeMadeView.hidden = false
             SVProgressHUD.dismiss()
         }
         ChefDinner.loadDetailDinner(callBack, id: chefDinnerID!)
@@ -80,11 +82,13 @@ class DinnerDetailViewController: BaseViewController {
         dinnerTable.delegate = self
         dinnerTable.dataSource = self
         dinnerTable.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 90.0.fitHeight(), right: 0)
+        dinnerTable.hidden = true
         view.addSubview(dinnerTable)
         
         customeMadeView = CustomMadeView(frame: CGRectMake(0, ScreenSize.SCREEN_HEIGHT - 90.0.fitHeight(), ScreenSize.SCREEN_WIDTH, 90.0.fitHeight())) {
             
         }
+        customeMadeView.hidden = true
         view.addSubview(customeMadeView)
     }
 

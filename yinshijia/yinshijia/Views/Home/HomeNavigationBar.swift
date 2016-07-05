@@ -13,7 +13,7 @@ class HomeNavigationBar: UIView {
     private var didUpdateConstraints = false
     private var searchBtn: UIButton!
     private var bellBtn: UIButton!
-    private var leftItem: LeftItem!
+    private var leftItem: CustomButton!
     private var titleItem: UIImageView!
     private var searchDone: (()->())?
     private var bellDone: (()->())?
@@ -42,7 +42,9 @@ class HomeNavigationBar: UIView {
         bellBtn.addTarget(self, action: "bell", forControlEvents: .TouchUpInside)
         addSubview(bellBtn)
         
-        leftItem = LeftItem(type: .Custom)
+        leftItem = CustomButton(type: .Custom)
+        leftItem.type = .ImgRight
+        leftItem.margin = 4
         leftItem.setImage(UIImage(named: "city_arrow"), forState: .Normal)
         leftItem.setTitleColor(UIColor.colorFromHex(0x070707), forState: .Normal)
         leftItem.setTitle("成都", forState: .Normal)

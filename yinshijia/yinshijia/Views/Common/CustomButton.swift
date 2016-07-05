@@ -8,27 +8,34 @@
 
 import UIKit
 
-class LeftItem: UIButton {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        titleLabel?.frame.origin.x = 0
-        imageView?.frame.origin.x = titleLabel!.frame.size.width + 4
+class CustomButton: UIButton {
+    
+    enum CustomButtonType {
+        case ImgTop
+        case ImgRight
     }
-}
-
-
-class UpImgButton: UIButton {
+    
+    var type: CustomButtonType!
+    
+    var margin: CGFloat = 0
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        sizeToFit()
+        contentHorizontalAlignment = .Center
         imageView?.contentMode = .Center
-        titleLabel?.textAlignment = .Center
-        contentMode = .Center
-        imageView?.frame.origin.y = 0
-        imageView?.frame.origin.x = 0
-        titleLabel?.frame.origin.x = 0
-        titleLabel?.frame.origin.y = imageView!.frame.size.height
+        titleLabel?.contentMode = .Center
+      
+        switch type!{
+        case CustomButtonType.ImgRight:
+            titleLabel?.frame.origin.x = 0
+            imageView?.frame.origin.x = titleLabel!.frame.size.width + margin
+        default:
+            imageView?.frame.origin.y = 0
+            imageView?.frame.origin.x = 0
+            titleLabel?.frame.size.width = frame.size.width
+            titleLabel?.frame.origin.x = 0
+            titleLabel?.frame.origin.y = imageView!.frame.size.height + margin
+        }
     }
 }

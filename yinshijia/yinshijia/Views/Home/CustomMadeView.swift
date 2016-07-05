@@ -11,6 +11,13 @@ import UIKit
 class CustomMadeView: UIView {
 
     private var didUpdateConstraints = false
+    var model: Baseinfo? {
+        didSet{
+            priceLable.text = "\(model!.price)-\(model!.max_price)"
+            unitLable.text = " /\(model!.unit!)"
+            infoLable.text = " (\(model!.people_count)\(model!.unit!)起订)"
+        }
+    }
     private var moneyImg: UIImageView!
     private var priceLable: UILabel!
     private var unitLable: UILabel!
@@ -28,46 +35,46 @@ class CustomMadeView: UIView {
 
     private func setUI() {
         backgroundColor = UIColor.colorFromHex(0xf8f8f8)
-        self.moneyImg = UIImageView(image: UIImage(named: "rejuPrice"))
-        addSubview(self.moneyImg)
+        moneyImg = UIImageView(image: UIImage(named: "rejuPrice"))
+        addSubview(moneyImg)
         
-        self.priceLable = UILabel.lableCutomer("9000-900", fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
-        addSubview(self.priceLable)
+        priceLable = UILabel.lableCutomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
+        addSubview(priceLable)
         
-        self.unitLable = UILabel.lableCutomer(" /位", fontType: nil, color: UIColor.blackColor(), fontSize: 14)
-        addSubview(self.unitLable)
+        unitLable = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 14)
+        addSubview(unitLable)
         
-        self.infoLable = UILabel.lableCutomer(" dasdsadas", fontType: nil, color: UIColor.lightGrayColor(), fontSize: 12)
-        addSubview(self.infoLable)
+        infoLable = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.lightGrayColor(), fontSize: 12)
+        addSubview(infoLable)
         
-        self.madeButton = buttonNoHighlighted(type: .Custom)
-        self.madeButton.backgroundColor = UIColor.colorFromHex(0xfe7c60)
-        self.madeButton.setImage(UIImage(named: "custom_icon"), forState: .Normal)
-        self.madeButton.setTitle("定制", forState: .Normal)
-        self.madeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        addSubview(self.madeButton)
+        madeButton = buttonNoHighlighted(type: .Custom)
+        madeButton.backgroundColor = UIColor.colorFromHex(0xfe7c60)
+        madeButton.setImage(UIImage(named: "custom_icon"), forState: .Normal)
+        madeButton.setTitle("定制", forState: .Normal)
+        madeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        addSubview(madeButton)
         setNeedsUpdateConstraints()
     }
     
     override func updateConstraints() {
         if !didUpdateConstraints{
             
-            self.moneyImg.autoPinEdgeToSuperviewEdge(.Left, withInset: 35.0.fitWidth())
-            self.moneyImg.autoAlignAxisToSuperviewAxis(.Horizontal)
-            self.moneyImg.autoSetDimensionsToSize(CGSize(width: 40.0.fitWidth(), height: 40.0.fitWidth()))
+            moneyImg.autoPinEdgeToSuperviewEdge(.Left, withInset: 35.0.fitWidth())
+            moneyImg.autoAlignAxisToSuperviewAxis(.Horizontal)
+            moneyImg.autoSetDimensionsToSize(CGSize(width: 40.0.fitWidth(), height: 40.0.fitWidth()))
             
-            self.priceLable.autoPinEdge(.Left, toEdge: .Right, ofView: self.moneyImg, withOffset: 17.0.fitWidth())
-            self.priceLable.autoAlignAxisToSuperviewAxis(.Horizontal)
+            priceLable.autoPinEdge(.Left, toEdge: .Right, ofView: moneyImg, withOffset: 17.0.fitWidth())
+            priceLable.autoAlignAxisToSuperviewAxis(.Horizontal)
             
-            self.unitLable.autoPinEdge(.Left, toEdge: .Right, ofView: self.priceLable)
-            self.unitLable.autoAlignAxisToSuperviewAxis(.Horizontal)
+            unitLable.autoPinEdge(.Left, toEdge: .Right, ofView: priceLable)
+            unitLable.autoAlignAxisToSuperviewAxis(.Horizontal)
             
-            self.infoLable.autoPinEdge(.Left, toEdge: .Right, ofView: self.unitLable)
-            self.infoLable.autoAlignAxisToSuperviewAxis(.Horizontal)
+            infoLable.autoPinEdge(.Left, toEdge: .Right, ofView: unitLable)
+            infoLable.autoAlignAxisToSuperviewAxis(.Horizontal)
             
-            self.madeButton.autoAlignAxisToSuperviewAxis(.Horizontal)
-            self.madeButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
-            self.madeButton.autoSetDimensionsToSize(CGSize(width: 175.0.fitWidth(), height: 65.0.fitHeight()))
+            madeButton.autoAlignAxisToSuperviewAxis(.Horizontal)
+            madeButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
+            madeButton.autoSetDimensionsToSize(CGSize(width: 175.0.fitWidth(), height: 65.0.fitHeight()))
             didUpdateConstraints = true
         }
         super.updateConstraints()

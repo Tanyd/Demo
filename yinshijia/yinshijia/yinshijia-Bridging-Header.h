@@ -5,9 +5,8 @@
 #import <pop/POP.h>
 #import <YYModel/YYModel.h>
 #import <PureLayout/PureLayout.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/UIButton+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
 #import <MJRefresh/MJRefresh.h>
 #import <AFNetworking/AFNetworking.h>

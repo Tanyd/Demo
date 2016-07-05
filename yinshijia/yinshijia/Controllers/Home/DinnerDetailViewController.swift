@@ -16,7 +16,7 @@ class DinnerDetailViewController: BaseViewController {
     private var back: UIButton!
     private var collect: UIButton!
     private var share: UIButton!
-    
+    private var customeMadeView: CustomMadeView!
     var chefDinnerID: Int?{
         didSet{
             loadBaseDate()
@@ -36,7 +36,8 @@ class DinnerDetailViewController: BaseViewController {
             }
             self!.model = result as? ChefDinner
             self!.banner?.imgs = (self!.model?.data?.baseInfo?.theme_images?.componentsSeparatedByString(","))!
-            self!.title = (result as? ChefDinner)?.data?.baseInfo?.title
+            self!.title = self!.model?.data?.baseInfo?.title
+            self!.customeMadeView.model = self!.model?.data?.baseInfo
             self!.dinnerTable.reloadData()
         }
         ChefDinner.loadDetailDinner(callBack, id: chefDinnerID!)
@@ -79,10 +80,10 @@ class DinnerDetailViewController: BaseViewController {
         dinnerTable.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 90.0.fitHeight(), right: 0)
         view.addSubview(dinnerTable)
         
-        let madeButton = CustomMadeView(frame: CGRectMake(0, ScreenSize.SCREEN_HEIGHT - 90.0.fitHeight(), ScreenSize.SCREEN_WIDTH, 90.0.fitHeight())) { 
+        customeMadeView = CustomMadeView(frame: CGRectMake(0, ScreenSize.SCREEN_HEIGHT - 90.0.fitHeight(), ScreenSize.SCREEN_WIDTH, 90.0.fitHeight())) {
             
         }
-        view.addSubview(madeButton)
+        view.addSubview(customeMadeView)
     }
 
     func backItemClick() {

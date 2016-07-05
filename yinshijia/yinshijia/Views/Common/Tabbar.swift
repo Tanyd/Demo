@@ -15,17 +15,14 @@ class Tabbar: UITabBar {
     private let btnWidth: CGFloat = ScreenSize.SCREEN_WIDTH * 0.2
     private let btnHeight: CGFloat = 49
     weak var kdelegate: TabbarDelegate?
-    private var centerBtn: UIButton = {
-        let btn = UIButton(type: .Custom)
+    private var centerBtn: CustomButton = {
+        let btn = CustomButton(type: .Custom)
+        btn.type = .ImgTop
+        btn.margin = 7
         btn.setImage( UIImage(named: "custom_tabbar"), forState: .Normal)
         btn.setTitle("一键定制", forState: .Normal)
         btn.setTitleColor(Constant.Common.OrangeColor, forState: .Normal)
-        btn.titleLabel?.font = UIFont.systemFontOfSize(10)
-        btn.sizeToFit()
-        let imageSize = btn.imageView?.bounds.size
-        let titleSize = btn.titleLabel?.bounds.size
-        btn.imageEdgeInsets = UIEdgeInsetsMake(-imageSize!.height/2, titleSize!.width/2, imageSize!.height/2, -titleSize!.width/2)
-        btn.titleEdgeInsets = UIEdgeInsetsMake(titleSize!.height/2 + 4, -imageSize!.width/2, -titleSize!.height/2, imageSize!.width/2)
+        btn.titleLabel?.font = UIFont.systemFontOfSize(11)
         return btn
     }()
 
@@ -47,7 +44,8 @@ class Tabbar: UITabBar {
     override func layoutSubviews() {
         super.layoutSubviews()
         centerBtn.center.x = width * 0.5
-        centerBtn.center.y = 32
+        centerBtn.center.y = 49 * 0.5 - 10
+        centerBtn.frame.size = CGSize(width: (centerBtn.currentImage?.size.width)!, height: btnHeight + 20)
         var barItemIndex = 0
         for btn in subviews {
             if btn.isKindOfClass(UIControl) && btn != centerBtn {
@@ -59,8 +57,26 @@ class Tabbar: UITabBar {
         }
     }
     
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        if !hidden {
+            let newpoint = self.convertPoint(point, toView: centerBtn)
+            if centerBtn.pointInside(newpoint, withEvent: event) {
+                return centerBtn
+            }else {
+                return super.hitTest(point, withEvent: event)
+            }
+        }else{
+            return super.hitTest(point, withEvent: event)
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+}
+
+class textButton: UIButton {
+    
+    
 }

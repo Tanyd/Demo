@@ -3,7 +3,7 @@ pod "PureLayout"
 pod "SDWebImage"
 pod "SDCycleScrollView"
 pod "MJRefresh"
-pod "MBProgressHUD"
+pod 'SVProgressHUD'
 pod "YYModel"
 pod "AFNetworking"
 pod "pop"

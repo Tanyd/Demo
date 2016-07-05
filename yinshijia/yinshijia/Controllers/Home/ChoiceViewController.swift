@@ -37,7 +37,7 @@ class ChoiceViewController: TranslationTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        tableView.mj_header.beginRefreshing()
+//        tableView.mj_header.beginRefreshing()
     }
 
     private func setUI() {

@@ -193,7 +193,7 @@ extension UIButton {
 
 extension UILabel{
     
-    class func lableCutomer(title :String?,fontType: String? ,color :UIColor,fontSize : CGFloat)-> UILabel {
+    class func labelCustomer(title :String?,fontType: String? ,color :UIColor,fontSize : CGFloat)-> UILabel {
         let lable = UILabel()
         lable.text = title
         if fontType == nil {
@@ -547,8 +547,9 @@ extension UIColor {
     class func RGB(Red:CGFloat, Green:CGFloat,Blue:CGFloat,Alpha:CGFloat) ->UIColor{
         return UIColor(red: Red/255, green: Green/255, blue: Blue/255, alpha: Alpha)
     }
-    class func mainColor() -> UIColor{
-        return UIColor.RGB(156, Green: 193, Blue: 85, Alpha: 1)
+    
+    class func RandomColr() ->UIColor{
+        return UIColor.RGB(CGFloat(arc4random() % 255), Green: CGFloat(arc4random() % 255), Blue: CGFloat(arc4random() % 255), Alpha: 1.0)
     }
 }
 

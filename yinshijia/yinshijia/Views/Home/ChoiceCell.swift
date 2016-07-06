@@ -101,7 +101,7 @@ class ChoiceCell: UITableViewCell {
     }
     
     lazy var titleLable: UILabel = {
-        let lable = UILabel.lableCutomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.colorFromHex(0x222222), fontSize: 16)
+        let lable = UILabel.labelCustomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.colorFromHex(0x222222), fontSize: 16)
         return lable
     }()
     

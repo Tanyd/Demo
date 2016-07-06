@@ -12,6 +12,7 @@ class ChoiceListCell: ChoiceCell {
 
     var choiceListModel: Item?{
         didSet{
+            goodsImg.sd_setImageWithURL(NSURL(string: choiceListModel!.dinner_imageurl!.componentsSeparatedByString(",")[0]), placeholderImage: UIImage(named: "wutu"))
             titleLable.text = choiceListModel!.dinner_title!
             let timeRange = getDateFormate(choiceListModel!.dinner_datetime!) + " - " + getDateFormate(choiceListModel!.dinner_endOrderTime!)
             time.setTitle("  " + timeRange, forState: .Normal)
@@ -23,6 +24,7 @@ class ChoiceListCell: ChoiceCell {
   
     var categoryListModel: CategoryListData?{
         didSet{
+            goodsImg.sd_setImageWithURL(NSURL(string: categoryListModel!.dinnerImage!.componentsSeparatedByString(",")[0]), placeholderImage: UIImage(named: "wutu"))
             titleLable.text = categoryListModel!.dinnerTitle!
             let timeRange = getDateFormate(categoryListModel!.dinnerStartTime!) + " - " + getDateFormate(categoryListModel!.dinnerEndTime!)
             time.setTitle("  " + timeRange, forState: .Normal)
@@ -33,7 +35,7 @@ class ChoiceListCell: ChoiceCell {
     }
     
     private lazy var priceLable: UILabel = {
-        let lable = UILabel.lableCutomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 13)
+        let lable = UILabel.labelCustomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 13)
         return lable
     }()
 

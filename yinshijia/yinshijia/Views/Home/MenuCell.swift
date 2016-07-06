@@ -18,13 +18,13 @@ class MenuCell: UITableViewCell {
         }
     }
     private lazy var titleLable: UILabel = {
-        let title = UILabel.lableCutomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
+        let title = UILabel.labelCustomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
         title.textAlignment = .Center
         return title
     }()
     
     private lazy var contentLable: UILabel = {
-        let content = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let content = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         content.numberOfLines = 0
         content.textAlignment = .Center
         return content

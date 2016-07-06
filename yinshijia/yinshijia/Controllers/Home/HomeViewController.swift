@@ -53,7 +53,6 @@ class HomeViewController: BaseViewController {
             }, bellClick: { 
                 print("bellClick")
             }) {
-                SocialView.shareInstance().showSocialView()
                 print("cityChange")
         }
         view.addSubview(navigationBar)

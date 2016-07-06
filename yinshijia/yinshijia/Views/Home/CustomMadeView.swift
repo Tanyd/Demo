@@ -38,13 +38,13 @@ class CustomMadeView: UIView {
         moneyImg = UIImageView(image: UIImage(named: "rejuPrice"))
         addSubview(moneyImg)
         
-        priceLable = UILabel.lableCutomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
+        priceLable = UILabel.labelCustomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 14)
         addSubview(priceLable)
         
-        unitLable = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 14)
+        unitLable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 14)
         addSubview(unitLable)
         
-        infoLable = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.lightGrayColor(), fontSize: 12)
+        infoLable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.lightGrayColor(), fontSize: 12)
         addSubview(infoLable)
         
         madeButton = buttonNoHighlighted(type: .Custom)

@@ -53,7 +53,7 @@ class CustomeCommentCell: UITableViewCell {
     }()
     
     private lazy var contenText: UILabel = {
-        let text = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let text = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         text.numberOfLines = 0
         return text
     }()
@@ -71,17 +71,17 @@ class CustomeCommentCell: UITableViewCell {
     }
     
     private lazy var userName: UILabel = {
-        let name = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let name = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         return name
     }()
     
     private lazy var timerLable: UILabel = {
-        let time = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let time = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         return time
     }()
     
     private lazy var dinnerName: UILabel = {
-        let time = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let time = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         return time
     }()
     

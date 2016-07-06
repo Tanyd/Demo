@@ -24,13 +24,13 @@ class FeatureDinnerDetailCell: UITableViewCell {
     }()
     
     private lazy var titleLable: UILabel = {
-       let title = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 14)
+       let title = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 14)
         title.textAlignment = .Center
         return title
     }()
     
     private lazy var contentLable: UILabel = {
-        let content = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let content = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         content.textAlignment = .Center
         content.numberOfLines = 0
         return content

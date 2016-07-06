@@ -88,9 +88,9 @@ class SocialView: UIView {
     func shareClick(sender: CustomButton) {
         switch sender.tag {
         case 0:
-            showSocialView()
+            print("WeChat")
         default:
-            dismissSocialView()
+            print("WechatTimeline")
         }
     }
     

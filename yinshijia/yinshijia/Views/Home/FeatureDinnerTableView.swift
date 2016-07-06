@@ -27,7 +27,7 @@ class FeatureDinnerTableView: UITableView {
         dataSource = self
         estimatedRowHeight = 70
         rowHeight = UITableViewAutomaticDimension
-        let titleLable = UILabel.lableCutomer("特色菜品", fontType: nil, color: UIColor.blackColor(), fontSize: 15)
+        let titleLable = UILabel.labelCustomer("特色菜品", fontType: nil, color: UIColor.blackColor(), fontSize: 15)
         titleLable.textAlignment = .Center
         titleLable.frame = CGRectMake(0, 0, 0, 145.0.fitHeight())
         tableHeaderView = titleLable

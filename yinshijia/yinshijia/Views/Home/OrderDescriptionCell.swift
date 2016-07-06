@@ -13,13 +13,13 @@ class OrderDescriptionCell: UITableViewCell {
     private var didUpdateConstraints = false
 
     private lazy var titleLable: UILabel = {
-        let title = UILabel.lableCutomer("饭局地址", fontType: nil, color: UIColor.blackColor(), fontSize: 17)
+        let title = UILabel.labelCustomer("饭局地址", fontType: nil, color: UIColor.blackColor(), fontSize: 17)
         title.textAlignment = .Center
         return title
     }()
     
     private lazy var contenLable: UILabel = {
-        let title = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
+        let title = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 12)
         title.textAlignment = .Left
         title.numberOfLines = 0
         return title

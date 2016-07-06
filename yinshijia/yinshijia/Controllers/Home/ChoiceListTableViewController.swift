@@ -27,11 +27,13 @@ class ChoiceListTableViewController: UITableViewController {
         didSet{
             navigationItem.title = choiceListModel?.data?.campaign?.title
             if choiceListModel?.data?.campaign?.desp != "" {
-                let linesCount = choiceListModel?.data?.campaign?.desp?.componentsSeparatedByString("\n")
-                print(linesCount?.count)
-                let lableSize = NSString(string: (choiceListModel?.data?.campaign?.desp)!).boundingRectWithSize(CGSizeMake(ScreenSize.SCREEN_WIDTH * 0.7, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:headerLable.font], context: nil)
-                headerLable.text = choiceListModel?.data?.campaign?.desp
-                headerLable.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, lableSize.height + 5)
+                if choiceListModel?.data?.campaign?.desp != nil {
+                    let despH = ((choiceListModel?.data?.campaign?.desp!)! as NSString).getTextRectSize(UIFont.systemFontOfSize(13), size: CGSize(width: ScreenSize.SCREEN_WIDTH * 0.7, height: CGFloat.max)).height
+                    headerLable.text = choiceListModel?.data?.campaign?.desp
+                    headerLable.frame = CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, despH + 5)
+                }else{
+                    headerLable.frame = CGRectZero
+                }
                 tableView.tableHeaderView = headerLable
             }
             
@@ -47,7 +49,7 @@ class ChoiceListTableViewController: UITableViewController {
     
     
     private lazy var headerLable: UILabel = {
-       let lable = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 13)
+       let lable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.grayColor(), fontSize: 13)
         lable.numberOfLines = 0
         lable.textAlignment = .Center
         return lable
@@ -73,14 +75,15 @@ class ChoiceListTableViewController: UITableViewController {
             }
             
             if self!.bannerId != nil {
+                self!.choiceListModel = nil
                 let model = result as! ChoiceList
                 self!.choiceListModel = model
             }else if self!.categoryId != nil {
+                self!.categoryListModel = nil
                 let model = result as! CategoryList
                 self!.categoryListModel = model
             }
             
-           
             self!.tableView.mj_header.endRefreshing()
         }
         
@@ -116,28 +119,12 @@ class ChoiceListTableViewController: UITableViewController {
         }
         
         var model: NSObject?
-        var goodsImg: String?
         if bannerId != nil {
             model = choiceListModel?.data?.item?[indexPath.row]
             cell!.choiceListModel = model as? Item
-            goodsImg = ((model as! Item).dinner_imageurl!.componentsSeparatedByString(","))[0]
         }else if categoryId != nil {
             model = categoryListModel?.data?[indexPath.row]
             cell!.categoryListModel = model as? CategoryListData
-            goodsImg = ((model as! CategoryListData).dinnerImage!.componentsSeparatedByString(","))[0]
-        }
-        
-        if (tableView.dragging || tableView.decelerating) && !(arrayIndex.contains(indexPath)){
-            
-            cell!.goodsImg.sd_setImageWithURL(nil, placeholderImage: UIImage(named: "wutu"))
-            
-        }else {
-            
-            cell!.goodsImg.sd_setImageWithURL(NSURL(string: goodsImg!), placeholderImage: UIImage(named: "wutu"), completed: { (img, error, _, url) in
-                if !self.arrayIndex.contains(indexPath) {
-                    self.arrayIndex.append(indexPath)
-                }
-            })
         }
         
         cell!.dinnerChefClick = { (chefID) in
@@ -164,27 +151,6 @@ class ChoiceListTableViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChoiceListCell
         DebugPrint("点击了dinner \(cell.tag)")
-    }
-    
-    override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            downloadImg()
-        }
-    }
-    
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        downloadImg()
-    }
-    
-    private func  downloadImg() {
-        let visibleRows = tableView.indexPathsForVisibleRows
-        var newRows = [NSIndexPath]()
-        for path in visibleRows! {
-            if !self.arrayIndex.contains(path) {
-                newRows.append(path)
-            }
-        }
-        tableView.reloadRowsAtIndexPaths(newRows, withRowAnimation: .Fade)
     }
 
 }

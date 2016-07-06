@@ -53,9 +53,11 @@ class DinnerDetailViewController: BaseViewController {
         collect = UIButton(type: .Custom)
         collect.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         collect.setImage(UIImage(named: "rejuSave"), forState: .Normal)
+        collect.addTarget(self, action: "collectItemClick", forControlEvents: .TouchUpInside)
         share = UIButton(type: .Custom)
         share.frame = CGRect(x: 10 + 30, y: 0, width: 30, height: 30)
         share.setImage(UIImage(named: "rejuShare"), forState: .Normal)
+        share.addTarget(self, action: "shareItemClick", forControlEvents: .TouchUpInside)
         back = UIButton(type: .Custom)
         back.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         back.setImage(UIImage(named: "rejuBack"), forState: .Normal)
@@ -94,6 +96,14 @@ class DinnerDetailViewController: BaseViewController {
 
     func backItemClick() {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func collectItemClick() {
+        print("collect dinner");
+    }
+    
+    func shareItemClick() {
+        SocialView.shareInstance().showSocialView()
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

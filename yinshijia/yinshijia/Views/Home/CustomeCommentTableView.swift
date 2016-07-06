@@ -62,7 +62,7 @@ class CustomeCommentTableView: UITableView {
         dataSource = self
         estimatedRowHeight = 70
         rowHeight = UITableViewAutomaticDimension
-        titleView = UILabel.lableCutomer("食客评价(0)", fontType: nil, color: UIColor.blackColor(), fontSize: 15)
+        titleView = UILabel.labelCustomer("食客评价(0)", fontType: nil, color: UIColor.blackColor(), fontSize: 15)
         titleView.textAlignment = .Center
         titleView.frame = CGRectMake(0, 0, 0, 145.0.fitHeight())
         tableHeaderView = titleView

@@ -20,7 +20,7 @@ class AddressInfoCell: UITableViewCell {
     }
     
     private lazy var titleLable: UILabel = {
-        let title = UILabel.lableCutomer("饭局地址", fontType: nil, color: UIColor.blackColor(), fontSize: 17)
+        let title = UILabel.labelCustomer("饭局地址", fontType: nil, color: UIColor.blackColor(), fontSize: 17)
         title.textAlignment = .Center
         return title
     }()

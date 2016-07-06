@@ -20,13 +20,13 @@ class DinnerDetailIntroductionCell: UITableViewCell {
     }()
     
     private lazy var titleLable: UILabel = {
-       let title = UILabel.lableCutomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
+       let title = UILabel.labelCustomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
         title.numberOfLines = 0
         return title
     }()
     
     private lazy var contentLable: UILabel = {
-       let content = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
+       let content = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
         content.numberOfLines = 0
         return content
     }()
@@ -47,7 +47,7 @@ class DinnerDetailIntroductionCell: UITableViewCell {
             let tags = (model!.data!.baseInfo!.tag! as NSString).componentsSeparatedByString(",")
             for index in 0...tags.count - 1 {
                 let tag = tags[index]
-                let mark = UILabel.lableCutomer(tag, fontType: nil, color: UIColor.whiteColor(), fontSize: 11)
+                let mark = UILabel.labelCustomer(tag, fontType: nil, color: UIColor.whiteColor(), fontSize: 11)
                 mark.backgroundColor = UIColor.grayColor()
                 mark.layer.cornerRadius = 10
                 mark.numberOfLines = 1

@@ -16,7 +16,7 @@
 // 主厨 Base    http://api.yinshijia.com/mobile/apiv2/index/chef/1
 // 市集         http://api.yinshijia.com/mobile/apiv2/goods/list/1/8
 // 饭局详情     http://api.yinshijia.com/mobile/apiv2/user/themeChef/201
-
+// 主厨        http://api.yinshijia.com/mobile/apiv2/user/chefDetail/10234
 import UIKit
 
 let IS_DEBUG = true

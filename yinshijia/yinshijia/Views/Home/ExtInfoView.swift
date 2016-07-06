@@ -60,7 +60,7 @@ extension ExtInfoView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.SCREEN_WIDTH, height: 100.0.fitHeight()))
-        let lable = UILabel.lableCutomer(sectionTitles[section], fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 15)
+        let lable = UILabel.labelCustomer(sectionTitles[section], fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 15)
         lable.frame = CGRectMake(50.0.fitWidth(), 30.0.fitHeight(), ScreenSize.SCREEN_WIDTH, 50.0.fitHeight())
         view.addSubview(lable)
         return view

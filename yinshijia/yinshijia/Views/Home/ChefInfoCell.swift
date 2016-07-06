@@ -13,24 +13,24 @@ class ChefInfoCell: UITableViewCell {
     private var didUpdateConstraints = false
    
     private lazy var titleLable: UILabel = {
-        let title = UILabel.lableCutomer("主厨介绍", fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
+        let title = UILabel.labelCustomer("主厨介绍", fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 16)
         title.numberOfLines = 0
         return title
     }()
     
-    private lazy var contentLable: UILabel = {
-        let content = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
+    lazy var contentLable: UILabel = {
+        let content = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
         content.numberOfLines = 0
         content.textAlignment = .Center
         return content
     }()
     
-    private lazy var nameLale: UILabel = {
-        let name = UILabel.lableCutomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
+    lazy var nameLale: UILabel = {
+        let name = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
         return name
     }()
     
-    private lazy var chefIcon: UIImageView = {
+    lazy var chefIcon: UIImageView = {
         let icon = UIImageView.newAutoLayoutView()
         return icon
     }()

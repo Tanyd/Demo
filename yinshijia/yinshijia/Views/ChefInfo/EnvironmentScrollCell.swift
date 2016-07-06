@@ -108,6 +108,14 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
         currentIndex = page
     }
     
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        updatePageScrollView()
+    }
+    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        updatePageScrollView()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

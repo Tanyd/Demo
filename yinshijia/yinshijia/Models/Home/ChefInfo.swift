@@ -30,9 +30,9 @@ class ChefInfoData: NSObject {
 
     var isFavorite: Int = 0
 
-    var historyDinner: [String]?
+    var historyDinner: [Historydinner]?
 
-    var comment: [String]?
+    var comment: [ChefInfoComment]?
 
     var kitchenImage: [ChefInfoKitchenimage]?
 
@@ -42,7 +42,7 @@ class ChefInfoData: NSObject {
 
     var baseInfo: ChefInfoBaseinfo?
 
-    var menu: [String]?
+    var menu: [Menu]?
 
     var goods: [String]?
 
@@ -122,6 +122,25 @@ class Themedinner: NSObject {
     var startTime: String?
 
     var maxPrice: Int = 0
+
+}
+
+class ChefInfoComment: Comment {
+    
+    var imageurl: String?
+    
+    var dinnertime: String?
+}
+
+class ChefInfoGoods: NSObject {
+    
+    var goodsId: Int = 0
+    
+    var propertiesImage: String?
+    
+    var title: String?
+
+    var subtitle: String?
 
 }
 

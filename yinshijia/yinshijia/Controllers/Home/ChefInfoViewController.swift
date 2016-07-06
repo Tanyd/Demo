@@ -25,6 +25,6 @@ class ChefInfoViewController: UITableViewController {
         
         tableView.registerClass(ChefInfoIntroductionCell.self, forCellReuseIdentifier: String(ChefInfoIntroductionCell))
         tableView.registerClass(ChefInfoMarksCell.self, forCellReuseIdentifier: String(ChefInfoMarksCell))
-        
+        tableView.registerClass(PersonalDinnerCell.self, forCellReuseIdentifier: String(PersonalDinnerCell))
     }
 }

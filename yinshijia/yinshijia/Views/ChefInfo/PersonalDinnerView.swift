@@ -8,9 +8,24 @@
 
 import UIKit
 
-class PersonalDinnerView: UIView {
-
+class PersonalDinnerView: UITableViewCell {
+    
     private var didUpdateConstraints = false
+    enum PersonalDinnerViewType: Int {
+        case PersonalDinner
+        case ChefMade
+    }
+    var cellType: PersonalDinnerViewType?{
+        didSet{
+            if cellType == .PersonalDinner {
+                otherInfoLabel.hidden = false
+            }else{
+                otherInfoLabel.hidden = true
+            }
+        }
+    }
+    
+    private var scheduleAction: ((id: String)->())?
     
     private lazy var dinnerImage: UIImageView = {
         return UIImageView.newAutoLayoutView()
@@ -22,6 +37,7 @@ class PersonalDinnerView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel.labelCustomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 15)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -40,23 +56,25 @@ class PersonalDinnerView: UIView {
         btn.layer.borderColor = Constant.Common.OrangeColor.CGColor
         btn.layer.borderWidth = 2.0
         btn.layer.cornerRadius = 10
-        btn.addTarget(self, action: "schedule", forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: "schedule:", forControlEvents: .TouchUpInside)
         btn.setTitle("定制", forState: .Normal)
         return btn
     }()
     
-    func schedule() {
-        
+    func schedule(sender: UIButton) {
+        if scheduleAction != nil {
+            scheduleAction!(id: String(scheduleButton))
+        }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(dinnerImage)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         containerView.addSubview(titleLabel)
         containerView.addSubview(priceLabel)
         containerView.addSubview(otherInfoLabel)
         containerView.addSubview(scheduleButton)
-        addSubview(containerView)
+        contentView.addSubview(containerView)
+        contentView.addSubview(dinnerImage)
         setNeedsUpdateConstraints()
     }
 
@@ -73,12 +91,20 @@ class PersonalDinnerView: UIView {
             
             titleLabel.autoPinEdgeToSuperviewEdge(.Left)
             titleLabel.autoPinEdgeToSuperviewEdge(.Top)
+            titleLabel.autoPinEdgeToSuperviewEdge(.Right)
             
-            priceLabel.autoPinEdgeToSuperviewEdge(.Left)
-            priceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel, withOffset: 50.0.fitHeight())
+            if cellType == .PersonalDinner {
+                priceLabel.autoPinEdgeToSuperviewEdge(.Left)
+                priceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel, withOffset: 50.0.fitHeight())
+                
+                otherInfoLabel.autoPinEdgeToSuperviewEdge(.Bottom)
+                otherInfoLabel.autoPinEdgeToSuperviewEdge(.Left)
+                otherInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceLabel, withOffset: 8.0.fitHeight())
+            }else{
+                priceLabel.autoPinEdgeToSuperviewEdge(.Left)
+                priceLabel.autoPinEdgeToSuperviewEdge(.Bottom)
+            }
             
-            otherInfoLabel.autoPinEdgeToSuperviewEdge(.Bottom)
-            otherInfoLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: priceLabel, withOffset: 8.0.fitHeight())
             didUpdateConstraints = true
         }
         super.updateConstraints()

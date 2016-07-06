@@ -9,31 +9,44 @@
 import UIKit
 
 class PersonalDinnerCell: UITableViewCell {
-
+    
     private var didUpdateConstraints = false
     private var containerViewH: CGFloat = 0
     private var containerViewConstraint: NSLayoutConstraint!
-    private lazy var containerView: UIView = {
-        let view = UIView.newAutoLayoutView()
+    private var personalDinnerModels = [Themedinner](){
+        didSet{
+            
+        }
+    }
+    private var chefMadeModels = [ChefInfoGoods]() {
+        didSet{
+            
+        }
+    }
+    
+    private lazy var personalDinnerTable: UITableView = {
+        let view = UITableView(frame: CGRectZero, style: .Plain)
+        view.delegate = self
+        view.dataSource = self
         return view
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(contentView)
+        contentView.addSubview(personalDinnerTable)
         setNeedsUpdateConstraints()
     }
     
     func configureModel(model: ChefInfo?) {
-        if model != nil {
-            
+        if model?.data!.themeDinner?.count > 0 {
+         
         }
     }
     
     override func updateConstraints() {
         if !didUpdateConstraints {
-            containerView.autoPinEdgesToSuperviewEdges()
-            containerViewConstraint = containerView.autoSetDimension(.Height, toSize: containerViewH)
+            personalDinnerTable.autoPinEdgesToSuperviewEdges()
+            containerViewConstraint = personalDinnerTable.autoSetDimension(.Height, toSize: containerViewH)
             didUpdateConstraints = true
         }
         super.updateConstraints()
@@ -54,4 +67,19 @@ class PersonalDinnerCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+extension PersonalDinnerCell: UITableViewDelegate, UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return personalDinnerModels.count == 0 ? chefMadeModels.count : personalDinnerModels.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier(String(PersonalDinnerView)) as? PersonalDinnerView
+        if cell == nil {
+            cell = PersonalDinnerView(style: .Default, reuseIdentifier: String(PersonalDinnerView))
+        }
+        cell?.cellType = personalDinnerModels.count == 0 ? .PersonalDinner : .ChefMade
+        return cell!
+    }
 }

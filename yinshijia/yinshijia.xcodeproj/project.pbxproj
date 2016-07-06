@@ -30,6 +30,7 @@
 		2719DFCB1D28ED33006D4467 /* CustomeCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719DFCA1D28ED33006D4467 /* CustomeCommentCell.swift */; };
 		2719DFCD1D28ED88006D4467 /* CustomeCommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719DFCC1D28ED88006D4467 /* CustomeCommentTableView.swift */; };
 		2719DFD11D28FD93006D4467 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719DFD01D28FD93006D4467 /* CommentCell.swift */; };
+		2728CF9D1D2D3B0200420983 /* EnvironmentScrollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2728CF9C1D2D3B0200420983 /* EnvironmentScrollCell.swift */; };
 		273D9C951D0CF5AE00E511B1 /* ChefList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D9C941D0CF5AE00E511B1 /* ChefList.swift */; };
 		273D9C971D0D030F00E511B1 /* ChefBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D9C961D0D030F00E511B1 /* ChefBannerView.swift */; };
 		273D9C991D0D30F500E511B1 /* Chef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D9C981D0D30F500E511B1 /* Chef.swift */; };
@@ -132,6 +133,7 @@
 		2719DFCA1D28ED33006D4467 /* CustomeCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeCommentCell.swift; sourceTree = "<group>"; };
 		2719DFCC1D28ED88006D4467 /* CustomeCommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeCommentTableView.swift; sourceTree = "<group>"; };
 		2719DFD01D28FD93006D4467 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		2728CF9C1D2D3B0200420983 /* EnvironmentScrollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentScrollCell.swift; sourceTree = "<group>"; };
 		273D9C941D0CF5AE00E511B1 /* ChefList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefList.swift; sourceTree = "<group>"; };
 		273D9C961D0D030F00E511B1 /* ChefBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefBannerView.swift; sourceTree = "<group>"; };
 		273D9C981D0D30F500E511B1 /* Chef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chef.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				8BF687181D2CE3C8005A427F /* MarksCollectionCell.swift */,
 				8BF6871A1D2CEBCF005A427F /* PersonalDinnerCell.swift */,
 				8BF6871C1D2CED34005A427F /* PersonalDinnerView.swift */,
+				2728CF9C1D2D3B0200420983 /* EnvironmentScrollCell.swift */,
 			);
 			path = ChefInfo;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				8BF687151D2CD3FE005A427F /* ChefInfoIntroductionCell.swift in Sources */,
 				27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */,
 				27105F901D150F0500362F3E /* DinnerDetailIntroductionCell.swift in Sources */,
+				2728CF9D1D2D3B0200420983 /* EnvironmentScrollCell.swift in Sources */,
 				8B1C12201D0AAD4C00968DC9 /* ChoiceViewController.swift in Sources */,
 				2719DFD11D28FD93006D4467 /* CommentCell.swift in Sources */,
 				27105F961D15175300362F3E /* FeatureDinnerDetailCell.swift in Sources */,

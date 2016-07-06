@@ -86,7 +86,6 @@ class BannerView: UIView {
     }
     
     private func setUI() {
-        
         imageScrollView = UIScrollView.newAutoLayoutView()
         imageScrollView.bounces = false
         imageScrollView.showsHorizontalScrollIndicator = false
@@ -208,6 +207,7 @@ extension BannerView: UIScrollViewDelegate {
                 if distance < minDistance {
                     minDistance = distance
                     page = imageView.tag
+                    print(page)
                 }
                 
             }

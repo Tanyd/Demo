@@ -15,6 +15,7 @@ class PersonalDinnerView: UITableViewCell {
         case PersonalDinner
         case ChefMade
     }
+    
     var cellType: PersonalDinnerViewType?{
         didSet{
             if cellType == .PersonalDinner {
@@ -22,6 +23,18 @@ class PersonalDinnerView: UITableViewCell {
             }else{
                 otherInfoLabel.hidden = true
             }
+        }
+    }
+    
+    var personalDinnerModel: Themedinner?{
+        didSet{
+            
+        }
+    }
+    
+    var chefMadeModel: ChefInfoGoods?{
+        didSet{
+            
         }
     }
     
@@ -82,7 +95,7 @@ class PersonalDinnerView: UITableViewCell {
         if !didUpdateConstraints {
             dinnerImage.autoSetDimensionsToSize(CGSize(width: 180.0.fitWidth(), height: 180.0.fitWidth()))
             dinnerImage.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
-            dinnerImage.autoAlignAxisToSuperviewAxis(.Vertical)
+            dinnerImage.autoPinEdgeToSuperviewEdge(.Top)
             
             containerView.autoPinEdge(.Left, toEdge: .Right, ofView: dinnerImage, withOffset: 30.0.fitWidth())
             containerView.autoPinEdge(.Top, toEdge: .Top, ofView: dinnerImage)
@@ -92,6 +105,9 @@ class PersonalDinnerView: UITableViewCell {
             titleLabel.autoPinEdgeToSuperviewEdge(.Left)
             titleLabel.autoPinEdgeToSuperviewEdge(.Top)
             titleLabel.autoPinEdgeToSuperviewEdge(.Right)
+            
+            scheduleButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
+            scheduleButton.autoPinEdgeToSuperviewEdge(.Bottom)
             
             if cellType == .PersonalDinner {
                 priceLabel.autoPinEdgeToSuperviewEdge(.Left)

@@ -15,12 +15,15 @@ class PersonalDinnerCell: UITableViewCell {
     private var containerViewConstraint: NSLayoutConstraint!
     private var personalDinnerModels = [Themedinner](){
         didSet{
-            
+            containerViewH = 175.0.fitHeight() * CGFloat(personalDinnerModels.count)
+            personalDinnerTable.reloadData()
         }
     }
+    
     private var chefMadeModels = [ChefInfoGoods]() {
         didSet{
-            
+            containerViewH = 175.0.fitHeight() * CGFloat(chefMadeModels.count)
+            personalDinnerTable.reloadData()
         }
     }
     
@@ -35,12 +38,6 @@ class PersonalDinnerCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(personalDinnerTable)
         setNeedsUpdateConstraints()
-    }
-    
-    func configureModel(model: ChefInfo?) {
-        if model?.data!.themeDinner?.count > 0 {
-         
-        }
     }
     
     override func updateConstraints() {
@@ -80,6 +77,11 @@ extension PersonalDinnerCell: UITableViewDelegate, UITableViewDataSource {
             cell = PersonalDinnerView(style: .Default, reuseIdentifier: String(PersonalDinnerView))
         }
         cell?.cellType = personalDinnerModels.count == 0 ? .PersonalDinner : .ChefMade
+        personalDinnerModels.count == 0 ? (cell!.chefMadeModel = chefMadeModels[indexPath.row]) : (cell!.personalDinnerModel = personalDinnerModels[indexPath.row])
         return cell!
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 175.0.fitHeight()
     }
 }

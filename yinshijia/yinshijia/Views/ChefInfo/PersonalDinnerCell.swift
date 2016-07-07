@@ -7,22 +7,24 @@
 //
 
 import UIKit
-
+enum PersonalDinnerCellType: Int {
+    case GoodsType
+    case CustomeMadeType
+}
 class PersonalDinnerCell: UITableViewCell {
     
     private var didUpdateConstraints = false
     private var containerViewH: CGFloat = 0
-    private var containerViewConstraint: NSLayoutConstraint!
-    private var personalDinnerModels = [Themedinner](){
+    private var customeMadeModels = [Themedinner](){
         didSet{
-            containerViewH = 175.0.fitHeight() * CGFloat(personalDinnerModels.count)
+            containerViewH = 175.0.fitHeight() * CGFloat(customeMadeModels.count)
             personalDinnerTable.reloadData()
         }
     }
     
-    private var chefMadeModels = [ChefInfoGoods]() {
+    private var goodsModels = [ChefInfoGoods]() {
         didSet{
-            containerViewH = 175.0.fitHeight() * CGFloat(chefMadeModels.count)
+            containerViewH = 175.0.fitHeight() * CGFloat(goodsModels.count)
             personalDinnerTable.reloadData()
         }
     }
@@ -31,6 +33,7 @@ class PersonalDinnerCell: UITableViewCell {
         let view = UITableView(frame: CGRectZero, style: .Plain)
         view.delegate = self
         view.dataSource = self
+        view.scrollEnabled = false
         return view
     }()
     
@@ -40,14 +43,18 @@ class PersonalDinnerCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
     
-    func configureModel(model: ChefInfo?) {
-        
+    func configureModel(model: ChefInfo?,type: PersonalDinnerCellType) {
+        if type == .GoodsType {
+            goodsModels = (model?.data?.goods)!
+        }else{
+            customeMadeModels = (model?.data?.themeDinner)!
+        }
     }
     
     override func updateConstraints() {
         if !didUpdateConstraints {
             personalDinnerTable.autoPinEdgesToSuperviewEdges()
-            containerViewConstraint = personalDinnerTable.autoSetDimension(.Height, toSize: containerViewH)
+            personalDinnerTable.autoSetDimension(.Height, toSize: containerViewH)
             didUpdateConstraints = true
         }
         super.updateConstraints()
@@ -72,7 +79,7 @@ class PersonalDinnerCell: UITableViewCell {
 
 extension PersonalDinnerCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return personalDinnerModels.count == 0 ? chefMadeModels.count : personalDinnerModels.count
+        return goodsModels.count == 0 ? customeMadeModels.count : goodsModels.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -80,8 +87,10 @@ extension PersonalDinnerCell: UITableViewDelegate, UITableViewDataSource {
         if cell == nil {
             cell = PersonalDinnerView(style: .Default, reuseIdentifier: String(PersonalDinnerView))
         }
-        cell?.cellType = personalDinnerModels.count == 0 ? .PersonalDinner : .ChefMade
-        personalDinnerModels.count == 0 ? (cell!.chefMadeModel = chefMadeModels[indexPath.row]) : (cell!.personalDinnerModel = personalDinnerModels[indexPath.row])
+        cell?.cellType = goodsModels.count == 0 ? .CustomeMadeType : .GoodsType
+        goodsModels.count == 0 ?
+            (cell!.customeMadeModel = customeMadeModels[indexPath.row]) :
+            (cell!.goodsModel = goodsModels[indexPath.row])
         return cell!
     }
     

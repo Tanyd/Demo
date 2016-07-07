@@ -19,6 +19,7 @@ class HistoryDinnerCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Horizontal
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        view.backgroundColor = UIColor.whiteColor()
         view.registerClass(HistoryDinnerCollectionViewCell.self, forCellWithReuseIdentifier: String(HistoryDinnerCollectionViewCell))
         view.delegate = self
         view.dataSource = self
@@ -95,7 +96,7 @@ extension HistoryDinnerCell: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 192.0.fitWidth(), height: 313.0.fitHeight())
+        return CGSize(width: 192.0.fitWidth(), height: 330.0.fitHeight())
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {

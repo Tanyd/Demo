@@ -10,18 +10,15 @@ import UIKit
 
 class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
 
+    private var didUpdateConstraints = false
     private var imageScrollView: UIScrollView!
-
     private var allImgs = [UIImageView]()
-
+    private var numberCount: UILabel!
     private var currentIndex: Int = 0{
         didSet{
             numberCount?.text = "\(currentIndex + 1)/\(imgs.count)"
         }
     }
-    
-    private var numberCount: UILabel!
-    
     var imgs = [String]() {
         didSet{
             if imgs.count > 0 {
@@ -61,9 +58,11 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
         numberCount = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.whiteColor(), fontSize: 12)
         numberCount.textAlignment = .Right
         addSubview(numberCount)
+        setNeedsUpdateConstraints()
     }
     
     private func updatePageScrollView() {
+      
         for var i = 0; i < allImgs.count; i++ {
             let imageView = allImgs[i]
             var index = currentIndex
@@ -74,9 +73,9 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
             }
             
             if index < 0 {
-                index = 0
-            } else if index >= imgs.count {
                 index = imgs.count - 1
+            } else if index >= imgs.count {
+                index = 0
             }
             
             imageView.tag = index
@@ -86,8 +85,12 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
         imageScrollView.contentOffset = CGPointMake(imageScrollView.width, 0)
     }
     
-    func configureModel(model: ChefInfo?) {
-        
+    func configureModel(model: [ChefInfoKitchenimage]?) {
+        var temp = [String]()
+        for obj in model! {
+            temp.append(obj.environmenturl!)
+        }
+        imgs = temp
     }
     
     override func layoutSubviews() {
@@ -104,8 +107,7 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
         }
         imageScrollView.setContentOffset(CGPointMake(width, 0), animated: false)
     }
-    
-    
+
     func scrollViewDidScroll(scrollView: UIScrollView) {
         var page: Int = 0
         var minDistance: CGFloat = CGFloat(MAXFLOAT)

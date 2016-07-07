@@ -23,16 +23,21 @@ class ChefInfoIntroductionCell: ChefInfoCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(chefIcon)
-        addSubview(nameLale)
-        addSubview(contentLable)
-        addSubview(attentionButton)
+        contentView.addSubview(chefIcon)
+        contentView.addSubview(nameLale)
+        contentView.addSubview(contentLable)
+        contentView.addSubview(attentionButton)
         setNeedsUpdateConstraints()
     }
     
-     func configureChefModel(model: ChefInfo?) {
+     func configureChefModel(model: ChefInfoBaseinfo?) {
         if model != nil {
-           
+            chefIcon.sd_setImageWithURL(NSURL(string: (model?.headImageurl!.componentsSeparatedByString(",")[0])!), placeholderImage: UIImage(named: "headerview"), completed: { (image, error, cacheType, url) in
+                self.chefIcon.image = UIImage.circleImageWithImage(image)
+            })
+            nameLale.text = model?.name
+            contentLable.text = model?.introduce
+            (model?.custom_order_flag == "1")  ? (attentionButton.selected = true) : (attentionButton.selected = false)
         }
     }
     
@@ -44,7 +49,7 @@ class ChefInfoIntroductionCell: ChefInfoCell {
             
             nameLale.autoPinEdge(.Top, toEdge: .Bottom, ofView: chefIcon, withOffset: 43.0.fitHeight())
             nameLale.autoAlignAxisToSuperviewAxis(.Vertical)
-            
+
             attentionButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLale, withOffset: 37.0.fitHeight())
             attentionButton.autoAlignAxisToSuperviewAxis(.Vertical)
             

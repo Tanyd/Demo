@@ -63,9 +63,18 @@ class BaseApi: AFHTTPSessionManager {
         loadBaseDataWithID(callBack, urlPath: Constant.Api.Home.DetailDinner, id: id, classType: ChefDinner.classForCoder())
     }
     
+    func loadChefInfo(callBack: BaseApiCallBack, id: Int) {
+        loadBaseDataWithParameters(callBack, urlPath: Constant.Api.Home.ChefInfo, parameters: Constant.Api.TokenParameters, id: id, classType: ChefInfo.classForCoder())
+    }
+    
     //MARK: base 请求
     func loadBaseData(callBack: BaseApiCallBack, urlPath: String, classType: AnyClass) {
         loadBaseDataWithID(callBack, urlPath: urlPath, id: nil, classType: classType)
+    }
+    
+    //MARK: 拼接参数ID 请求
+    func loadBaseDataWithID(callBack: BaseApiCallBack, urlPath: String, id: Int?, classType: AnyClass) {
+        loadBaseDataWithParameters(callBack, urlPath: urlPath, parameters: nil, id: id, classType: classType)
     }
     
     //MARK: 分页更多 请求
@@ -88,15 +97,21 @@ class BaseApi: AFHTTPSessionManager {
         }
     }
     
-    //MARK: 拼接参数ID 请求
-    func loadBaseDataWithID (callBack: BaseApiCallBack, urlPath: String, id: Int?, classType: AnyClass) {
+    func loadBaseDataWithParameters(callBack: BaseApiCallBack, urlPath: String, parameters: [String:AnyObject]?, id: Int?, classType: AnyClass){
+        var dic: [String:AnyObject]?
+        if parameters == nil {
+            dic = Constant.Api.BaseParameters
+        }else{
+            dic = parameters
+            dic![Constant.Api.BaseParameters.keys.first!] = Constant.Api.BaseParameters.values.first!
+        }
         let path: String?
         if id != nil {
             path = urlPath + String(id!)
         }else{
             path = urlPath
         }
-        request(.GET, Urlstring: path!, parameters: Constant.Api.BaseParameters) { (result, error) in
+        request(.GET, Urlstring: path!, parameters: dic) { (result, error) in
             if error != nil {
                 callBack(result: nil, error: error)
             }else{

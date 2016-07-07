@@ -63,11 +63,13 @@ struct Constant {
     
     struct Api {
         
-        static let BaseUrl        = "http://api.yinshijia.com/mobile/apiv2/"
+        static let BaseUrl         = "http://api.yinshijia.com/mobile/apiv2/"
 
-        static let BaseVersion    = "3.4.3"
+        static let BaseVersion     = "3.4.3"
 
-        static let BaseParameters = ["version" : Constant.Api.BaseVersion]
+        static let BaseParameters  = ["version" : Constant.Api.BaseVersion]
+
+        static let TokenParameters = ["data" : ["token":"10595:07e962644353483cae728f731a532556"]]
         
         struct Home {
             
@@ -88,6 +90,8 @@ struct Constant {
             static let CategoryList = "index/catalog/"
 
             static let DetailDinner = "user/themeChef/"
+
+            static let ChefInfo     = "user/chefDetail/"
         }
     }
 }

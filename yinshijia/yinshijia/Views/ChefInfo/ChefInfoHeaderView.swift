@@ -19,7 +19,14 @@ class ChefInfoHeaderView: UIView {
     private var lineLeft: UIView!
     private var lineRight: UIView!
     private var commentAction: (()->())?
-    
+    var model: (headerImg: String,orderedCount: Int,likeCount: Int, commentNum: Int)?{
+        didSet{
+            backGroudImg.sd_setImageWithURL(NSURL(string: (model?.headerImg)!), placeholderImage: nil)
+            scheduleLable.text = "\(model!.orderedCount)位\n预定"
+            attentionLable.text = "\(model!.likeCount)位\n关注"
+            commentLable.text = "\(model!.commentNum)条\n评论"
+        }
+    }
     convenience init(frame: CGRect, commentAction: ()->()) {
         self.init(frame: frame)
         self.commentAction = commentAction
@@ -79,7 +86,7 @@ class ChefInfoHeaderView: UIView {
             backGroudImg.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
             backGroudImg.autoSetDimension(.Height, toSize: 425.0.fitHeight())
             
-            titlesContainer.autoPinEdge(.Top, toEdge: .Bottom, ofView: backGroudImg)
+            titlesContainer.autoSetDimension(.Height, toSize: 80.0.fitHeight())
             titlesContainer.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
             
             let lableWidth = ScreenSize.SCREEN_WIDTH / 3

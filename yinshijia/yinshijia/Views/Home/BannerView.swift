@@ -207,7 +207,7 @@ extension BannerView: UIScrollViewDelegate {
                 if distance < minDistance {
                     minDistance = distance
                     page = imageView.tag
-                    print(page)
+//                    print(page)
                 }
                 
             }

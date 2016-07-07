@@ -31,19 +31,22 @@ class ChefInfoMarksCell: UITableViewCell {
     
     private lazy var marksView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .Vertical
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         view.registerClass(MarksCollectionCell.self, forCellWithReuseIdentifier: String(MarksCollectionCell))
         view.delegate = self
         view.dataSource = self
+        view.scrollEnabled = false
         return view
     }()
     
-    func configureModel(model: ChefInfo?) {
+    func configureModel(model: String?) {
         if marksView.subviews.count > 0 {return}
-        if model?.data?.baseInfo?.tags?.length() > 0 {
-            tags = ((model?.data?.baseInfo?.tags)! as NSString).componentsSeparatedByString(",")
+        if model?.length() > 0 {
+            marksH = 40.0.fitHeight()
+            tags = (model! as NSString).componentsSeparatedByString(",")
         }else{
-            marksConstraint.constant = 0
+            marksH = 0
         }
     }
 

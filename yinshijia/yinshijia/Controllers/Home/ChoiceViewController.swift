@@ -107,6 +107,9 @@ class ChoiceViewController: TranslationTableViewController {
         cell!.choiceModel = model
         cell!.dinnerChefClick = { (chefID) in
             DebugPrint("点击了chef id\(chefID)")
+            let chefInfoVC = ChefInfoViewController()
+            chefInfoVC.chefID = chefID
+            self.navigationController?.pushViewController(chefInfoVC, animated: true)
         }
         
         return cell!

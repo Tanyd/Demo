@@ -16,9 +16,12 @@ class ChefInfo: NSObject {
 
     var code: Int = 0
     
+    class func loadChefInfo(callBack: BaseApiCallBack, id: Int) {
+        BaseApi.shareBaseApi().loadChefInfo(callBack, id: id)
+    }
 }
 
-class ChefInfoData: NSObject {
+class ChefInfoData: NSObject, YYModel {
 
     var themeDinner: [Themedinner]?
 
@@ -48,6 +51,15 @@ class ChefInfoData: NSObject {
 
     var historyCustomMadeDinner: [Historycustommadedinner]?
 
+    static func modelContainerPropertyGenericClass() -> [String : AnyObject]? {
+        return ["themeDinner": Themedinner.classForCoder(),
+                "historyDinner": Historydinner.classForCoder(),
+                "comment": ChefInfoComment.classForCoder(),
+                "kitchenImage": ChefInfoKitchenimage.classForCoder(),
+                "menu": Menu.classForCoder(),
+                "goods": ChefInfoGoods.classForCoder(),
+                "historyCustomMadeDinner": Historycustommadedinner.classForCoder()]
+    }
 }
 
 class Address: NSObject {

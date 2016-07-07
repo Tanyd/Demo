@@ -13,21 +13,22 @@ class HistoryDinnerCollectionViewCell: UICollectionViewCell {
     private var didUpdateConstraints = false
     var historyDinner: Historydinner?{
         didSet{
-            dinnerImage.sd_setImageWithURL(NSURL(string: (historyDinner?.imageurl)!), placeholderImage: nil)
+            dinnerImage.sd_setImageWithURL(NSURL(string: (historyDinner?.imageurl)!), placeholderImage: UIImage(named: "wutu"))
             titleLabel.text = historyDinner?.title
-            timeLabel.text = historyDinner?.datetime
-            priceLabel.text = String(historyDinner?.price)
+            timeLabel.text = historyDinner?.datetime!.substringToIndex((historyDinner?.datetime?.startIndex.advancedBy(10))!)
+            priceLabel.text = "¥\(String(historyDinner!.price))"
         }
     }
     var historyCusDinner: Historycustommadedinner?{
         didSet{
-            dinnerImage.sd_setImageWithURL(NSURL(string: (historyCusDinner?.imageurl)!), placeholderImage: nil)
-            let str = "[定制]" + (historyCusDinner?.name)!
+            dinnerImage.sd_setImageWithURL(NSURL(string: (historyCusDinner?.imageurl)!), placeholderImage: UIImage(named: "wutu"))
+            let str = "[定制] " + (historyCusDinner?.name)!
+            
             let mutableStr = NSMutableAttributedString(string: str)
             mutableStr.addAttributes([NSForegroundColorAttributeName: Constant.Common.OrangeColor], range: NSRange(location: 0,length: 4))
-            titleLabel.text = String(mutableStr)
-            timeLabel.text = historyCusDinner?.dinnertime
-            priceLabel.text = String(historyCusDinner?.price)
+            titleLabel.attributedText = mutableStr
+            timeLabel.text = historyCusDinner?.dinnertime!.substringToIndex((historyCusDinner?.dinnertime?.startIndex.advancedBy(9))!)
+            priceLabel.text = "¥\(String(historyCusDinner!.price))"
         }
     }
 
@@ -36,23 +37,23 @@ class HistoryDinnerCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var titleLabel: UILabel = {
-        let label = UILabel.labelCustomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 13)
-        label.numberOfLines = 0
+        let label = UILabel.labelCustomer(nil, fontType: Constant.Common.BoldFont, color: UIColor.blackColor(), fontSize: 11)
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
-        let label = UILabel.labelCustomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 13)
+        let label = UILabel.labelCustomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 12)
         return label
     }()
     
     private lazy var timeLabel: UILabel = {
-        let label = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 12)
+        let label = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 10)
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = UIColor.whiteColor()
         contentView.addSubview(dinnerImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(timeLabel)

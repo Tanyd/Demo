@@ -16,9 +16,9 @@ class PersonalDinnerView: UITableViewCell {
         case ChefMade
     }
     
-    var cellType: PersonalDinnerViewType?{
+    var cellType: PersonalDinnerCellType?{
         didSet{
-            if cellType == .PersonalDinner {
+            if cellType == .CustomeMadeType {
                 otherInfoLabel.hidden = false
             }else{
                 otherInfoLabel.hidden = true
@@ -26,15 +26,24 @@ class PersonalDinnerView: UITableViewCell {
         }
     }
     
-    var personalDinnerModel: Themedinner?{
+    var customeMadeModel: Themedinner?{
         didSet{
-            
+            dinnerImage.sd_setImageWithURL(NSURL(string: (customeMadeModel?.themeImage!.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
+            titleLabel.text = customeMadeModel!.title!
+            let start = customeMadeModel?.startTime?.substringToIndex((customeMadeModel?.startTime?.startIndex.advancedBy(10))!)
+            let end = customeMadeModel?.endTime?.substringToIndex((customeMadeModel?.startTime?.startIndex.advancedBy(10))!)
+            otherInfoLabel.text = "\(customeMadeModel!.district!)\(start!)-\(end!)"
+            priceLabel.text = "¥\(customeMadeModel!.minPrice) / \(customeMadeModel!.unit!)"
+            scheduleButton.tag = (customeMadeModel?.themeId)!
         }
     }
     
-    var chefMadeModel: ChefInfoGoods?{
+    var goodsModel: ChefInfoGoods?{
         didSet{
-            
+            dinnerImage.sd_setImageWithURL(NSURL(string: (goodsModel?.propertiesImage!.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
+            titleLabel.text = goodsModel!.title!
+            priceLabel.text = "\(goodsModel!.subtitle!)"
+            scheduleButton.tag = (goodsModel?.goodsId)!
         }
     }
     
@@ -66,9 +75,11 @@ class PersonalDinnerView: UITableViewCell {
     
     private lazy var scheduleButton: UIButton = {
         let btn = UIButton(type: .Custom)
+        btn.titleLabel?.font = UIFont.systemFontOfSize(13)
+        btn.setTitleColor(Constant.Common.OrangeColor, forState: .Normal)
         btn.layer.borderColor = Constant.Common.OrangeColor.CGColor
-        btn.layer.borderWidth = 2.0
-        btn.layer.cornerRadius = 10
+        btn.layer.borderWidth = 1.0
+        btn.layer.cornerRadius = 3
         btn.addTarget(self, action: "schedule:", forControlEvents: .TouchUpInside)
         btn.setTitle("定制", forState: .Normal)
         return btn
@@ -82,18 +93,18 @@ class PersonalDinnerView: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(dinnerImage)
         containerView.addSubview(titleLabel)
         containerView.addSubview(priceLabel)
         containerView.addSubview(otherInfoLabel)
         containerView.addSubview(scheduleButton)
         contentView.addSubview(containerView)
-        contentView.addSubview(dinnerImage)
         setNeedsUpdateConstraints()
     }
 
     override func updateConstraints() {
         if !didUpdateConstraints {
-            dinnerImage.autoSetDimensionsToSize(CGSize(width: 180.0.fitWidth(), height: 180.0.fitWidth()))
+            dinnerImage.autoSetDimensionsToSize(CGSize(width: 150.0.fitHeight(), height: 150.0.fitHeight()))
             dinnerImage.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())
             dinnerImage.autoPinEdgeToSuperviewEdge(.Top)
             
@@ -109,7 +120,7 @@ class PersonalDinnerView: UITableViewCell {
             scheduleButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             scheduleButton.autoPinEdgeToSuperviewEdge(.Bottom)
             
-            if cellType == .PersonalDinner {
+            if cellType == .CustomeMadeType {
                 priceLabel.autoPinEdgeToSuperviewEdge(.Left)
                 priceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel, withOffset: 50.0.fitHeight())
                 

@@ -11,10 +11,35 @@ import UIKit
 class ChefInfoViewController: UITableViewController {
 
     private var headerView: ChefInfoHeaderView!
+    var chefID: Int = 0{
+        didSet{
+            loadBaseDate()
+        }
+    }
     private var chefModel: ChefInfo?
     override func viewDidLoad() {
         super.viewDidLoad()
+        fd_interactivePopDisabled = true
+        SVProgressHUD.showWithStatus("加载中", maskType: .Clear, style: .Light)
         setUI()
+    }
+    
+    private func loadBaseDate() {
+        let callBack: BaseApiCallBack = {[weak self](result, error) in
+            guard error == nil else {
+                return
+            }
+            let model = result as? ChefInfo
+            self!.chefModel = model
+            self!.headerView.model = ((model?.data?.baseInfo?.converurl)!,
+                                      (model?.data?.baseInfo?.orderedCount)!,
+                                      (model?.data?.baseInfo?.likeCount)!,
+                                      (model?.data?.commentNum)!)
+            self!.tableView.reloadData()
+            self!.tableView.hidden = false
+            SVProgressHUD.dismiss()
+        }
+        ChefInfo.loadChefInfo(callBack, id: chefID)
     }
     
     private func setUI() {
@@ -25,6 +50,7 @@ class ChefInfoViewController: UITableViewController {
         tableView.registerClass(ChefInfoIntroductionCell.self, forCellReuseIdentifier: String(ChefInfoIntroductionCell))
         tableView.registerClass(ChefInfoMarksCell.self, forCellReuseIdentifier: String(ChefInfoMarksCell))
         tableView.registerClass(PersonalDinnerCell.self, forCellReuseIdentifier: String(PersonalDinnerCell))
+        tableView.registerClass(PersonalDinnerCell.self, forCellReuseIdentifier: "goods" + String(PersonalDinnerCell))
         tableView.registerClass(EnvironmentScrollCell.self, forCellReuseIdentifier: String(EnvironmentScrollCell))
         tableView.registerClass(FeatureDinnerCell.self, forCellReuseIdentifier: String(FeatureDinnerCell))
         tableView.registerClass(AddressInfoCell.self, forCellReuseIdentifier: String(AddressInfoCell))
@@ -45,42 +71,50 @@ class ChefInfoViewController: UITableViewController {
                 cell = ChefInfoIntroductionCell(style: .Default, reuseIdentifier: String(ChefInfoIntroductionCell))
             }
             let cell = cell as! ChefInfoIntroductionCell
-            cell.configureChefModel(chefModel)
+            cell.configureChefModel(chefModel?.data?.baseInfo)
         case 1:
             cell = tableView.dequeueReusableCellWithIdentifier(String(ChefInfoMarksCell)) as? ChefInfoMarksCell
             if cell == nil {
                 cell = ChefInfoMarksCell(style: .Default, reuseIdentifier: String(ChefInfoMarksCell))
             }
             let cell = cell as! ChefInfoMarksCell
-            cell.configureModel(chefModel)
+            cell.configureModel(chefModel?.data?.baseInfo?.tags)
         case 2:
-            cell = tableView.dequeueReusableCellWithIdentifier(String(PersonalDinnerCell)) as? PersonalDinnerCell
+            cell = tableView.dequeueReusableCellWithIdentifier("goods" + String(PersonalDinnerCell)) as? PersonalDinnerCell
             if cell == nil {
-                cell = PersonalDinnerCell(style: .Default, reuseIdentifier: String(PersonalDinnerCell))
+                cell = PersonalDinnerCell(style: .Default, reuseIdentifier: "goods" + String(PersonalDinnerCell))
             }
             let cell = cell as! PersonalDinnerCell
-            cell.configureModel(chefModel)
+            if chefModel?.data?.goods?.count > 0 {
+                cell.configureModel(chefModel, type: .GoodsType)
+            }
         case 3:
             cell = tableView.dequeueReusableCellWithIdentifier(String(PersonalDinnerCell)) as? PersonalDinnerCell
             if cell == nil {
                 cell = PersonalDinnerCell(style: .Default, reuseIdentifier: String(PersonalDinnerCell))
             }
             let cell = cell as! PersonalDinnerCell
-            cell.configureModel(chefModel)
+            if chefModel?.data?.themeDinner?.count > 0 {
+                cell.configureModel(chefModel, type: .CustomeMadeType)
+            }
         case 4:
             cell = tableView.dequeueReusableCellWithIdentifier(String(EnvironmentScrollCell)) as? EnvironmentScrollCell
             if cell == nil {
                 cell = EnvironmentScrollCell(style: .Default, reuseIdentifier: String(EnvironmentScrollCell))
             }
             let cell = cell as! EnvironmentScrollCell
-            cell.configureModel(chefModel)
+            if chefModel?.data?.kitchenImage?.count > 0 {
+                cell.configureModel(chefModel?.data?.kitchenImage)
+            }
         case 5:
             cell = tableView.dequeueReusableCellWithIdentifier(String(FeatureDinnerCell)) as? FeatureDinnerCell
             if cell == nil {
                 cell = FeatureDinnerCell(style: .Default, reuseIdentifier: String(FeatureDinnerCell))
             }
             let cell = cell as! FeatureDinnerCell
-            cell.configureModel(chefModel?.data?.menu)
+            if chefModel?.data?.menu?.count > 0 {
+                cell.configureModel(chefModel?.data?.menu)
+            }
         case 6:
             cell = tableView.dequeueReusableCellWithIdentifier(String(AddressInfoCell)) as? AddressInfoCell
             if cell == nil {
@@ -101,7 +135,9 @@ class ChefInfoViewController: UITableViewController {
                 cell = CommentCell(style: .Default, reuseIdentifier: String(CommentCell))
             }
             let cell = cell as! CommentCell
-            cell.configureModel(chefModel?.data?.comment)
+            if chefModel?.data?.comment?.count > 0 {
+                cell.configureModel(chefModel?.data?.comment)
+            }
         default:
             break
         }
@@ -114,20 +150,20 @@ class ChefInfoViewController: UITableViewController {
         case 0:
             return tableView.fd_heightForCellWithIdentifier(String(ChefInfoIntroductionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! ChefInfoIntroductionCell
-                cell.configureChefModel(self.chefModel)
+                cell.configureChefModel(self.chefModel?.data?.baseInfo)
             })
             
         case 1:
             return tableView.fd_heightForCellWithIdentifier(String(ChefInfoMarksCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! ChefInfoMarksCell
-                cell.configureModel(self.chefModel)
+                cell.configureModel(self.chefModel?.data?.baseInfo?.tags)
             })
             
         case 2:
             if chefModel?.data?.goods?.count > 0 {
-                return tableView.fd_heightForCellWithIdentifier(String(PersonalDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                return tableView.fd_heightForCellWithIdentifier("goods" + String(PersonalDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                     let cell = cell as! PersonalDinnerCell
-                    cell.configureModel(self.chefModel)
+                    cell.configureModel(self.chefModel, type: .GoodsType)
                 })
             }else {
                 return 0
@@ -136,36 +172,49 @@ class ChefInfoViewController: UITableViewController {
             if chefModel?.data?.themeDinner?.count > 0 {
                 return tableView.fd_heightForCellWithIdentifier(String(PersonalDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                     let cell = cell as! PersonalDinnerCell
-                    cell.configureModel(self.chefModel)
+                    cell.configureModel(self.chefModel, type: .CustomeMadeType)
                 })
             }else {
                 return 0
             }
         case 4:
-            return tableView.fd_heightForCellWithIdentifier(String(EnvironmentScrollCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! EnvironmentScrollCell
-                cell.configureModel(self.chefModel)
-            })
+            if chefModel?.data?.kitchenImage?.count > 0 {
+                return 550.0.fitHeight()
+            }else{
+                return 0
+            }
         case 5:
             return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! FeatureDinnerCell
                 cell.configureModel(self.chefModel?.data?.menu)
             })
         case 6:
-            return tableView.fd_heightForCellWithIdentifier(String(AddressInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! AddressInfoCell
-                cell.configureModel(self.chefModel?.data?.address?.address, mapUrl: self.chefModel?.data?.address?.mapImageUrl)
-            })
+            if chefModel?.data?.menu?.count > 0 {
+                return tableView.fd_heightForCellWithIdentifier(String(AddressInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                    let cell = cell as! AddressInfoCell
+                    cell.configureModel(self.chefModel?.data?.address?.address, mapUrl: self.chefModel?.data?.address?.mapImageUrl)
+                })
+            }else{
+                return 0
+            }
         case 7:
-            return tableView.fd_heightForCellWithIdentifier(String(HistoryDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! HistoryDinnerCell
-                cell.configureModel(self.chefModel)
-            })
+            if chefModel?.data?.historyCustomMadeDinner?.count > 0 || chefModel?.data?.historyDinner?.count > 0 {
+                return tableView.fd_heightForCellWithIdentifier(String(HistoryDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                    let cell = cell as! HistoryDinnerCell
+                    cell.configureModel(self.chefModel)
+                })
+            }else{
+                return 0
+            }
         case 8:
-            return tableView.fd_heightForCellWithIdentifier(String(CommentCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! CommentCell
-                cell.configureModel(self.chefModel?.data?.comment)
-            })
+            if chefModel?.data?.comment?.count > 0 {
+                return tableView.fd_heightForCellWithIdentifier(String(CommentCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                    let cell = cell as! CommentCell
+                    cell.configureModel(self.chefModel?.data?.comment)
+                })
+            }else{
+                return 0
+            }
         default:
             return 0
         }

@@ -17,7 +17,7 @@ class DinnerDetailViewController: BaseViewController {
     private var collect: UIButton!
     private var share: UIButton!
     private var customeMadeView: CustomMadeView!
-    var chefDinnerID: Int?{
+    var chefDinnerID: Int = 0{
         didSet{
             loadBaseDate()
         }
@@ -44,7 +44,7 @@ class DinnerDetailViewController: BaseViewController {
             self!.customeMadeView.hidden = false
             SVProgressHUD.dismiss()
         }
-        ChefDinner.loadDetailDinner(callBack, id: chefDinnerID!)
+        ChefDinner.loadDetailDinner(callBack, id: chefDinnerID)
     }
     
     private func setNaviagtionBarAppearance() {

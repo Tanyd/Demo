@@ -40,6 +40,10 @@ class PersonalDinnerCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
     
+    func configureModel(model: ChefInfo?) {
+        
+    }
+    
     override func updateConstraints() {
         if !didUpdateConstraints {
             personalDinnerTable.autoPinEdgesToSuperviewEdges()

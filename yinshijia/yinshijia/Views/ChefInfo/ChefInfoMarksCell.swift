@@ -87,7 +87,7 @@ extension ChefInfoMarksCell: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let tag = tags[indexPath.item]
         let tagSize = (tag as NSString).getTextRectSize(UIFont.systemFontOfSize(11), size: CGSize(width: CGFloat.max,height: CGFloat.max))
-        return CGSize(width: tagSize.width, height: 40.0.fitHeight())
+        return CGSize(width: tagSize.width + 10.0.fitWidth(), height: 40.0.fitHeight())
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {

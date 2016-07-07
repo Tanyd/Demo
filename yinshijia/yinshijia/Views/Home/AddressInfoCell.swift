@@ -58,10 +58,13 @@ class AddressInfoCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
   
-    func configureModel(model: ChefDinner?) {
-        if model != nil {
-            addressButton.setTitle(model?.data?.baseInfo!.address, forState: .Normal)
-            mapView.sd_setImageWithURL(NSURL(string: (model?.data?.baseInfo!.addressURL)!), placeholderImage: nil)
+    func configureModel(address: String?,mapUrl: String?){
+        if address != nil {
+            addressButton.setTitle(address!, forState: .Normal)
+        }
+        
+        if mapUrl != nil {
+            mapView.sd_setImageWithURL(NSURL(string: mapUrl!), placeholderImage: nil)
         }
     }
     

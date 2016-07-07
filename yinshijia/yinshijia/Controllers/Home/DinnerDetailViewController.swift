@@ -161,7 +161,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
                 cell = FeatureDinnerCell(style: .Default, reuseIdentifier: String(FeatureDinnerCell))
             }
             let cell = cell as! FeatureDinnerCell
-            cell.configureModel(model)
+            cell.configureModel(model?.data?.menu)
         case 3:
             cell = tableView.dequeueReusableCellWithIdentifier(String(MoreInfoCell)) as? MoreInfoCell
             if cell == nil {
@@ -176,7 +176,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
                 cell = AddressInfoCell(style: .Default, reuseIdentifier: String(AddressInfoCell))
             }
             let cell = cell as! AddressInfoCell
-            cell.configureModel(model)
+            cell.configureModel(model?.data?.baseInfo?.address, mapUrl: model?.data?.baseInfo?.addressURL)
         case 5:
             cell = tableView.dequeueReusableCellWithIdentifier(String(OrderDescriptionCell)) as? OrderDescriptionCell
             if cell == nil {
@@ -191,7 +191,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
             }
             let cell = cell as! CommentCell
             cell.delegate = self
-            cell.configureModel(model)
+            cell.configureModel(model?.data?.comment)
         default:
             break
         }
@@ -218,7 +218,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
             if model?.data?.menu?.count > 0 {
                 return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                     let cell = cell as! FeatureDinnerCell
-                    cell.configureModel(self.model)
+                    cell.configureModel(self.model?.data?.menu)
                 })
             }else {
                 return 0
@@ -231,7 +231,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
         case 4:
             return tableView.fd_heightForCellWithIdentifier(String(AddressInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! AddressInfoCell
-                cell.configureModel(self.model)
+                cell.configureModel(self.model?.data?.baseInfo?.address, mapUrl: self.model?.data?.baseInfo?.addressURL)
             })
         case 5:
             return tableView.fd_heightForCellWithIdentifier(String(OrderDescriptionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
@@ -241,7 +241,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
         case 6:
             return tableView.fd_heightForCellWithIdentifier(String(CommentCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! CommentCell
-                cell.configureModel(self.model)
+                cell.configureModel(self.model?.data?.comment)
             })
         default:
             return 0

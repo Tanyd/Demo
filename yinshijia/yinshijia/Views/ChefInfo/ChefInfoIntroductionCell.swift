@@ -30,11 +30,11 @@ class ChefInfoIntroductionCell: ChefInfoCell {
         setNeedsUpdateConstraints()
     }
     
-//     func configureModel(model: ChefInfo?) {
-//        if model != nil {
-//           
-//        }
-//    }
+     func configureChefModel(model: ChefInfo?) {
+        if model != nil {
+           
+        }
+    }
     
     override func updateConstraints() {
         if !didUpdateConstraints{

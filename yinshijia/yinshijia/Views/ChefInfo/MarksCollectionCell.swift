@@ -23,6 +23,7 @@ class MarksCollectionCell: UICollectionViewCell {
         label.backgroundColor = UIColor.grayColor()
         label.layer.cornerRadius = 10
         label.numberOfLines = 1
+        label.textAlignment = .Center
         return label
     }()
     

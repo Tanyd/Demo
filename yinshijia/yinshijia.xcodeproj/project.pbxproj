@@ -71,6 +71,8 @@
 		8B944CA11D0A52CE0076822D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B944CA01D0A52CE0076822D /* BaseTabBarController.swift */; };
 		8B944CA31D0A52E40076822D /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B944CA21D0A52E40076822D /* BaseNavigationController.swift */; };
 		8BA9BC691D2641180044DBFB /* DinnerDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9BC681D2641180044DBFB /* DinnerDetailTableView.swift */; };
+		8BC653D91D2DEBF300728C68 /* HistoryDinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC653D81D2DEBF300728C68 /* HistoryDinnerCell.swift */; };
+		8BC653DB1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC653DA1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift */; };
 		8BC8184F1D17A1D8003E9D3E /* AddressInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8184E1D17A1D8003E9D3E /* AddressInfoCell.swift */; };
 		8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */; };
 		8BD02FA31D0FDE2700EA45B0 /* ChoiceListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD02FA21D0FDE2700EA45B0 /* ChoiceListTableViewController.swift */; };
@@ -176,6 +178,8 @@
 		8B944CA01D0A52CE0076822D /* BaseTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		8B944CA21D0A52E40076822D /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		8BA9BC681D2641180044DBFB /* DinnerDetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DinnerDetailTableView.swift; sourceTree = "<group>"; };
+		8BC653D81D2DEBF300728C68 /* HistoryDinnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDinnerCell.swift; sourceTree = "<group>"; };
+		8BC653DA1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDinnerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BC8184E1D17A1D8003E9D3E /* AddressInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressInfoCell.swift; sourceTree = "<group>"; };
 		8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8BD02FA21D0FDE2700EA45B0 /* ChoiceListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceListTableViewController.swift; sourceTree = "<group>"; };
@@ -434,6 +438,8 @@
 				8BF6871A1D2CEBCF005A427F /* PersonalDinnerCell.swift */,
 				8BF6871C1D2CED34005A427F /* PersonalDinnerView.swift */,
 				2728CF9C1D2D3B0200420983 /* EnvironmentScrollCell.swift */,
+				8BC653D81D2DEBF300728C68 /* HistoryDinnerCell.swift */,
+				8BC653DA1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift */,
 			);
 			path = ChefInfo;
 			sourceTree = "<group>";
@@ -727,6 +733,7 @@
 				2700B50B1D0EDE9E00FF83D6 /* Goods.swift in Sources */,
 				8B7F93DF1D0A5769001A2207 /* MeViewController.swift in Sources */,
 				8BC8184F1D17A1D8003E9D3E /* AddressInfoCell.swift in Sources */,
+				8BC653DB1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift in Sources */,
 				27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */,
 				274F7E8E1D28C8150070A16D /* ExtInfoView.swift in Sources */,
 				8BF6871B1D2CEBCF005A427F /* PersonalDinnerCell.swift in Sources */,
@@ -756,6 +763,7 @@
 				273D9C971D0D030F00E511B1 /* ChefBannerView.swift in Sources */,
 				27B8C5DC1D0BC28900A9A114 /* Choice.swift in Sources */,
 				8B944CA31D0A52E40076822D /* BaseNavigationController.swift in Sources */,
+				8BC653D91D2DEBF300728C68 /* HistoryDinnerCell.swift in Sources */,
 				270291CF1D0BEF9700009ED3 /* HeaderView.swift in Sources */,
 				273D9C951D0CF5AE00E511B1 /* ChefList.swift in Sources */,
 				8B7F93C61D0A53F2001A2207 /* Constant.swift in Sources */,

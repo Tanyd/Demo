@@ -44,7 +44,7 @@ class ChefInfoData: NSObject {
 
     var menu: [Menu]?
 
-    var goods: [String]?
+    var goods: [ChefInfoGoods]?
 
     var historyCustomMadeDinner: [Historycustommadedinner]?
 

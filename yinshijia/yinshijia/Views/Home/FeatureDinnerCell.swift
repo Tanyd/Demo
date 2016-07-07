@@ -23,16 +23,16 @@ class FeatureDinnerCell: UITableViewCell {
         setNeedsUpdateConstraints()
     }
 
-    func configureModel(model: ChefDinner?) {
-        if model?.data?.menu?.count > 0 {
+    func configureModel(model: [Menu]?) {
+        if model?.count > 0 {
             var totalH: CGFloat = 0
-            for menu in (model?.data?.menu)! {
+            for menu in model! {
                 let despH = (menu.desp! as NSString).getTextRectSize(UIFont.systemFontOfSize(12), size: CGSize(width: ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), height: CGFloat.max)).height
                 let cellH = 720.0.fitHeight() + despH
                 totalH += cellH
             }
             childTableH = totalH + 145.0.fitHeight()
-            featureTable.model = (model?.data?.menu)!
+            featureTable.model = model!
         }
     }
     

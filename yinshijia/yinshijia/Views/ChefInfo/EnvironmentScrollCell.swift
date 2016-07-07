@@ -13,8 +13,14 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
     private var imageScrollView: UIScrollView!
 
     private var allImgs = [UIImageView]()
+
+    private var currentIndex: Int = 0{
+        didSet{
+            numberCount?.text = "\(currentIndex + 1)/\(imgs.count)"
+        }
+    }
     
-    private var currentIndex: Int = 0
+    private var numberCount: UILabel!
     
     var imgs = [String]() {
         didSet{
@@ -26,7 +32,6 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
         
     }
 
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
@@ -37,7 +42,7 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     private func setUI() {
-        imageScrollView = UIScrollView.newAutoLayoutView()
+        imageScrollView = UIScrollView()
         imageScrollView.bounces = false
         imageScrollView.showsHorizontalScrollIndicator = false
         imageScrollView.showsVerticalScrollIndicator = false
@@ -51,7 +56,11 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
             imageView.contentMode = .ScaleAspectFill
             imageScrollView.addSubview(imageView)
             allImgs.append(imageView)
-        }        
+        }
+        
+        numberCount = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.whiteColor(), fontSize: 12)
+        numberCount.textAlignment = .Right
+        addSubview(numberCount)
     }
     
     private func updatePageScrollView() {
@@ -65,10 +74,11 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
             }
             
             if index < 0 {
-                index = imgs.count - 1
-            } else if index >= imgs.count {
                 index = 0
+            } else if index >= imgs.count {
+                index = imgs.count - 1
             }
+            
             imageView.tag = index
             // MARK: 更新img
             imageView.sd_setImageWithURL(NSURL(string: imgs[index]), placeholderImage: nil)
@@ -76,10 +86,15 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
         imageScrollView.contentOffset = CGPointMake(imageScrollView.width, 0)
     }
     
+    func configureModel(model: ChefInfo?) {
+        
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         imageScrollView.frame = CGRectMake(30.0.fitWidth(), 30.0.fitHeight(), ScreenSize.SCREEN_WIDTH - 60.0.fitWidth(), bounds.height - 60.0.fitHeight())
+        numberCount.frame = CGRectMake(CGRectGetMaxX(imageScrollView.frame) - 100.0.fitWidth(), CGRectGetMaxY(imageScrollView.frame) - 50.0.fitHeight(), 100.0.fitWidth(), 50.0.fitHeight())
         
         let height: CGFloat = imageScrollView.frame.size.height
         let width: CGFloat = imageScrollView.frame.size.width

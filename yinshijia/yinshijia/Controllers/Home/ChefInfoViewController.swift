@@ -36,16 +36,18 @@ class ChefInfoViewController: UITableViewController {
                                       (model?.data?.baseInfo?.likeCount)!,
                                       (model?.data?.commentNum)!)
             self!.tableView.reloadData()
-            self!.tableView.hidden = false
+            self!.headerView.hidden = false
             SVProgressHUD.dismiss()
         }
         ChefInfo.loadChefInfo(callBack, id: chefID)
     }
     
     private func setUI() {
-        headerView = ChefInfoHeaderView(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 425.0.fitHeight()), commentAction: { 
+        tableView.backgroundColor = UIColor.whiteColor()
+        headerView = ChefInfoHeaderView(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 425.0.fitHeight()), commentAction: {
             
         })
+        headerView.hidden = true
         tableView.tableHeaderView = headerView
         tableView.registerClass(ChefInfoIntroductionCell.self, forCellReuseIdentifier: String(ChefInfoIntroductionCell))
         tableView.registerClass(ChefInfoMarksCell.self, forCellReuseIdentifier: String(ChefInfoMarksCell))

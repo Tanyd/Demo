@@ -39,11 +39,10 @@ class ChefInfoHeaderView: UIView {
     
     private func setUI() {
         backGroudImg = UIImageView.newAutoLayoutView()
-        backGroudImg.backgroundColor = UIColor.RandomColr()
         addSubview(backGroudImg)
         
         titlesContainer = UIView.newAutoLayoutView()
-        titlesContainer.backgroundColor = UIColor.RandomColr()
+        titlesContainer.backgroundColor = UIColor.clearColor()
         addSubview(titlesContainer)
         
         scheduleLable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.whiteColor(), fontSize: 13)
@@ -102,7 +101,6 @@ class ChefInfoHeaderView: UIView {
   
             commentLable.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Left)
             commentLable.autoMatchDimension(.Width, toDimension: .Width, ofView: scheduleLable)
-            attentionLable.autoPinEdge(.Left, toEdge: .Right, ofView: attentionLable)
             
             lineLeft.autoPinEdgeToSuperviewEdge(.Top)
             lineLeft.autoPinEdgeToSuperviewEdge(.Bottom)

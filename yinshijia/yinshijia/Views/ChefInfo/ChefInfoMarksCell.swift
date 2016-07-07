@@ -12,7 +12,6 @@ class ChefInfoMarksCell: UITableViewCell {
 
     private var didUpdateConstraints = false
     private var marksH: CGFloat = 0
-    private var marksConstraint: NSLayoutConstraint!
     private var tags = [String]() {
         didSet{
             marksView.reloadData()
@@ -21,7 +20,7 @@ class ChefInfoMarksCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(marksView)
+        contentView.addSubview(marksView)
         setNeedsUpdateConstraints()
     }
     
@@ -34,6 +33,7 @@ class ChefInfoMarksCell: UITableViewCell {
         layout.scrollDirection = .Vertical
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         view.registerClass(MarksCollectionCell.self, forCellWithReuseIdentifier: String(MarksCollectionCell))
+        view.backgroundColor = UIColor.whiteColor()
         view.delegate = self
         view.dataSource = self
         view.scrollEnabled = false
@@ -43,8 +43,16 @@ class ChefInfoMarksCell: UITableViewCell {
     func configureModel(model: String?) {
         if marksView.subviews.count > 0 {return}
         if model?.length() > 0 {
-            marksH = 40.0.fitHeight()
-            tags = (model! as NSString).componentsSeparatedByString(",")
+            marksH = 100.0.fitHeight()
+            let temp = (model! as NSString).componentsSeparatedByString(",")
+            var tempW: CGFloat = 0
+            for tag in temp {
+                let tempSize = (tag as NSString).getTextRectSize(UIFont.systemFontOfSize(11), size: CGSize(width: CGFloat.max,height: CGFloat.max))
+                tempW += tempSize.size.width
+            }
+            let countLine = ceil((tempW + 30.0.fitWidth() * CGFloat(temp.count - 1)) / (ScreenSize.SCREEN_WIDTH - 60.0.fitWidth()))
+            marksH = 100.0.fitHeight() * countLine + (countLine - 1) * 20.0.fitHeight()
+            tags = temp
         }else{
             marksH = 0
         }
@@ -52,8 +60,11 @@ class ChefInfoMarksCell: UITableViewCell {
 
     override func updateConstraints() {
         if !didUpdateConstraints{
-            marksView.autoPinEdgesToSuperviewEdges()
-            marksConstraint = marksView.autoSetDimension(.Height, toSize: marksH)
+            marksView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+            NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: { 
+                marksView.autoPinEdgeToSuperviewEdge(.Bottom)
+            })
+            marksView.autoSetDimension(.Height, toSize: marksH)
             didUpdateConstraints = true
         }
         super.updateConstraints()
@@ -90,15 +101,11 @@ extension ChefInfoMarksCell: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let tag = tags[indexPath.item]
         let tagSize = (tag as NSString).getTextRectSize(UIFont.systemFontOfSize(11), size: CGSize(width: CGFloat.max,height: CGFloat.max))
-        return CGSize(width: tagSize.width + 10.0.fitWidth(), height: 40.0.fitHeight())
+        return CGSize(width: tagSize.width + 30.0.fitWidth(), height: 40.0.fitHeight())
     }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 20.0.fitWidth()
-    }
-    
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 20.0.fitWidth()
+        return 20.0.fitHeight()
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {

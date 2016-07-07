@@ -39,6 +39,7 @@ class PersonalDinnerCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .None
         contentView.addSubview(personalDinnerTable)
         setNeedsUpdateConstraints()
     }
@@ -53,7 +54,10 @@ class PersonalDinnerCell: UITableViewCell {
     
     override func updateConstraints() {
         if !didUpdateConstraints {
-            personalDinnerTable.autoPinEdgesToSuperviewEdges()
+            personalDinnerTable.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+            NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: {
+                personalDinnerTable.autoPinEdgeToSuperviewEdge(.Bottom)
+            })
             personalDinnerTable.autoSetDimension(.Height, toSize: containerViewH)
             didUpdateConstraints = true
         }

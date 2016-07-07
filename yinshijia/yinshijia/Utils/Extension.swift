@@ -573,6 +573,17 @@ extension NSString {
 }
 extension String{
     
+    func getDateFormate() -> String{
+        let t = "yyyy-MM-dd HH:mm:ss"
+        let formate = NSDateFormatter()
+        formate.dateFormat = t
+        let current = formate.dateFromString(self)
+        let t2 = "MM月dd日"
+        let formate2 = NSDateFormatter()
+        formate2.dateFormat = t2
+        return formate2.stringFromDate(current!)
+    }
+    
     func md5() ->String!{
         let str = self.cStringUsingEncoding(NSUTF8StringEncoding)
         let strLen = CUnsignedInt(self.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))

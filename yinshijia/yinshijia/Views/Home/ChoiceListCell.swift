@@ -14,7 +14,7 @@ class ChoiceListCell: ChoiceCell {
         didSet{
             goodsImg.sd_setImageWithURL(NSURL(string: choiceListModel!.dinner_imageurl!.componentsSeparatedByString(",")[0]), placeholderImage: UIImage(named: "wutu"))
             titleLable.text = choiceListModel!.dinner_title!
-            let timeRange = getDateFormate(choiceListModel!.dinner_datetime!) + " - " + getDateFormate(choiceListModel!.dinner_endOrderTime!)
+            let timeRange = choiceListModel!.dinner_datetime!.getDateFormate() + " - " + choiceListModel!.dinner_endOrderTime!.getDateFormate()
             time.setTitle("  " + timeRange, forState: .Normal)
             customMade.setTitle(choiceListModel!.dinner_district!, forState: .Normal)
             priceLable.text = "¥ " + String(choiceListModel!.dinner_price) + " / " + choiceListModel!.unit!
@@ -26,7 +26,7 @@ class ChoiceListCell: ChoiceCell {
         didSet{
             goodsImg.sd_setImageWithURL(NSURL(string: categoryListModel!.dinnerImage!.componentsSeparatedByString(",")[0]), placeholderImage: UIImage(named: "wutu"))
             titleLable.text = categoryListModel!.dinnerTitle!
-            let timeRange = getDateFormate(categoryListModel!.dinnerStartTime!) + " - " + getDateFormate(categoryListModel!.dinnerEndTime!)
+            let timeRange = categoryListModel!.dinnerStartTime!.getDateFormate() + " - " + categoryListModel!.dinnerEndTime!.getDateFormate()
             time.setTitle("  " + timeRange, forState: .Normal)
             customMade.setTitle(categoryListModel!.dinnerDistrict!, forState: .Normal)
             priceLable.text = "¥ " + String(categoryListModel!.dinnerPrice!) + " / " + categoryListModel!.unit!

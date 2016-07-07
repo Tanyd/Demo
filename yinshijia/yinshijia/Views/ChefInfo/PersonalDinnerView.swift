@@ -30,9 +30,8 @@ class PersonalDinnerView: UITableViewCell {
         didSet{
             dinnerImage.sd_setImageWithURL(NSURL(string: (customeMadeModel?.themeImage!.componentsSeparatedByString(",")[0])!), placeholderImage: nil)
             titleLabel.text = customeMadeModel!.title!
-            let start = customeMadeModel?.startTime?.substringToIndex((customeMadeModel?.startTime?.startIndex.advancedBy(10))!)
-            let end = customeMadeModel?.endTime?.substringToIndex((customeMadeModel?.startTime?.startIndex.advancedBy(10))!)
-            otherInfoLabel.text = "\(customeMadeModel!.district!)\(start!)-\(end!)"
+            let timeRange = customeMadeModel!.startTime!.getDateFormate() + " - " + customeMadeModel!.endTime!.getDateFormate()
+            otherInfoLabel.text = "\(customeMadeModel!.district!)\(timeRange)"
             priceLabel.text = "¥\(customeMadeModel!.minPrice) / \(customeMadeModel!.unit!)"
             scheduleButton.tag = (customeMadeModel?.themeId)!
         }
@@ -93,6 +92,7 @@ class PersonalDinnerView: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .None
         contentView.addSubview(dinnerImage)
         containerView.addSubview(titleLabel)
         containerView.addSubview(priceLabel)
@@ -119,6 +119,7 @@ class PersonalDinnerView: UITableViewCell {
             
             scheduleButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 30.0.fitWidth())
             scheduleButton.autoPinEdgeToSuperviewEdge(.Bottom)
+            scheduleButton.autoSetDimension(.Width, toSize: 100.0.fitWidth())
             
             if cellType == .CustomeMadeType {
                 priceLabel.autoPinEdgeToSuperviewEdge(.Left)

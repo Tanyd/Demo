@@ -8,17 +8,37 @@
 
 import UIKit
 
-class ChefInfoIntroductionCell: ChefInfoCell {
+class ChefInfoIntroductionCell: UITableViewCell {
 
     private var didUpdateConstraints = false
 
     private lazy var attentionButton: UIButton = {
         let btn = UIButton(type: .Custom)
-        btn.setBackgroundImage(UIImage(named: "tag_btn_bg"), forState: .Normal)
+        btn.titleLabel?.font = UIFont.systemFontOfSize(13)
+        btn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        btn.setTitleColor(Constant.Common.OrangeColor, forState: .Selected)
+        btn.setBackgroundImage(UIImage(named: "create_btn"), forState: .Normal)
         btn.setBackgroundImage(UIImage(named: "tag_create_btn"), forState: .Selected)
         btn.setTitle("关注主厨人", forState: .Normal)
         btn.setTitle("已关注", forState: .Selected)
         return btn
+    }()
+    
+    lazy var contentLable: UILabel = {
+        let content = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
+        content.numberOfLines = 0
+        content.textAlignment = .Center
+        return content
+    }()
+    
+    lazy var nameLale: UILabel = {
+        let name = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 13)
+        return name
+    }()
+    
+    lazy var chefIcon: UIImageView = {
+        let icon = UIImageView.newAutoLayoutView()
+        return icon
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -51,6 +71,7 @@ class ChefInfoIntroductionCell: ChefInfoCell {
             nameLale.autoAlignAxisToSuperviewAxis(.Vertical)
 
             attentionButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: nameLale, withOffset: 37.0.fitHeight())
+            attentionButton.autoSetDimensionsToSize(CGSize(width: 160.0.fitWidth(), height: 60.0.fitHeight()))
             attentionButton.autoAlignAxisToSuperviewAxis(.Vertical)
             
             contentLable.autoPinEdgeToSuperviewEdge(.Left, withInset: 30.0.fitWidth())

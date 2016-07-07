@@ -29,6 +29,7 @@ class MarksCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = UIColor.whiteColor()
         contentView.addSubview(marksLabel)
         setNeedsUpdateConstraints()
     }
@@ -36,6 +37,7 @@ class MarksCollectionCell: UICollectionViewCell {
     override func updateConstraints() {
         if !didUpdateConstraints{
             marksLabel.autoPinEdgesToSuperviewEdges()
+            marksLabel.autoSetDimension(.Height, toSize: 40.0.fitHeight())
             didUpdateConstraints = true
         }
         super.updateConstraints()

@@ -40,14 +40,17 @@ class HistoryDinnerCell: UITableViewCell {
             historyCusDinners = (model?.data?.historyCustomMadeDinner)!
         }
         if historyDinners.count > 0 || historyCusDinners.count > 0 {
-            historyCollectionViewH = 330.0.fitHeight()
+            historyCollectionViewH = 330.0.fitHeight() + 0.4
         }
         historyCollectionView.reloadData()
     }
     
     override func updateConstraints() {
         if !didUpdateConstraints{
-            historyCollectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 30.0.fitWidth(), bottom: 0, right: 30.0.fitWidth()))
+            historyCollectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 30.0.fitWidth(), bottom: 0, right: 30.0.fitWidth()), excludingEdge: .Bottom)
+            NSLayoutConstraint.autoSetPriority(UILayoutPriorityDefaultHigh, forConstraints: {
+                historyCollectionView.autoPinEdgeToSuperviewEdge(.Bottom)
+            })
             historyCollectionView.autoSetDimension(.Height, toSize: historyCollectionViewH)
             didUpdateConstraints = true
         }

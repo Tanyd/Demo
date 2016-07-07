@@ -41,25 +41,13 @@ class ChoiceCell: UITableViewCell {
             location.setTitle("  " + distrc!, forState: .Normal)
             let startTime = choiceModel!.themeDinnerStartTime == nil ? choiceModel?.datetime : choiceModel!.themeDinnerStartTime
             let endTime = choiceModel!.themeDinnerEndTime == nil ? choiceModel?.endOrderTime : choiceModel!.themeDinnerEndTime
-            let timeRange = getDateFormate(startTime!) + " - " + getDateFormate(endTime!)
+            let timeRange = startTime!.getDateFormate() + " - " + endTime!.getDateFormate()
             time.setTitle("  " + timeRange, forState: .Normal)
             userIcon.tag = (choiceModel?.themeDinnerChefId)!
             tag = (choiceModel?.themeDinnerId)!
         }
     }
 
-    
-    func getDateFormate(date: String) -> String{
-        let t = "yyyy-MM-dd HH:mm:ss"
-        let formate = NSDateFormatter()
-        formate.dateFormat = t
-        let current = formate.dateFromString(date)
-        let t2 = "MM月dd日"
-        let formate2 = NSDateFormatter()
-        formate2.dateFormat = t2
-        return formate2.stringFromDate(current!)
-    }
-    
     
     lazy var goodsImg: UIImageView = {
         let img = UIImageView.newAutoLayoutView()

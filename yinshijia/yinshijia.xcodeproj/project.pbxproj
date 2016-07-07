@@ -38,6 +38,7 @@
 		273D9CA11D0D683400E511B1 /* ChefSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273D9CA01D0D683400E511B1 /* ChefSectionView.swift */; };
 		274F7E8E1D28C8150070A16D /* ExtInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F7E8D1D28C8150070A16D /* ExtInfoView.swift */; };
 		278F3C861D2AA1B900D5F87B /* CustomMadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278F3C851D2AA1B900D5F87B /* CustomMadeView.swift */; };
+		279265411D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279265401D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift */; };
 		27B8C5DC1D0BC28900A9A114 /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B8C5DB1D0BC28900A9A114 /* Choice.swift */; };
 		27BE93E11D103F1600887178 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE93E01D103F1600887178 /* CategoryList.swift */; };
 		27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */; };
@@ -144,6 +145,7 @@
 		273D9CA01D0D683400E511B1 /* ChefSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefSectionView.swift; sourceTree = "<group>"; };
 		274F7E8D1D28C8150070A16D /* ExtInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtInfoView.swift; sourceTree = "<group>"; };
 		278F3C851D2AA1B900D5F87B /* CustomMadeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMadeView.swift; sourceTree = "<group>"; };
+		279265401D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefInfoSectionHeaderView.swift; sourceTree = "<group>"; };
 		27B8C5DB1D0BC28900A9A114 /* Choice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
 		27BE93E01D103F1600887178 /* CategoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				2728CF9C1D2D3B0200420983 /* EnvironmentScrollCell.swift */,
 				8BC653D81D2DEBF300728C68 /* HistoryDinnerCell.swift */,
 				8BC653DA1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift */,
+				279265401D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift */,
 			);
 			path = ChefInfo;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				27E7EC881D163EC500E3F126 /* MenuTable.swift in Sources */,
 				8B28037D1D221180002B5ED7 /* HomeNavigationBar.swift in Sources */,
 				8B7F93CA1D0A5617001A2207 /* BaseViewController.swift in Sources */,
+				279265411D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift in Sources */,
 				27105F8C1D14EFDA00362F3E /* DinnerDetailViewController.swift in Sources */,
 				270291E11D0C74BF00009ED3 /* ChefCell.swift in Sources */,
 			);

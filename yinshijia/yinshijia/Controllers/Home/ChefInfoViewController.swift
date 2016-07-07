@@ -11,6 +11,7 @@ import UIKit
 class ChefInfoViewController: UITableViewController {
 
     private var headerView: ChefInfoHeaderView!
+    private let sectionTitles = ["主厨手作","精致私宴","环境","特色菜品","主厨地址","历史饭局","食客评价"]
     var chefID: Int = 0{
         didSet{
             loadBaseDate()
@@ -60,13 +61,18 @@ class ChefInfoViewController: UITableViewController {
         tableView.registerClass(CommentCell.self, forCellReuseIdentifier: String(CommentCell))
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return (chefModel == nil) ? 0 : 9
+
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCellWithIdentifier(String(ChefInfoIntroductionCell)) as? ChefInfoIntroductionCell
             if cell == nil {
@@ -147,8 +153,44 @@ class ChefInfoViewController: UITableViewController {
         return cell!
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(String(ChefInfoSectionHeaderView)) as? ChefInfoSectionHeaderView
+        if header == nil {
+            header = ChefInfoSectionHeaderView(reuseIdentifier: String(ChefInfoSectionHeaderView))
+        }
+        header?.title = sectionTitles[section - 2]
+        return header
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0,1:
+            return 0
+        default:
+            if section == 2 && chefModel?.data?.goods?.count == 0 {
+                return 0
+            }
+            if section == 3 && chefModel?.data?.themeDinner?.count == 0 {
+                return 0
+            }
+            if section == 4 && chefModel?.data?.kitchenImage?.count == 0 {
+                return 0
+            }
+            if section == 5 && chefModel?.data?.menu?.count == 0 {
+                return 0
+            }
+            if section == 7 && chefModel?.data?.historyDinner?.count == 0 && chefModel?.data?.historyCustomMadeDinner?.count == 0 {
+                return 0
+            }
+            if section == 8 && chefModel?.data?.comment?.count == 0{
+                return 0
+            }
+            return 85.0.fitHeight()
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        switch indexPath.row {
+        switch indexPath.section {
         case 0:
             return tableView.fd_heightForCellWithIdentifier(String(ChefInfoIntroductionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
                 let cell = cell as! ChefInfoIntroductionCell
@@ -219,6 +261,18 @@ class ChefInfoViewController: UITableViewController {
             }
         default:
             return 0
+        }
+
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        let sectionHeaderHeight: CGFloat = 85.0.fitHeight()
+        if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y > 0) {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+        } else {
+            if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+                scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0)
+            }
         }
 
     }

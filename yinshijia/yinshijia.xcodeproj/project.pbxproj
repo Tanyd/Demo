@@ -51,6 +51,9 @@
 		27F684291D0BC9A700603199 /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F684281D0BC9A700603199 /* BaseApi.swift */; };
 		834210AD60DB606C78A85023 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B398C9D62760EB0484300C /* libPods.a */; };
 		8B0A46CF1D2F845600E65847 /* NavigationBarAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A46CE1D2F845600E65847 /* NavigationBarAnimationViewController.swift */; };
+		8B0A46D11D2FAA2E00E65847 /* MarketGoods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A46D01D2FAA2E00E65847 /* MarketGoods.swift */; };
+		8B0A46D31D2FABA900E65847 /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A46D21D2FABA900E65847 /* Discover.swift */; };
+		8B0A46D51D2FAC6800E65847 /* MarketGoodsInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0A46D41D2FAC6800E65847 /* MarketGoodsInfoViewController.swift */; };
 		8B1C121E1D0A9D7400968DC9 /* TranslationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C121D1D0A9D7400968DC9 /* TranslationTableViewController.swift */; };
 		8B1C12201D0AAD4C00968DC9 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */; };
 		8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C12211D0AB7A100968DC9 /* Tabbar.swift */; };
@@ -159,6 +162,9 @@
 		27F684281D0BC9A700603199 /* BaseApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
 		56280425BA504C6113327FD7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8B0A46CE1D2F845600E65847 /* NavigationBarAnimationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarAnimationViewController.swift; sourceTree = "<group>"; };
+		8B0A46D01D2FAA2E00E65847 /* MarketGoods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketGoods.swift; sourceTree = "<group>"; };
+		8B0A46D21D2FABA900E65847 /* Discover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
+		8B0A46D41D2FAC6800E65847 /* MarketGoodsInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketGoodsInfoViewController.swift; sourceTree = "<group>"; };
 		8B1C12151D0A950600968DC9 /* yinshijia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yinshijia-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B1C121D1D0A9D7400968DC9 /* TranslationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationTableViewController.swift; sourceTree = "<group>"; };
 		8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +307,8 @@
 				27BE93E01D103F1600887178 /* CategoryList.swift */,
 				8BE377721D1797E0000905A6 /* ChefDinner.swift */,
 				8B8F2C151D2CB14900AA79AA /* ChefInfo.swift */,
+				8B0A46D01D2FAA2E00E65847 /* MarketGoods.swift */,
+				8B0A46D21D2FABA900E65847 /* Discover.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -412,6 +420,7 @@
 				27105F8B1D14EFDA00362F3E /* DinnerDetailViewController.swift */,
 				8B8489141D2B8FD300128B50 /* CustomeCommentTableViewController.swift */,
 				8B8F2C171D2CB28E00AA79AA /* ChefInfoViewController.swift */,
+				8B0A46D41D2FAC6800E65847 /* MarketGoodsInfoViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -749,9 +758,12 @@
 				8BD02FA31D0FDE2700EA45B0 /* ChoiceListTableViewController.swift in Sources */,
 				2719DFC91D28EA6E006D4467 /* OrderDescriptionCell.swift in Sources */,
 				8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */,
+				8B0A46D51D2FAC6800E65847 /* MarketGoodsInfoViewController.swift in Sources */,
 				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
+				8B0A46D31D2FABA900E65847 /* Discover.swift in Sources */,
 				8B7F93DD1D0A5761001A2207 /* OrderViewController.swift in Sources */,
 				8B8F2C181D2CB28E00AA79AA /* ChefInfoViewController.swift in Sources */,
+				8B0A46D11D2FAA2E00E65847 /* MarketGoods.swift in Sources */,
 				27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */,
 				8B7F93E31D0A638F001A2207 /* PageViewController.swift in Sources */,
 				8B8F2C161D2CB14900AA79AA /* ChefInfo.swift in Sources */,

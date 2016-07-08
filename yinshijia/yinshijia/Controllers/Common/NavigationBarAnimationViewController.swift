@@ -25,7 +25,7 @@ class NavigationBarAnimationViewController: BaseViewController {
     }
     var titleColorNormal: UIColor?{
         didSet{
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColorNormal!]
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColorNormal!,NSFontAttributeName: UIFont(name: Constant.Common.DefaultFont, size: 14)!]
         }
     }
     var titleColorSelected: UIColor?
@@ -59,13 +59,13 @@ class NavigationBarAnimationViewController: BaseViewController {
                 btn.selected = true
             }
             backItem.selected = true
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColorSelected!]
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColorSelected!,NSFontAttributeName: UIFont(name: Constant.Common.DefaultFont, size: 14)!]
         }else {
             for btn in rightItems {
                 btn.selected = false
             }
             backItem.selected = false
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColorNormal!]
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColorNormal!,NSFontAttributeName: UIFont(name: Constant.Common.DefaultFont, size: 14)!]
         }
         
         navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(UIColor(white: 1.0, alpha: alpha)), forBarMetrics: UIBarMetrics.Default)

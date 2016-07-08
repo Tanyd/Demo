@@ -17,6 +17,8 @@
 // 市集         http://api.yinshijia.com/mobile/apiv2/goods/list/1/8
 // 饭局详情     http://api.yinshijia.com/mobile/apiv2/user/themeChef/201
 // 主厨        http://api.yinshijia.com/mobile/apiv2/user/chefDetail/10234
+// 市集商品     http://api.yinshijia.com/mobile/apiv2/goods/54
+// 发现        http://api.yinshijia.com/mobile/apiv2/discovery/city/1 + [data:["token":"10595:07e962644353483cae728f731a532556"]]
 import UIKit
 
 let IS_DEBUG = true

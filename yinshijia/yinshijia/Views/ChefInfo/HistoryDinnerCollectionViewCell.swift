@@ -13,7 +13,7 @@ class HistoryDinnerCollectionViewCell: UICollectionViewCell {
     private var didUpdateConstraints = false
     var historyDinner: Historydinner?{
         didSet{
-            dinnerImage.sd_setImageWithURL(NSURL(string: (historyDinner?.imageurl)!), placeholderImage: UIImage(named: "wutu"))
+            dinnerImage.sd_setImageWithURL(NSURL(string: (historyDinner?.imageurl)!), placeholderImage: UIImage(named: "historydinner_placeholder"))
             titleLabel.text = historyDinner?.title
             timeLabel.text = historyDinner?.datetime!.substringToIndex((historyDinner?.datetime?.startIndex.advancedBy(10))!)
             priceLabel.text = "¥\(String(historyDinner!.price))"
@@ -21,7 +21,7 @@ class HistoryDinnerCollectionViewCell: UICollectionViewCell {
     }
     var historyCusDinner: Historycustommadedinner?{
         didSet{
-            dinnerImage.sd_setImageWithURL(NSURL(string: (historyCusDinner?.imageurl)!), placeholderImage: UIImage(named: "wutu"))
+            dinnerImage.sd_setImageWithURL(NSURL(string: (historyCusDinner?.imageurl)!), placeholderImage: UIImage(named: "historydinner_placeholder"))
             let str = "[定制] " + (historyCusDinner?.name)!
             
             let mutableStr = NSMutableAttributedString(string: str)

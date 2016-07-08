@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DinnerDetailViewController: BaseViewController {
+class DinnerDetailViewController: NavigationBarAnimationViewController {
 
     private var dinnerTable: UITableView!
     private var banner: BannerView?
@@ -48,23 +48,17 @@ class DinnerDetailViewController: BaseViewController {
     }
     
     private func setNaviagtionBarAppearance() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+        titleColorNormal = UIColor.clearColor()
+        titleColorSelected = UIColor.blackColor()
         collect = UIButton(type: .Custom)
-        collect.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         collect.setImage(UIImage(named: "rejuSave"), forState: .Normal)
+        collect.setImage(UIImage(named: "rejuSaveD"), forState: .Selected)
         collect.addTarget(self, action: "collectItemClick", forControlEvents: .TouchUpInside)
         share = UIButton(type: .Custom)
-        share.frame = CGRect(x: 10 + 30, y: 0, width: 30, height: 30)
         share.setImage(UIImage(named: "rejuShare"), forState: .Normal)
+        share.setImage(UIImage(named: "rejuShareD"), forState: .Selected)
         share.addTarget(self, action: "shareItemClick", forControlEvents: .TouchUpInside)
-        back = UIButton(type: .Custom)
-        back.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
-        back.setImage(UIImage(named: "rejuBack"), forState: .Normal)
-        back.addTarget(self, action: "backItemClick", forControlEvents: .TouchUpInside)
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.clearColor()]
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: share),UIBarButtonItem(customView: collect)]
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: back)
+        rightItems = [share,collect]
     }
     
     private func setUI() {
@@ -104,28 +98,6 @@ class DinnerDetailViewController: BaseViewController {
     
     func shareItemClick() {
         SocialView.shareInstance().showSocialView()
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let contentOffsetY = scrollView.contentOffset.y
-        var alpha = contentOffsetY / ScreenSize.SCREEN_HEIGHT
-        if alpha > 1 {
-            alpha = 0.99
-        }
-        
-        if alpha > 0.7 {
-            share.setImage(UIImage(named: "rejuShareD"), forState: .Normal)
-            collect.setImage(UIImage(named: "rejuSaveD"), forState: .Normal)
-            back.setImage(UIImage(named: "rejuBackD"), forState: .Normal)
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-        }else {
-            share.setImage(UIImage(named: "rejuShare"), forState: .Normal)
-            collect.setImage(UIImage(named: "rejuSave"), forState: .Normal)
-            back.setImage(UIImage(named: "rejuBack"), forState: .Normal)
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.clearColor()]
-        }
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(UIColor(white: 1.0, alpha: alpha)), forBarMetrics: UIBarMetrics.Default)
     }
     
     override func didReceiveMemoryWarning() {

@@ -108,6 +108,9 @@ class MarketViewController: TranslationCollectionViewController {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ChefCell
         DebugPrint("chef cell  点击\(cell.tag)")
+        let vc = MarketGoodsInfoViewController()
+        vc.goodsID = cell.tag
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {

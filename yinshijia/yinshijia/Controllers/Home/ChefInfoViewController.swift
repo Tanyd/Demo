@@ -50,7 +50,7 @@ class ChefInfoViewController: UITableViewController {
         })
         headerView.hidden = true
         tableView.tableHeaderView = headerView
-        tableView.registerClass(ChefInfoIntroductionCell.self, forCellReuseIdentifier: String(ChefInfoIntroductionCell))
+        tableView.registerClass(ChefInfoCell.self, forCellReuseIdentifier: String(ChefInfoCell))
         tableView.registerClass(ChefInfoMarksCell.self, forCellReuseIdentifier: String(ChefInfoMarksCell))
         tableView.registerClass(PersonalDinnerCell.self, forCellReuseIdentifier: String(PersonalDinnerCell))
         tableView.registerClass(PersonalDinnerCell.self, forCellReuseIdentifier: "goods" + String(PersonalDinnerCell))
@@ -74,11 +74,12 @@ class ChefInfoViewController: UITableViewController {
         var cell: UITableViewCell?
         switch indexPath.section {
         case 0:
-            cell = tableView.dequeueReusableCellWithIdentifier(String(ChefInfoIntroductionCell)) as? ChefInfoIntroductionCell
+            cell = tableView.dequeueReusableCellWithIdentifier(String(ChefInfoCell)) as? ChefInfoCell
             if cell == nil {
-                cell = ChefInfoIntroductionCell(style: .Default, reuseIdentifier: String(ChefInfoIntroductionCell))
+                cell = ChefInfoCell(style: .Default, reuseIdentifier: String(ChefInfoCell))
             }
-            let cell = cell as! ChefInfoIntroductionCell
+            let cell = cell as! ChefInfoCell
+            cell.type = .ChefInfo
             cell.configureChefModel(chefModel?.data?.baseInfo)
         case 1:
             cell = tableView.dequeueReusableCellWithIdentifier(String(ChefInfoMarksCell)) as? ChefInfoMarksCell
@@ -192,8 +193,9 @@ class ChefInfoViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return tableView.fd_heightForCellWithIdentifier(String(ChefInfoIntroductionCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! ChefInfoIntroductionCell
+            return tableView.fd_heightForCellWithIdentifier(String(ChefInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                let cell = cell as! ChefInfoCell
+                cell.type = .ChefInfo
                 cell.configureChefModel(self.chefModel?.data?.baseInfo)
             })
             
@@ -228,19 +230,19 @@ class ChefInfoViewController: UITableViewController {
                 return 0
             }
         case 5:
-            return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                let cell = cell as! FeatureDinnerCell
-                cell.configureModel(self.chefModel?.data?.menu)
-            })
-        case 6:
             if chefModel?.data?.menu?.count > 0 {
-                return tableView.fd_heightForCellWithIdentifier(String(AddressInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-                    let cell = cell as! AddressInfoCell
-                    cell.configureModel(self.chefModel?.data?.address?.address, mapUrl: self.chefModel?.data?.address?.mapImageUrl)
+                return tableView.fd_heightForCellWithIdentifier(String(FeatureDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                    let cell = cell as! FeatureDinnerCell
+                    cell.configureModel(self.chefModel?.data?.menu)
                 })
             }else{
                 return 0
             }
+        case 6:
+            return tableView.fd_heightForCellWithIdentifier(String(AddressInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+                let cell = cell as! AddressInfoCell
+                cell.configureModel(self.chefModel?.data?.address?.address, mapUrl: self.chefModel?.data?.address?.mapImageUrl)
+            })
         case 7:
             if chefModel?.data?.historyCustomMadeDinner?.count > 0 || chefModel?.data?.historyDinner?.count > 0 {
                 return tableView.fd_heightForCellWithIdentifier(String(HistoryDinnerCell), cacheByIndexPath: indexPath, configuration: { (cell) in

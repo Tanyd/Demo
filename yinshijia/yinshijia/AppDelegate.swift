@@ -28,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidReceiveMemoryWarning(application: UIApplication) {
+        SDWebImageManager.sharedManager().cancelAll()
         SDWebImageManager.sharedManager().imageCache.cleanDisk()
         SDWebImageManager.sharedManager().imageCache.clearMemory()
-        SDWebImageManager.sharedManager().cancelAll()
         DebugPrint("内存警告清理cache")
     }
     

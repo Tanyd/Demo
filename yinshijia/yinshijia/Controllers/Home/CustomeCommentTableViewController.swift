@@ -18,6 +18,8 @@ class CustomeCommentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = 90
+        tableView.rowHeight = UITableViewAutomaticDimension
         setUI()
     }
     
@@ -38,9 +40,10 @@ class CustomeCommentTableViewController: UITableViewController {
         return cell!
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return tableView.fd_heightForCellWithIdentifier(String(CustomeCommentCell), cacheByIndexPath: indexPath, configuration: { (cell) in
-            (cell as! CustomeCommentCell).commentModel = self.comments[indexPath.row]
-        })
-    }
+    //MARK: UITableView+FDTemplateLayoutCell导致所有cell没有释放引起HJCornerRadius KVO错误
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return tableView.fd_heightForCellWithIdentifier(String(CustomeCommentCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+//            (cell as! CustomeCommentCell).commentModel = self.comments[indexPath.row]
+//        })
+//    }
 }

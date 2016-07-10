@@ -11,7 +11,7 @@ import UIKit
 class BannerView: UIView {
     
     private var didUpdateConstraints = false
-    
+
     private let imageViewMaxCount = 3
     
     private var imageScrollView: UIScrollView!
@@ -20,7 +20,7 @@ class BannerView: UIView {
     
     private var timer: NSTimer?
     
-    private var allImgs = [BannerImageView]()
+    var allImgs = [BannerImageView]()
     
     var bannerImageClick:((index: Int) -> ())?
     
@@ -98,6 +98,7 @@ class BannerView: UIView {
         for _ in 0..<imageViewMaxCount {
             let imageView = BannerImageView(frame: CGRectZero)
             imageView.contentMode = .ScaleAspectFill
+            imageView.clipsToBounds = true
             imageView.userInteractionEnabled = true
             let tap = UITapGestureRecognizer(target: self, action: "imageViewClick:")
             imageView.addGestureRecognizer(tap)
@@ -111,7 +112,7 @@ class BannerView: UIView {
         pageControl.pageIndicatorTintColor = UIColor.whiteColor()
         pageControl.currentPageIndicatorTintColor = Constant.Common.OrangeColor
         addSubview(pageControl)
-        
+        setNeedsUpdateConstraints()
     }
     
     func imageViewClick(tap: UITapGestureRecognizer) {
@@ -120,20 +121,16 @@ class BannerView: UIView {
             bannerImageClick!(index: img.bannerId)
         }
     }
-    
+
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         imageScrollView.frame = bounds
         
-        var height: CGFloat = 380.0.fitHeight()
-        if imgs.count > 0 {
-            height = 600.0.fitHeight()
-        }
         for index in 0..<imageViewMaxCount {
             let img = allImgs[index]
-            img.frame = CGRectMake(ScreenSize.SCREEN_WIDTH * CGFloat(index), 0, ScreenSize.SCREEN_WIDTH, height)
+            img.frame = CGRectMake(bounds.size.width * CGFloat(index), 0, bounds.size.width, bounds.size.height)
         }
         pageControl.autoAlignAxisToSuperviewAxis(.Vertical)
         pageControl.autoPinEdgeToSuperviewMargin(.Bottom)

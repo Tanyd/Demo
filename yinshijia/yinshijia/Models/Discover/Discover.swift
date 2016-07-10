@@ -16,6 +16,9 @@ class Discover: NSObject {
 
     var code: Int = 0
     
+    class func loadDicoverBaseData(callBack: BaseApiCallBack) {
+        BaseApi.shareBaseApi().loadDicoverBaseData(callBack)
+    }
 }
 
 class DiscoverData: NSObject, YYModel {

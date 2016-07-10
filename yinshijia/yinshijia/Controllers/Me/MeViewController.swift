@@ -12,7 +12,13 @@ class MeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let callBack: BaseApiCallBack = {(result, error) in
+            let model = result as! MarketGoods
+            print(model.data?.comments![0].name)
+            print("222")
+        }
+        MarketGoods.loadMarketGoodsDetail(callBack, id: 37)
+        
         // Do any additional setup after loading the view.
     }
 

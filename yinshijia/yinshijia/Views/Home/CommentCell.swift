@@ -10,6 +10,7 @@ import UIKit
 protocol CommentCellDelegate: NSObjectProtocol {
     func commentCellDidClick()
 }
+
 class CommentCell: UITableViewCell {
 
     private var didUpdateConstraints = false
@@ -17,9 +18,9 @@ class CommentCell: UITableViewCell {
     weak var delegate: CommentCellDelegate?
     
     private lazy var commentTable: CustomeCommentTableView = {
-        let table = CustomeCommentTableView(frame: CGRectZero, style: .Plain, loadMoreComments: {
-            if self.delegate != nil && (self.delegate?.respondsToSelector("commentCellDidClick"))!{
-                self.delegate!.commentCellDidClick()
+        let table = CustomeCommentTableView(frame: CGRectZero, style: .Plain, loadMoreComments: {[weak self] in
+            if self!.delegate != nil && (self!.delegate?.respondsToSelector("commentCellDidClick"))!{
+                self!.delegate!.commentCellDidClick()
             }
         })
         return table
@@ -30,9 +31,12 @@ class CommentCell: UITableViewCell {
         contentView.addSubview(commentTable)
         setNeedsUpdateConstraints()
     }
+    deinit{
+        print("shifang")
+    }
     
     func configureModel(model: [Comment]?) {
-            var totalH: CGFloat = 0
+        var totalH: CGFloat = 0
         if model?.count == 0 {
             totalH = 0
         }else if model?.count > 2 {

@@ -21,16 +21,20 @@ class CustomeCommentCell: UITableViewCell {
             
             userName.text = commentModel?.name
             timerLable.text = commentModel?.createtime
-            dinnerName.text = "定制饭局:" + (commentModel?.shopName)!
+            if commentModel?.shopName != nil {
+                dinnerName.text = "定制饭局:" + (commentModel?.shopName)!
+            }
             contenText.text = commentModel!.content
-            userIcon.sd_setImageWithURL(NSURL(string: commentModel!.headImageurl!), placeholderImage: UIImage(named: "headerview"), completed: { (image, error, cacheType, url) in
-                self.userIcon.image = UIImage.circleImageWithImage(image)
-            })
+            userIcon.sd_setImageWithURL(NSURL(string: commentModel!.headImageurl!), placeholderImage: UIImage(named: "headerview"))
             for index in 0...(commentModel?.rank)! - 1 {
                 let start = rankView.subviews[index] as! UIButton
                 start.selected = true
             }
         }
+    }
+    
+    deinit{
+        print("CustomeCommentCell")
     }
     
     private lazy var rankView: UIView = {
@@ -60,6 +64,7 @@ class CustomeCommentCell: UITableViewCell {
     
     private lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
+        img.aliCornerRadius = 85.0.fitHeight() * 0.5
         img.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
         img.addGestureRecognizer(tap)
@@ -67,7 +72,7 @@ class CustomeCommentCell: UITableViewCell {
     }()
     
     func userIconDidClick(sender: UITapGestureRecognizer) {
-        
+        print("eee")
     }
     
     private lazy var userName: UILabel = {
@@ -91,9 +96,9 @@ class CustomeCommentCell: UITableViewCell {
         contentView.addSubview(userIcon)
         contentView.addSubview(userName)
         contentView.addSubview(timerLable)
-        contentView.addSubview(commentBackView)
         commentBackView.addSubview(rankView)
         commentBackView.addSubview(contenText)
+        contentView.addSubview(commentBackView)
         contentView.addSubview(dinnerName)
         setNeedsUpdateConstraints()
     }

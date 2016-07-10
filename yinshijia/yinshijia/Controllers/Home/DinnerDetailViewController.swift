@@ -23,6 +23,10 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
         }
     }
     
+    deinit{
+        print("DinnerDetailViewController释放")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.showWithStatus("加载中", maskType: .Clear, style: .Light)
@@ -88,9 +92,6 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
         view.addSubview(customeMadeView)
     }
 
-    func backItemClick() {
-        navigationController?.popViewControllerAnimated(true)
-    }
     
     func collectItemClick() {
         print("collect dinner");
@@ -103,6 +104,7 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
  
 }
 
@@ -126,7 +128,8 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
                 cell = ChefInfoCell(style: .Default, reuseIdentifier: String(ChefInfoCell))
             }
             let cell = cell as! ChefInfoCell
-            cell.configureModel(model)
+            cell.type = .ChefDinner
+            cell.configureChefDinnerModel(model)
         case 2:
             cell = tableView.dequeueReusableCellWithIdentifier(String(FeatureDinnerCell)) as? FeatureDinnerCell
             if cell == nil {
@@ -170,7 +173,7 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
         cell?.selectionStyle = .None
         return cell!
     }
-    
+   
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         switch indexPath.row {
@@ -181,9 +184,10 @@ extension DinnerDetailViewController: UITableViewDataSource, UITableViewDelegate
             })
             
         case 1:
-            return tableView.fd_heightForCellWithIdentifier(String(ChefInfoCell), cacheByIndexPath: indexPath, configuration: { (cell) in
+            return tableView.fd_heightForCellWithIdentifier(String(ChefInfoCell), cacheByIndexPath: indexPath, configuration: {(cell) in
                 let cell = cell as! ChefInfoCell
-                cell.configureModel(self.model)
+                cell.type = .ChefDinner
+                cell.configureChefDinnerModel(self.model)
             })
             
         case 2:

@@ -226,7 +226,7 @@ class Comment: NSObject {
     var createtime: String?
 
     var name: String?
-
+    
 }
 
 class Historycustommadedinner: NSObject {

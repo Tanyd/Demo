@@ -95,5 +95,12 @@ struct Constant {
 
             static let ChefInfo     = "user/chefDetail/"
         }
+        
+        struct Dicover {
+            
+            static let BaseDiscover   = "discovery/city/1"
+            
+            static let DetailGoods    = "goods/"
+        }
     }
 }

@@ -20,14 +20,7 @@ class ChoiceCell: UITableViewCell {
     var choiceModel: Dinnerlist?{
         didSet{
             let chefImg = choiceModel!.themeDinnerChefImageurl == nil ? choiceModel?.chefImageurl : choiceModel!.themeDinnerChefImageurl
-            userIcon.sd_setImageWithURL(NSURL(string: chefImg!), placeholderImage: UIImage(named: "headerview")) { (image, error, cacheType, url) in
-                self.userIcon.image = UIImage.circleWithImageAndSize(image,
-                                                                     borderWidth: 2.0,
-                                                                     borderColor: UIColor.whiteColor(),
-                                                                     size: CGSize(width: 114.0.fitWidth(), height: 114.0.fitWidth()))
-
-            }
-            
+            userIcon.sd_setImageWithURL(NSURL(string: chefImg!), placeholderImage: UIImage(named: "headerview"))
             let img = choiceModel!.themeDinnerImageurl == nil ? choiceModel!.chefImageurl : choiceModel!.themeDinnerImageurl
             let goodsImgArray = img!.componentsSeparatedByString(",")
             goodsImg.sd_setImageWithURL(NSURL(string: goodsImgArray[0]), placeholderImage: UIImage(named: "wutu"))
@@ -76,6 +69,10 @@ class ChoiceCell: UITableViewCell {
 
     lazy var userIcon: UIImageView = {
         let img = UIImageView.newAutoLayoutView()
+        img.aliCornerRadius = 114.0.fitWidth() * 0.5
+        img.layer.borderColor = UIColor.whiteColor().CGColor
+        img.layer.borderWidth = 2.0
+        img.layer.cornerRadius = 114.0.fitWidth() * 0.5
         img.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
         img.addGestureRecognizer(tap)
@@ -125,7 +122,6 @@ class ChoiceCell: UITableViewCell {
         contentView.addSubview(time)
         contentView.addSubview(userIcon)
         setNeedsUpdateConstraints()
-
     }
     
 

@@ -47,6 +47,10 @@ class NavigationBarAnimationViewController: BaseViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backItem)
     }
     
+    func backItemClick() {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let contentOffsetY = scrollView.contentOffset.y
         var alpha = contentOffsetY / ScreenSize.SCREEN_HEIGHT

@@ -56,17 +56,17 @@ class ChefCell: UICollectionViewCell {
     }()
     
     private lazy var name: UILabel = {
-       let lable = UILabel.labelCustomer("399", fontType: nil, color: UIColor.blackColor(), fontSize: 14)
+       let lable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 14)
         return lable
     }()
     
     private lazy var schedule: UILabel = {
-        let lable = UILabel.labelCustomer("399", fontType: nil, color: UIColor.colorFromHex(0x929292), fontSize: 11)
+        let lable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.colorFromHex(0x929292), fontSize: 11)
         return lable
     }()
 
     private lazy var love: UILabel = {
-        let lable = UILabel.labelCustomer("399", fontType: nil, color: UIColor.colorFromHex(0x929292), fontSize: 11)
+        let lable = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.colorFromHex(0x929292), fontSize: 11)
         return lable
     }()
     

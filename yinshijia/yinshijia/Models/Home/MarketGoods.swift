@@ -16,6 +16,9 @@ class MarketGoods: NSObject {
 
     var code: Int = 0
     
+    class func loadMarketGoodsDetail(callBack: BaseApiCallBack, id: Int){
+        BaseApi.shareBaseApi().loadMarketGoodsDetail(callBack, id: id)
+    }
 }
 
 class MarketGoodsData: NSObject, YYModel {
@@ -93,21 +96,24 @@ class Properties: NSObject {
 
 }
 
-class Comments: NSObject {
+class Comments: Comment, YYModel {
 
     var imageurl: String?
 
-    var content: String?
+//    var content: String?
+//
+//    var rank: Int = 0
+//
+//    var userId: String?
+//
+//    var name: String?
+//
+//    var createtime: String?
+//
+//    var headImageurl: String?
 
-    var rank: Int = 0
-
-    var user_id: String?
-
-    var user_name: String?
-
-    var createtime: String?
-
-    var user_imageurl: String?
-
+    static func modelCustomPropertyMapper() -> [String : AnyObject]? {
+        return ["userId":"user_id","name":"user_name","headImageurl":"user_imageurl"]
+    }
 }
 

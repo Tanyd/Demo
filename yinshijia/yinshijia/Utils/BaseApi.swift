@@ -64,7 +64,15 @@ class BaseApi: AFHTTPSessionManager {
     }
     
     func loadChefInfo(callBack: BaseApiCallBack, id: Int) {
-        loadBaseDataWithParameters(callBack, urlPath: Constant.Api.Home.ChefInfo, parameters: Constant.Api.TokenParameters, id: id, classType: ChefInfo.classForCoder())
+        loadBaseDataWithID(callBack, urlPath: Constant.Api.Home.ChefInfo, id: id, classType: ChefInfo.classForCoder())
+    }
+    
+    func loadDicoverBaseData(callBack: BaseApiCallBack) {
+        loadBaseDataWithParameters(callBack, urlPath: Constant.Api.Dicover.BaseDiscover, parameters: Constant.Api.TokenParameters, id: nil, page: nil, classType: Discover.classForCoder())
+    }
+    
+    func loadMarketGoodsDetail(callBack: BaseApiCallBack, id: Int) {
+        loadBaseDataWithID(callBack, urlPath: Constant.Api.Dicover.DetailGoods, id: id, classType: MarketGoods.classForCoder())
     }
     
     //MARK: base 请求
@@ -74,30 +82,15 @@ class BaseApi: AFHTTPSessionManager {
     
     //MARK: 拼接参数ID 请求
     func loadBaseDataWithID(callBack: BaseApiCallBack, urlPath: String, id: Int?, classType: AnyClass) {
-        loadBaseDataWithParameters(callBack, urlPath: urlPath, parameters: nil, id: id, classType: classType)
+        loadBaseDataWithParameters(callBack, urlPath: urlPath, parameters: nil, id: id, page: nil, classType: classType)
     }
     
     //MARK: 分页更多 请求
-    func loadMoreDataWithPage(callBack: BaseApiCallBack,var urlPath: String,page: Int, classType: AnyClass) {
-        let range = Range(start: urlPath.endIndex.advancedBy(-3), end: urlPath.endIndex.advancedBy(-2))
-        urlPath.replaceRange(range, with: String(page))
-        request(.GET, Urlstring: urlPath, parameters: Constant.Api.BaseParameters) { (result, error) in
-            if error != nil {
-                callBack(result: nil, error: error)
-            }else{
-                let json = JSON(result!)
-                let code = json["code"].number
-                if code == 200 {
-                    let model = classType.yy_modelWithJSON(json.dictionaryObject!)
-                    callBack(result: model, error: nil)
-                }else{
-                    callBack(result: nil, error: BaseError)
-                }
-            }
-        }
+    func loadMoreDataWithPage(callBack: BaseApiCallBack, urlPath: String,page: Int, classType: AnyClass) {
+        loadBaseDataWithParameters(callBack, urlPath: urlPath, parameters: nil, id: nil, page: page, classType: classType)
     }
     
-    func loadBaseDataWithParameters(callBack: BaseApiCallBack, urlPath: String, parameters: [String:AnyObject]?, id: Int?, classType: AnyClass){
+    func loadBaseDataWithParameters(callBack: BaseApiCallBack, urlPath: String, parameters: [String:AnyObject]?, id: Int?, page: Int?, classType: AnyClass){
         var dic: [String:AnyObject]?
         if parameters == nil {
             dic = Constant.Api.BaseParameters
@@ -111,6 +104,12 @@ class BaseApi: AFHTTPSessionManager {
         }else{
             path = urlPath
         }
+
+        if page != nil {
+            let range = urlPath.endIndex.advancedBy(-3)..<urlPath.endIndex.advancedBy(-2)
+            path!.replaceRange(range, with: String(page!))
+        }
+        
         request(.GET, Urlstring: path!, parameters: dic) { (result, error) in
             if error != nil {
                 callBack(result: nil, error: error)

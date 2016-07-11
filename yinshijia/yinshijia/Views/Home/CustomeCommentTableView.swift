@@ -48,6 +48,7 @@ class CustomeCommentTableView: UITableView {
     
     convenience init(frame: CGRect, style: UITableViewStyle, loadMoreComments: ()->()) {
         self.init(frame: frame, style: style)
+        separatorStyle = .None
         self.footerClick = loadMoreComments
     }
     

@@ -25,8 +25,8 @@ class SocialView: UIView {
     }
     
     func showSocialView() {
-        UIApplication.sharedApplication().windows.last?.addSubview(self)
-        UIView.animateWithDuration(0.3) { 
+        hidden = false
+        UIView.animateWithDuration(0.3) {
             self.containerView.transform = CGAffineTransformMakeTranslation(0, -380.0.fitHeight())
         }
     }
@@ -35,7 +35,7 @@ class SocialView: UIView {
         UIView.animateWithDuration(0.3, animations: { 
             self.containerView.transform = CGAffineTransformIdentity
             }) { (_) in
-                    self.removeFromSuperview()
+                    self.hidden = true
         }
     }
     
@@ -70,6 +70,7 @@ class SocialView: UIView {
         containerView.addSubview(line)
        
         setNeedsUpdateConstraints()
+        UIApplication.sharedApplication().windows.last?.addSubview(self)
     }
     
     private func setSocialButton(title: String, image: String, tag: Int) -> CustomButton {

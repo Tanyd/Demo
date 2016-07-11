@@ -52,6 +52,11 @@
 		27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */; };
 		27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */; };
 		27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */; };
+		27E1D4881D33C79E00914519 /* MarketGoodsScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1D4871D33C79E00914519 /* MarketGoodsScheduleView.swift */; };
+		27E1D48A1D33CA7F00914519 /* ScheduleTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1D4891D33CA7F00914519 /* ScheduleTitleCell.swift */; };
+		27E1D48C1D33CA9100914519 /* ScheduleTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1D48B1D33CA9100914519 /* ScheduleTypeCell.swift */; };
+		27E1D48E1D33CAA300914519 /* ScheduleNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1D48D1D33CAA300914519 /* ScheduleNumberCell.swift */; };
+		27E1D4901D33D84700914519 /* TypesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E1D48F1D33D84700914519 /* TypesCollectionViewCell.swift */; };
 		27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */; };
 		27E7EC841D163BE500E3F126 /* MoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */; };
 		27E7EC861D163E8300E3F126 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E7EC851D163E8300E3F126 /* MenuCell.swift */; };
@@ -170,6 +175,11 @@
 		27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
 		27C6B86C1D0BD99600B79A83 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		27C6B87D1D0BE7F100B79A83 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = ../SwiftyJSON.swift; sourceTree = "<group>"; };
+		27E1D4871D33C79E00914519 /* MarketGoodsScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketGoodsScheduleView.swift; sourceTree = "<group>"; };
+		27E1D4891D33CA7F00914519 /* ScheduleTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTitleCell.swift; sourceTree = "<group>"; };
+		27E1D48B1D33CA9100914519 /* ScheduleTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTypeCell.swift; sourceTree = "<group>"; };
+		27E1D48D1D33CAA300914519 /* ScheduleNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleNumberCell.swift; sourceTree = "<group>"; };
+		27E1D48F1D33D84700914519 /* TypesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypesCollectionViewCell.swift; sourceTree = "<group>"; };
 		27E7EC811D16364C00E3F126 /* FeatureDinnerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureDinnerCell.swift; sourceTree = "<group>"; };
 		27E7EC831D163BE500E3F126 /* MoreInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoCell.swift; sourceTree = "<group>"; };
 		27E7EC851D163E8300E3F126 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -253,6 +263,11 @@
 				270295BC1D30CCAF00E468BA /* GoodsDetailCell.swift */,
 				272A2BAD1D31075800D6C6A3 /* GoodsDetailTableViewCell.swift */,
 				272A2BAF1D310DFA00D6C6A3 /* ScheduleInfoCell.swift */,
+				27E1D4871D33C79E00914519 /* MarketGoodsScheduleView.swift */,
+				27E1D4891D33CA7F00914519 /* ScheduleTitleCell.swift */,
+				27E1D48B1D33CA9100914519 /* ScheduleTypeCell.swift */,
+				27E1D48D1D33CAA300914519 /* ScheduleNumberCell.swift */,
+				27E1D48F1D33D84700914519 /* TypesCollectionViewCell.swift */,
 			);
 			path = MarketGoods;
 			sourceTree = "<group>";
@@ -785,6 +800,7 @@
 				8B7F93DB1D0A5755001A2207 /* CustomMadeViewController.swift in Sources */,
 				2700B50B1D0EDE9E00FF83D6 /* Goods.swift in Sources */,
 				8B7F93DF1D0A5769001A2207 /* MeViewController.swift in Sources */,
+				27E1D48E1D33CAA300914519 /* ScheduleNumberCell.swift in Sources */,
 				8BC8184F1D17A1D8003E9D3E /* AddressInfoCell.swift in Sources */,
 				8BC653DB1D2DEF0300728C68 /* HistoryDinnerCollectionViewCell.swift in Sources */,
 				27C6B87E1D0BE7F100B79A83 /* SwiftyJSON.swift in Sources */,
@@ -799,10 +815,12 @@
 				8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */,
 				277D650A1D2FE91600324045 /* MenuHeaderView.swift in Sources */,
 				8B0A46D51D2FAC6800E65847 /* MarketGoodsInfoViewController.swift in Sources */,
+				27E1D48A1D33CA7F00914519 /* ScheduleTitleCell.swift in Sources */,
 				270295B41D30A88200E468BA /* DiscoverChefCell.swift in Sources */,
 				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
 				270295BB1D30C68900E468BA /* SelectedTypeCell.swift in Sources */,
 				8B7F93DD1D0A5761001A2207 /* OrderViewController.swift in Sources */,
+				27E1D4881D33C79E00914519 /* MarketGoodsScheduleView.swift in Sources */,
 				8B8F2C181D2CB28E00AA79AA /* ChefInfoViewController.swift in Sources */,
 				8B0A46D11D2FAA2E00E65847 /* MarketGoods.swift in Sources */,
 				27E7EC821D16364C00E3F126 /* FeatureDinnerCell.swift in Sources */,
@@ -826,7 +844,9 @@
 				27B8C5DC1D0BC28900A9A114 /* Choice.swift in Sources */,
 				8B944CA31D0A52E40076822D /* BaseNavigationController.swift in Sources */,
 				8BC653D91D2DEBF300728C68 /* HistoryDinnerCell.swift in Sources */,
+				27E1D48C1D33CA9100914519 /* ScheduleTypeCell.swift in Sources */,
 				270291CF1D0BEF9700009ED3 /* HeaderView.swift in Sources */,
+				27E1D4901D33D84700914519 /* TypesCollectionViewCell.swift in Sources */,
 				273D9C951D0CF5AE00E511B1 /* ChefList.swift in Sources */,
 				27F03E241D309FFD008297B6 /* MenuHeaderCollectionViewCell.swift in Sources */,
 				8B7F93C61D0A53F2001A2207 /* Constant.swift in Sources */,

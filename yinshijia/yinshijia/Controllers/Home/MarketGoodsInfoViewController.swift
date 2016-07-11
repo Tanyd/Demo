@@ -14,13 +14,23 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
     private var bannerView: BannerView!
     private var tableView: UITableView!
     private var bannerViewHConstraint: NSLayoutConstraint?
-    private let bannerViewH = 600.0.fitHeight()
+    private let bannerViewH = 720.0.fitHeight()
     private var goodsModel: MarketGoods?
+    private var scheduleButton: UIButton!
+
+    private lazy var scheduleView: MarketGoodsScheduleView = {
+        let view = MarketGoodsScheduleView(frame:self.view.bounds)
+        view.model = self.goodsModel!.data
+        self.view.insertSubview(view, belowSubview: self.scheduleButton)
+        return view
+    }()
+    
     var goodsID: Int = 0 {
         didSet{
             loadBaseDate()
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.showWithStatus("加载中", maskType: .Clear, style: .Light)
@@ -74,7 +84,23 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         bannerView.contentMode = .ScaleAspectFill
         bannerView.clipsToBounds = true
         view.addSubview(bannerView)
+        
+        scheduleButton = UIButton(type: .Custom)
+        scheduleButton.setTitle("订购预约", forState: .Normal)
+        scheduleButton.backgroundColor = Constant.Common.OrangeColor
+        scheduleButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        scheduleButton.titleLabel?.font = UIFont.systemFontOfSize(13)
+        scheduleButton.addTarget(self, action: "showScheduleView:", forControlEvents: .TouchUpInside)
+        view.addSubview(scheduleButton)
         view.setNeedsUpdateConstraints()
+    }
+    
+    func showScheduleView(sender: UIButton) {
+        if !scheduleView.isShow {
+            scheduleView.show()
+        }else{
+            print("订购");
+        }
     }
     
     override func updateViewConstraints() {
@@ -82,6 +108,8 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
             bannerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
             bannerViewHConstraint = bannerView.autoSetDimension(.Height, toSize: CGFloat(bannerViewH))
             tableView.autoPinEdgesToSuperviewEdges()
+            scheduleButton.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
+            scheduleButton.autoSetDimension(.Height, toSize: 90.0.fitHeight())
             didUpdateConstraints = true
         }
         super.updateViewConstraints()

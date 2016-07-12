@@ -24,14 +24,30 @@ class PopView: UIView {
     var bottomMargin: CGFloat = 0
     var isShow = false
     
-    convenience init(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
-        self.init(frame: UIScreen.mainScreen().bounds)
-        hidden = true
+    private static var instance: PopView = {
+        let temp = PopView(frame: UIScreen.mainScreen().bounds)
+        return temp
+    }()
+    
+    class func shareView() ->PopView {
+        return instance
+    }
+    
+    func configureView(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
         self.contenH = contenH
         self.bottomMargin = bottomMargin
         self.contenView = view
         setUI()
     }
+    
+//    convenience init(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
+//        self.init(frame: UIScreen.mainScreen().bounds)
+//        hidden = true
+//        self.contenH = contenH
+//        self.bottomMargin = bottomMargin
+//        self.contenView = view
+//        setUI()
+//    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +70,7 @@ class PopView: UIView {
         isShow = true
         UIView.animateWithDuration(0.3) {
             self.backGroudView.alpha = 0.4
-            self.contenView.transform = CGAffineTransformMakeTranslation(0, -self.contenH)
+            self.contenView.transform = CGAffineTransformTranslate(self.contenView.transform, 0, -self.contenH)
         }
     }
     
@@ -69,14 +85,14 @@ class PopView: UIView {
     }
     
     override func updateConstraints() {
-        if !didUpdateConstraints{
+//        if !didUpdateConstraints{
             backGroudView.autoPinEdgesToSuperviewEdges()
             contenView.autoPinEdgeToSuperviewEdge(.Top, withInset: ScreenSize.SCREEN_HEIGHT - bottomMargin)
             contenView.autoPinEdgeToSuperviewEdge(.Left)
             contenView.autoPinEdgeToSuperviewEdge(.Right)
             contenView.autoSetDimension(.Height, toSize: contenH)
             didUpdateConstraints = true
-        }
+//        }
         super.updateConstraints()
     }
     

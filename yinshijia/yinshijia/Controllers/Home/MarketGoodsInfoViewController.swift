@@ -25,13 +25,15 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         return view
     }()
     
-    private lazy var testView: PopView = {
-        let tt = UIView()
-        tt.backgroundColor = UIColor.redColor()
-        let t = PopView(view: tt, contenH: 300, bottomMargin: 90.0.fitHeight())
-        self.view.insertSubview(t, belowSubview: self.scheduleButton)
-        return t
-    }()
+    private var testView: PopView!
+//        let tt = UIView()
+//        tt.backgroundColor = UIColor.redColor()
+//        let t = PopView.shareView()
+//        t.configureView(tt, contenH: 300, bottomMargin: 90.0.fitHeight())
+////        let t = PopView(view: tt, contenH: 300, bottomMargin: 90.0.fitHeight())
+//        self.view.insertSubview(t, belowSubview: self.scheduleButton)
+//        return t
+//    }()
     
     var goodsID: Int = 0 {
         didSet{
@@ -109,12 +111,20 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         scheduleButton.titleLabel?.font = UIFont.systemFontOfSize(13)
         scheduleButton.addTarget(self, action: "showScheduleView:", forControlEvents: .TouchUpInside)
         view.addSubview(scheduleButton)
+        
+//        let tt = UIView()
+//        tt.backgroundColor = UIColor.redColor()
+//        PopView.shareView().hidden = true
+//        PopView.shareView().configureView(tt, contenH: 300, bottomMargin: 90.0.fitHeight())
+//        //        let t = PopView(view: tt, contenH: 300, bottomMargin: 90.0.fitHeight())
+//        self.view.insertSubview(PopView.shareView(), belowSubview: self.scheduleButton)
+        
         view.setNeedsUpdateConstraints()
     }
     
 
     func showScheduleView(sender: UIButton) {
-//        testView.show()
+//        PopView.shareView().show()
         if !scheduleView.isShow {
             scheduleView.show()
         }else{

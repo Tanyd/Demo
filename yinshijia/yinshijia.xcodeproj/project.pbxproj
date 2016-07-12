@@ -47,6 +47,7 @@
 		277D650A1D2FE91600324045 /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277D65091D2FE91600324045 /* MenuHeaderView.swift */; };
 		278F3C861D2AA1B900D5F87B /* CustomMadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278F3C851D2AA1B900D5F87B /* CustomMadeView.swift */; };
 		279265411D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279265401D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift */; };
+		27B177951D352DFC00E8209B /* PopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B177941D352DFC00E8209B /* PopView.swift */; };
 		27B8C5DC1D0BC28900A9A114 /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B8C5DB1D0BC28900A9A114 /* Choice.swift */; };
 		27BE93E11D103F1600887178 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BE93E01D103F1600887178 /* CategoryList.swift */; };
 		27C6B86B1D0BD97500B79A83 /* ChefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */; };
@@ -170,6 +171,7 @@
 		277D65091D2FE91600324045 /* MenuHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		278F3C851D2AA1B900D5F87B /* CustomMadeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMadeView.swift; sourceTree = "<group>"; };
 		279265401D2E9EEE0026FA6C /* ChefInfoSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefInfoSectionHeaderView.swift; sourceTree = "<group>"; };
+		27B177941D352DFC00E8209B /* PopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
 		27B8C5DB1D0BC28900A9A114 /* Choice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
 		27BE93E01D103F1600887178 /* CategoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		27C6B86A1D0BD97500B79A83 /* ChefViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChefViewController.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */,
 				8B1C12211D0AB7A100968DC9 /* Tabbar.swift */,
 				270095EA1D2BFAA100007AFF /* SocialView.swift */,
+				27B177941D352DFC00E8209B /* PopView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				8B1C121E1D0A9D7400968DC9 /* TranslationTableViewController.swift in Sources */,
 				8B7F93D91D0A5747001A2207 /* DiscoverViewController.swift in Sources */,
 				27105F921D1512C600362F3E /* ChefInfoCell.swift in Sources */,
+				27B177951D352DFC00E8209B /* PopView.swift in Sources */,
 				8B7F93D71D0A5733001A2207 /* HomeViewController.swift in Sources */,
 				8B8489131D2B897200128B50 /* SVPHUD.swift in Sources */,
 				8BE377731D1797E0000905A6 /* ChefDinner.swift in Sources */,

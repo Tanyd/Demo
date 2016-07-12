@@ -19,7 +19,7 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
     private var scheduleButton: UIButton!
 
     private lazy var scheduleView: MarketGoodsScheduleView = {
-        let view = MarketGoodsScheduleView(frame:self.view.bounds)
+        let view = MarketGoodsScheduleView(frame: self.view.bounds)
         view.model = self.goodsModel!.data
         self.view.insertSubview(view, belowSubview: self.scheduleButton)
         return view
@@ -38,10 +38,19 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if scheduleView.isShow {
+            if scheduleView.isShow {
+                scheduleView.dismiss()
+            }
+        }
+    }
     
     private func loadBaseDate() {
         let callBack: BaseApiCallBack = {[weak self](result, error) in
             guard error == nil else {
+                SVProgressHUD.dismiss()
                 return
             }
             let model = result as? MarketGoods
@@ -95,6 +104,7 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         view.setNeedsUpdateConstraints()
     }
     
+
     func showScheduleView(sender: UIButton) {
         if !scheduleView.isShow {
             scheduleView.show()
@@ -102,6 +112,7 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
             print("订购");
         }
     }
+    
     
     override func updateViewConstraints() {
         if !didUpdateConstraints {

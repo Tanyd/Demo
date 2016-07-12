@@ -11,11 +11,29 @@ import UIKit
 class ScheduleNumberCell: UITableViewCell {
 
     private var didUpdateConstraints = false
-    var maxNumber: Int?{
+    private var curretNumber = 1{
         didSet{
-            
+            if curretNumber >= 1 && curretNumber <= maxNumber {
+                if curretNumber == 1 {
+                    removeBtn.selected = false
+                    addBtn.selected = true
+                }else if curretNumber == maxNumber {
+                    addBtn.selected = false
+                    removeBtn.selected = true
+                }else {
+                    addBtn.selected = true
+                    removeBtn.selected = true
+                }
+                numberLabel.text = String(curretNumber)
+            }else if curretNumber == 0 {
+                curretNumber++
+            }else if curretNumber == maxNumber + 1 {
+                curretNumber--
+            }
         }
     }
+    var maxNumber = 9
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel.labelCustomer("选择数量", fontType: nil, color: UIColor.lightGrayColor(), fontSize: 15)
         return label
@@ -32,25 +50,40 @@ class ScheduleNumberCell: UITableViewCell {
     private lazy var removeBtn: UIButton = {
         let btn = UIButton(type: .Custom)
         btn.setBackgroundImage(UIImage(named: "remove_person_gray"), forState: .Normal)
-        btn.setBackgroundImage(UIImage(named: "remove_person_black"), forState: .Normal)
+        btn.setBackgroundImage(UIImage(named: "remove_person_black"), forState: .Selected)
         btn.addTarget(self, action: "remove:", forControlEvents: .TouchUpInside)
         return btn
     }()
     
     private lazy var addBtn: UIButton = {
         let btn = UIButton(type: .Custom)
-        btn.setBackgroundImage(UIImage(named: "add_person_black"), forState: .Normal)
-        btn.setBackgroundImage(UIImage(named: "remove_person_gray"), forState: .Normal)
+        btn.setBackgroundImage(UIImage(named: "add_person_black"), forState: .Selected)
+        btn.setBackgroundImage(UIImage(named: "add_person_gray"), forState: .Normal)
+        btn.selected = true
         btn.addTarget(self, action: "add:", forControlEvents: .TouchUpInside)
         return btn
     }()
     
     func remove(sender: UIButton) {
-        
+        --curretNumber
+//        if curretNumber < 1 {
+//            sender.selected = false
+//        }else{
+//            numberLabel.text = String(curretNumber)
+//        }
     }
     
     func add(sender: UIButton) {
-        
+        ++curretNumber
+//        if curretNumber <= maxNumber {
+//            numberLabel.text = String(curretNumber)
+//            removeBtn.selected = true
+//            if curretNumber == maxNumber {
+//                sender.selected = false
+//            }
+//        }else{
+//            sender.selected = false
+//        }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

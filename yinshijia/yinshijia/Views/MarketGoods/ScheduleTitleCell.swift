@@ -16,6 +16,7 @@ class ScheduleTitleCell: UITableViewCell {
             titleLabel.text = title
         }
     }
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 17)
         return label
@@ -38,7 +39,6 @@ class ScheduleTitleCell: UITableViewCell {
     }
     
     func closeSchedule() {
-        DebugPrint(closeSchedule)
     }
     
     override func updateConstraints() {

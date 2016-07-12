@@ -30,7 +30,8 @@ class MarketGoodsScheduleView: UIView {
     
     private func setUI(){
         backGroudView = UIView.newAutoLayoutView()
-        backGroudView.backgroundColor = UIColor.redColor()
+        backGroudView.backgroundColor = UIColor.blackColor()
+        backGroudView.alpha = 0.0
         let tap = UITapGestureRecognizer(target: self, action: "backGroudViewClick:")
         backGroudView.addGestureRecognizer(tap)
         addSubview(backGroudView)
@@ -51,7 +52,7 @@ class MarketGoodsScheduleView: UIView {
         hidden = false
         isShow = true
         UIView.animateWithDuration(0.3) {
-            self.backGroudView.alpha = 0.7
+            self.backGroudView.alpha = 0.4
             self.tableView.transform = CGAffineTransformMakeTranslation(0, -self.tableviewH)
         }
     }
@@ -110,9 +111,8 @@ extension MarketGoodsScheduleView: UITableViewDelegate, UITableViewDataSource {
             if cell == nil {
                 cell = ScheduleNumberCell(style: .Default, reuseIdentifier: String(ScheduleNumberCell))
             }
-            let cell = cell as! ScheduleNumberCell
-            cell.maxNumber = model?.items?.count
         }
+        cell?.selectionStyle = .None
         return cell!
     }
     

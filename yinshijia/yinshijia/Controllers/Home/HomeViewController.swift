@@ -29,11 +29,6 @@ class HomeViewController: BaseViewController {
         
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         tabBarController?.tabBar.transform = CGAffineTransformIdentity
@@ -48,6 +43,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func setUI() {
+        navigationController?.delegate = self
         navigationBar = HomeNavigationBar(frame: CGRect(x: 0, y: 20, width: ScreenSize.SCREEN_WIDTH, height: 44),searchClick: {
                             print("searchClick")
             }, bellClick: { 
@@ -176,4 +172,11 @@ extension HomeViewController: PageViewControllerDataSource, PageViewControllerDe
     
 }
 
+extension HomeViewController: UINavigationControllerDelegate {
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        if viewController.isKindOfClass(self.classForCoder) {
+            navigationController.setNavigationBarHidden(true, animated: true)
+        }
+    }
+}
 

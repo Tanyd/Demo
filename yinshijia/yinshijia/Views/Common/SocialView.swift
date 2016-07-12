@@ -27,12 +27,14 @@ class SocialView: UIView {
     func showSocialView() {
         hidden = false
         UIView.animateWithDuration(0.3) {
+            self.backGroudView.alpha = 0.4
             self.containerView.transform = CGAffineTransformMakeTranslation(0, -380.0.fitHeight())
         }
     }
     
     func dismissSocialView() {
-        UIView.animateWithDuration(0.3, animations: { 
+        UIView.animateWithDuration(0.3, animations: {
+            self.backGroudView.alpha = 0.0
             self.containerView.transform = CGAffineTransformIdentity
             }) { (_) in
                     self.hidden = true
@@ -46,14 +48,15 @@ class SocialView: UIView {
     
     private func setUI() {
         backGroudView = UIView()
-        backGroudView.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        backGroudView.backgroundColor = UIColor.blackColor()
+        backGroudView.alpha = 0.0
         backGroudView.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "backGroudViewClick:")
         backGroudView.addGestureRecognizer(tap)
         addSubview(backGroudView)
         
         containerView = UIView()
-        containerView.backgroundColor = UIColor.redColor()
+        containerView.backgroundColor = UIColor.whiteColor()
         addSubview(containerView)
         weChat = setSocialButton("微信", image: "wechat", tag: 0)
         containerView.addSubview(weChat)
@@ -111,11 +114,12 @@ class SocialView: UIView {
             containerView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: -380.0.fitHeight())
             containerView.autoPinEdgeToSuperviewEdge(.Left)
             
-            weChat.autoPinEdgeToSuperviewEdge(.Left, withInset: 190.0.fitWidth())
+            weChat.autoPinEdgeToSuperviewEdge(.Left, withInset: 150.0.fitWidth())
             weChat.autoPinEdgeToSuperviewEdge(.Top, withInset: 60.0.fitHeight())
             
-            wechatTimeline.autoPinEdgeToSuperviewEdge(.Right, withInset: 190.0.fitWidth())
+            wechatTimeline.autoPinEdgeToSuperviewEdge(.Right, withInset: 150.0.fitWidth())
             wechatTimeline.autoPinEdgeToSuperviewEdge(.Top, withInset: 60.0.fitHeight())
+            wechatTimeline.autoMatchDimension(.Width, toDimension: .Width, ofView: weChat)
             
             canCelButton.autoPinEdgeToSuperviewEdge(.Bottom)
             canCelButton.autoPinEdgeToSuperviewEdge(.Left)

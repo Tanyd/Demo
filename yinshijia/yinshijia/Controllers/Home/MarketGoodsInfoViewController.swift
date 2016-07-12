@@ -25,6 +25,14 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         return view
     }()
     
+    private lazy var testView: PopView = {
+        let tt = UIView()
+        tt.backgroundColor = UIColor.redColor()
+        let t = PopView(view: tt, contenH: 300, bottomMargin: 90.0.fitHeight())
+        self.view.insertSubview(t, belowSubview: self.scheduleButton)
+        return t
+    }()
+    
     var goodsID: Int = 0 {
         didSet{
             loadBaseDate()
@@ -40,11 +48,11 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if scheduleView.isShow {
-            if scheduleView.isShow {
-                scheduleView.dismiss()
-            }
-        }
+//        if scheduleView.isShow {
+//            if scheduleView.isShow {
+//                scheduleView.dismiss()
+//            }
+//        }
     }
     
     private func loadBaseDate() {
@@ -106,6 +114,7 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
     
 
     func showScheduleView(sender: UIButton) {
+//        testView.show()
         if !scheduleView.isShow {
             scheduleView.show()
         }else{

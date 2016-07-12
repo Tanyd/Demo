@@ -15,7 +15,7 @@ class PopView: UIView {
     private var backGroudView: UIView = {
         let view = UIView.newAutoLayoutView()
         view.backgroundColor = UIColor.blackColor()
-        view.alpha = 0.0
+//        view.alpha = 0.0
         return view
     }()
     
@@ -24,18 +24,17 @@ class PopView: UIView {
     var bottomMargin: CGFloat = 0
     var isShow = false
     
-    private static var instance: PopView = {
-        return PopView()
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    convenience init(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
+        self.init(frame: UIScreen.mainScreen().bounds)
         hidden = true
+        self.contenH = contenH
+        self.bottomMargin = bottomMargin
+        self.contenView = view
         setUI()
     }
     
-    class func shareInstance() -> PopView{
-        return instance
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
     private func setUI(){

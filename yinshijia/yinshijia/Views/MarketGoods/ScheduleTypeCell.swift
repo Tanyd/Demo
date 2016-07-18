@@ -17,6 +17,7 @@ class ScheduleTypeCell: UITableViewCell {
         }
     }
     private var collectionViewH: CGFloat = 0
+    private var currentTypeBtn: UIButton?
     
     private lazy var typesCollectionview: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
@@ -35,7 +36,7 @@ class ScheduleTypeCell: UITableViewCell {
     }()
     
     private lazy var priceLabel: UILabel = {
-        let label = UILabel.labelCustomer(nil, fontType: nil, color: Constant.Common.OrangeColor, fontSize: 15)
+        let label = UILabel.labelCustomer("999", fontType: nil, color: Constant.Common.OrangeColor, fontSize: 15)
         return label
     }()
     
@@ -46,7 +47,7 @@ class ScheduleTypeCell: UITableViewCell {
         contentView.addSubview(typesCollectionview)
         setNeedsUpdateConstraints()
     }
-   
+
     override func updateConstraints() {
         if !didUpdateConstraints{
             titleLabel.autoPinEdgeToSuperviewEdge(.Top)
@@ -115,6 +116,22 @@ extension ScheduleTypeCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 30.0.fitWidth(), 0, 30.0.fitWidth())
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TypesCollectionViewCell
+        if currentTypeBtn != nil {
+            currentTypeBtn?.selected = false
+        }
+        cell?.typeButton.selected = true
+        currentTypeBtn = cell?.typeButton
+        
+        for item in items! {
+            if item.title == cell?.typeButton.currentTitle {
+                priceLabel.text = "\(item.price)"
+            }
+        }
     }
     
 }

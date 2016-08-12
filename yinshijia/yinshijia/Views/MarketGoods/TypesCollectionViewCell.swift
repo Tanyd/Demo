@@ -13,31 +13,21 @@ class TypesCollectionViewCell: UICollectionViewCell {
     private var didUpdateConstraints = false
     var type: String?{
         didSet{
-            typeButton.setTitle(type, forState: .Normal)
+            typeLabel.text = type
         }
     }
     
-    lazy var typeButton: UIButton = {
-        let btn = UIButton(type: .Custom)
-        btn.titleLabel?.font = UIFont.systemFontOfSize(15)
-        btn.setBackgroundImage(UIImage.imageWithColor(UIColor.colorFromHex(0xf5f5f5)), forState: .Normal)
-        btn.setBackgroundImage(UIImage.imageWithColor(Constant.Common.OrangeColor), forState: .Selected)
-        btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        btn.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-        btn.layer.cornerRadius = 5.0
-        btn.titleLabel?.textAlignment = .Center
-        btn.userInteractionEnabled = false
-//        btn.addTarget(self, action: "typeSelected:", forControlEvents: .TouchUpInside)
-        return btn
+    private lazy var typeLabel: UILabel = {
+        let label = UILabel.labelCustomer(nil, fontType: nil, color: UIColor.blackColor(), fontSize: 15)
+        label.textAlignment = .Center
+        label.backgroundColor = UIColor.colorFromHex(0xf5f5f5)
+        label.layer.cornerRadius = 5.0
+        return label
     }()
     
-    func typeSelected(sender: UIButton) {
-        sender.selected = !sender.selected
-    }
- 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(typeButton)
+        contentView.addSubview(typeLabel)
         setNeedsUpdateConstraints()
     }
     
@@ -47,10 +37,10 @@ class TypesCollectionViewCell: UICollectionViewCell {
     
     override func updateConstraints() {
         if !didUpdateConstraints{
-            typeButton.autoPinEdgeToSuperviewEdge(.Left)
-            typeButton.autoPinEdgeToSuperviewEdge(.Right)
-            typeButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0.fitHeight())
-            typeButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 20.0.fitHeight())
+            typeLabel.autoPinEdgeToSuperviewEdge(.Left)
+            typeLabel.autoPinEdgeToSuperviewEdge(.Right)
+            typeLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0.fitHeight())
+            typeLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 20.0.fitHeight())
             didUpdateConstraints = true
         }
         super.updateConstraints()

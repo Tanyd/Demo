@@ -72,8 +72,6 @@
 		8B1C12201D0AAD4C00968DC9 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */; };
 		8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C12211D0AB7A100968DC9 /* Tabbar.swift */; };
 		8B28037D1D221180002B5ED7 /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B28037C1D221180002B5ED7 /* HomeNavigationBar.swift */; };
-		8B3BA9871D3CC527005B118B /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3BA9861D3CC527005B118B /* ScheduleView.swift */; };
-		8B3BA9891D3CCB7A005B118B /* SocialShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3BA9881D3CCB7A005B118B /* SocialShareView.swift */; };
 		8B7F93C61D0A53F2001A2207 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93C51D0A53F2001A2207 /* Constant.swift */; };
 		8B7F93C81D0A54D1001A2207 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93C71D0A54D1001A2207 /* Extension.swift */; };
 		8B7F93CA1D0A5617001A2207 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F93C91D0A5617001A2207 /* BaseViewController.swift */; };
@@ -199,8 +197,6 @@
 		8B1C121F1D0AAD4C00968DC9 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		8B1C12211D0AB7A100968DC9 /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		8B28037C1D221180002B5ED7 /* HomeNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
-		8B3BA9861D3CC527005B118B /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
-		8B3BA9881D3CCB7A005B118B /* SocialShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialShareView.swift; sourceTree = "<group>"; };
 		8B7F93C51D0A53F2001A2207 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8B7F93C71D0A54D1001A2207 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		8B7F93C91D0A5617001A2207 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +270,6 @@
 				27E1D48B1D33CA9100914519 /* ScheduleTypeCell.swift */,
 				27E1D48D1D33CAA300914519 /* ScheduleNumberCell.swift */,
 				27E1D48F1D33D84700914519 /* TypesCollectionViewCell.swift */,
-				8B3BA9861D3CC527005B118B /* ScheduleView.swift */,
 			);
 			path = MarketGoods;
 			sourceTree = "<group>";
@@ -382,7 +377,6 @@
 				8BD02F981D0FDAF400EA45B0 /* CustomButton.swift */,
 				8B1C12211D0AB7A100968DC9 /* Tabbar.swift */,
 				270095EA1D2BFAA100007AFF /* SocialView.swift */,
-				8B3BA9881D3CCB7A005B118B /* SocialShareView.swift */,
 				27B177941D352DFC00E8209B /* PopView.swift */,
 			);
 			path = Common;
@@ -824,7 +818,6 @@
 				8B1C12221D0AB7A100968DC9 /* Tabbar.swift in Sources */,
 				277D650A1D2FE91600324045 /* MenuHeaderView.swift in Sources */,
 				8B0A46D51D2FAC6800E65847 /* MarketGoodsInfoViewController.swift in Sources */,
-				8B3BA9871D3CC527005B118B /* ScheduleView.swift in Sources */,
 				27E1D48A1D33CA7F00914519 /* ScheduleTitleCell.swift in Sources */,
 				270295B41D30A88200E468BA /* DiscoverChefCell.swift in Sources */,
 				8BD02F991D0FDAF400EA45B0 /* CustomButton.swift in Sources */,
@@ -861,7 +854,6 @@
 				27F03E241D309FFD008297B6 /* MenuHeaderCollectionViewCell.swift in Sources */,
 				8B7F93C61D0A53F2001A2207 /* Constant.swift in Sources */,
 				27F684291D0BC9A700603199 /* BaseApi.swift in Sources */,
-				8B3BA9891D3CCB7A005B118B /* SocialShareView.swift in Sources */,
 				8B8489151D2B8FD300128B50 /* CustomeCommentTableViewController.swift in Sources */,
 				27C6B86D1D0BD99600B79A83 /* MarketViewController.swift in Sources */,
 				27105F901D150F0500362F3E /* DinnerDetailIntroductionCell.swift in Sources */,

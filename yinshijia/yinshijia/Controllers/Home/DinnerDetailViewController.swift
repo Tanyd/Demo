@@ -23,15 +23,6 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
         }
     }
     
-    private lazy var popView: PopView = {
-        let t = SocialShareView()
-        let p = PopView.shareView()
-        p.configureView(t, contenH: 380.0.fitHeight(), bottomMargin: 0)
-        UIApplication.sharedApplication().windows.last?.addSubview(p)
-        return p
-    }()
-
-    
     deinit{
         print("DinnerDetailViewController释放")
     }
@@ -107,7 +98,7 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
     }
     
     func shareItemClick() {
-        popView.show()
+        SocialView.shareInstance().showSocialView()
     }
     
     override func didReceiveMemoryWarning() {

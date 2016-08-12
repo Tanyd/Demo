@@ -66,10 +66,24 @@ class ScheduleNumberCell: UITableViewCell {
     
     func remove(sender: UIButton) {
         --curretNumber
+//        if curretNumber < 1 {
+//            sender.selected = false
+//        }else{
+//            numberLabel.text = String(curretNumber)
+//        }
     }
     
     func add(sender: UIButton) {
         ++curretNumber
+//        if curretNumber <= maxNumber {
+//            numberLabel.text = String(curretNumber)
+//            removeBtn.selected = true
+//            if curretNumber == maxNumber {
+//                sender.selected = false
+//            }
+//        }else{
+//            sender.selected = false
+//        }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

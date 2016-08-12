@@ -15,7 +15,7 @@ class PopView: UIView {
     private var backGroudView: UIView = {
         let view = UIView.newAutoLayoutView()
         view.backgroundColor = UIColor.blackColor()
-        view.alpha = 0.0
+//        view.alpha = 0.0
         return view
     }()
     
@@ -34,17 +34,21 @@ class PopView: UIView {
     }
     
     func configureView(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
-        if self.contenView != nil {
-            self.contenView.removeFromSuperview()
-            self.contenView = nil
-        }
-        self.hidden = true
         self.contenH = contenH
         self.bottomMargin = bottomMargin
         self.contenView = view
         setUI()
     }
-
+    
+//    convenience init(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
+//        self.init(frame: UIScreen.mainScreen().bounds)
+//        hidden = true
+//        self.contenH = contenH
+//        self.bottomMargin = bottomMargin
+//        self.contenView = view
+//        setUI()
+//    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -66,7 +70,7 @@ class PopView: UIView {
         isShow = true
         UIView.animateWithDuration(0.3) {
             self.backGroudView.alpha = 0.4
-            self.contenView.transform = CGAffineTransformMakeTranslation(0, -self.contenH)
+            self.contenView.transform = CGAffineTransformTranslate(self.contenView.transform, 0, -self.contenH)
         }
     }
     
@@ -81,12 +85,14 @@ class PopView: UIView {
     }
     
     override func updateConstraints() {
-        backGroudView.autoPinEdgesToSuperviewEdges()
-        contenView.autoPinEdgeToSuperviewEdge(.Top, withInset: ScreenSize.SCREEN_HEIGHT - bottomMargin)
-        contenView.autoPinEdgeToSuperviewEdge(.Left)
-        contenView.autoPinEdgeToSuperviewEdge(.Right)
-        contenView.autoSetDimension(.Height, toSize: contenH)
-        didUpdateConstraints = true
+//        if !didUpdateConstraints{
+            backGroudView.autoPinEdgesToSuperviewEdges()
+            contenView.autoPinEdgeToSuperviewEdge(.Top, withInset: ScreenSize.SCREEN_HEIGHT - bottomMargin)
+            contenView.autoPinEdgeToSuperviewEdge(.Left)
+            contenView.autoPinEdgeToSuperviewEdge(.Right)
+            contenView.autoSetDimension(.Height, toSize: contenH)
+            didUpdateConstraints = true
+//        }
         super.updateConstraints()
     }
     

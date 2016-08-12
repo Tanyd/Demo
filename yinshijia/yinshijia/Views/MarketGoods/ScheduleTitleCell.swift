@@ -39,7 +39,6 @@ class ScheduleTitleCell: UITableViewCell {
     }
     
     func closeSchedule() {
-        PopView.shareView().dismiss()
     }
     
     override func updateConstraints() {

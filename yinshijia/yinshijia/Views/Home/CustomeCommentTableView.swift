@@ -41,7 +41,7 @@ class CustomeCommentTableView: UITableView {
         btn.center = CGPointMake(ScreenSize.SCREEN_WIDTH * 0.5, 145.0.fitHeight() * 0.5)
         btn.bounds.size = CGSizeMake(245.0.fitWidth(), 65.0.fitHeight())
         btn.layer.cornerRadius = 30.0.fitWidth()
-        btn.addTarget(self, action: "footerDidClick", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.footerDidClick()}
         footer.addSubview(btn)
         return footer
     }()

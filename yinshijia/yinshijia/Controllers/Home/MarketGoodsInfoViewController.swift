@@ -109,7 +109,7 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         scheduleButton.backgroundColor = Constant.Common.OrangeColor
         scheduleButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         scheduleButton.titleLabel?.font = UIFont.systemFontOfSize(13)
-        scheduleButton.addTarget(self, action: "showScheduleView:", forControlEvents: .TouchUpInside)
+        scheduleButton.action = {[weak self] in self?.showScheduleView(self!.scheduleButton)}
         view.addSubview(scheduleButton)
         
 //        let tt = UIView()

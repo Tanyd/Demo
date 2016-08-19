@@ -61,7 +61,7 @@ class DiscoverChefCell: UITableViewCell {
         btn.layer.borderColor = UIColor.grayColor().CGColor
         btn.layer.borderWidth = 1.0
         btn.layer.cornerRadius = 3
-        btn.addTarget(self, action: "schedule:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.schedule(btn)}
         btn.setTitle("加关注", forState: .Normal)
         btn.setTitle("已关注", forState: .Selected)
         return btn

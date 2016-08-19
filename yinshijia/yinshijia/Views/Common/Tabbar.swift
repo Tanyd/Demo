@@ -31,7 +31,7 @@ class Tabbar: UITabBar {
         shadowImage = UIImage()
         backgroundImage = UIImage(named: "tabar_bg")
         addSubview(centerBtn)
-        centerBtn.addTarget(self, action: "centerBtnClick", forControlEvents: .TouchUpInside)
+        centerBtn.action = {[weak self] in self?.centerBtnClick()}
     }
     
     func centerBtnClick() {

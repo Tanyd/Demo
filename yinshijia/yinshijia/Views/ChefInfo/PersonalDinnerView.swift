@@ -79,7 +79,7 @@ class PersonalDinnerView: UITableViewCell {
         btn.layer.borderColor = Constant.Common.OrangeColor.CGColor
         btn.layer.borderWidth = 1.0
         btn.layer.cornerRadius = 3
-        btn.addTarget(self, action: "schedule:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.schedule(btn)}
         btn.setTitle("定制", forState: .Normal)
         return btn
     }()

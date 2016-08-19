@@ -57,7 +57,7 @@ class BtnPageView: UIView {
         btn.setTitleColor(Constant.Common.OrangeColor, forState: .Selected)
         btn.titleLabel?.font = UIFont.systemFontOfSize(14)
         btn.tag = tag
-        btn.addTarget(self, action: "titleButtonClick:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.titleButtonClick(btn)}
         addSubview(btn)
         return btn
     }

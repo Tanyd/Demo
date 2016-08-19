@@ -64,7 +64,7 @@ class SocialView: UIView {
         containerView.addSubview(wechatTimeline)
         canCelButton = UIButton(type: .Custom)
         canCelButton.setTitle("取消", forState: .Normal)
-        canCelButton.addTarget(self, action: "cancel", forControlEvents: .TouchUpInside)
+        canCelButton.action = {[weak self] in self?.cancel()}
         canCelButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         canCelButton.titleLabel?.font = UIFont.systemFontOfSize(16)
         containerView.addSubview(canCelButton)
@@ -84,7 +84,7 @@ class SocialView: UIView {
         btn.setTitle(title, forState: .Normal)
         btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
         btn.titleLabel?.font = UIFont.systemFontOfSize(18)
-        btn.addTarget(self, action: "shareClick:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.shareClick(btn)}
         btn.tag = tag
         return btn
     }

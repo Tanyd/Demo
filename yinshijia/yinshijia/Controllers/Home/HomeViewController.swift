@@ -67,7 +67,7 @@ class HomeViewController: BaseViewController {
         toTopIcon = UIButton(type: .Custom)
         toTopIcon.frame = CGRect(x: ScreenSize.SCREEN_WIDTH - 170.0.fitWidth(), y: ScreenSize.SCREEN_HEIGHT - 100.0.fitHeight(), width: 180.0.fitWidth(), height: 80.0.fitWidth())
         toTopIcon.setBackgroundImage(UIImage(named: "backToTop"), forState: .Normal)
-        toTopIcon.addTarget(self, action: "toTop", forControlEvents: .TouchUpInside)
+        toTopIcon.action = {[weak self] in self?.toTop()}
         toTopIcon.sizeToFit()
         view.addSubview(toTopIcon)
         view.setNeedsUpdateConstraints()

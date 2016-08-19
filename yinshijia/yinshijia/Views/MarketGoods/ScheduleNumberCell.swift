@@ -51,7 +51,7 @@ class ScheduleNumberCell: UITableViewCell {
         let btn = UIButton(type: .Custom)
         btn.setBackgroundImage(UIImage(named: "remove_person_gray"), forState: .Normal)
         btn.setBackgroundImage(UIImage(named: "remove_person_black"), forState: .Selected)
-        btn.addTarget(self, action: "remove:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.remove(btn)}
         return btn
     }()
     
@@ -60,7 +60,7 @@ class ScheduleNumberCell: UITableViewCell {
         btn.setBackgroundImage(UIImage(named: "add_person_black"), forState: .Selected)
         btn.setBackgroundImage(UIImage(named: "add_person_gray"), forState: .Normal)
         btn.selected = true
-        btn.addTarget(self, action: "add:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.add(btn)}
         return btn
     }()
     

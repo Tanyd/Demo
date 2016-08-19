@@ -27,7 +27,7 @@ class ScheduleTitleCell: UITableViewCell {
         btn.setTitle("关闭", forState: .Normal)
         btn.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
         btn.titleLabel?.font = UIFont.systemFontOfSize(13)
-        btn.addTarget(self, action: "closeSchedule", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.closeSchedule()}
         return btn
     }()
     

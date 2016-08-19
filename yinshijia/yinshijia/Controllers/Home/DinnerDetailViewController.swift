@@ -57,11 +57,11 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
         collect = UIButton(type: .Custom)
         collect.setImage(UIImage(named: "rejuSave"), forState: .Normal)
         collect.setImage(UIImage(named: "rejuSaveD"), forState: .Selected)
-        collect.addTarget(self, action: "collectItemClick", forControlEvents: .TouchUpInside)
+        collect.action = {[weak self] in self?.collectItemClick()}
         share = UIButton(type: .Custom)
         share.setImage(UIImage(named: "rejuShare"), forState: .Normal)
         share.setImage(UIImage(named: "rejuShareD"), forState: .Selected)
-        share.addTarget(self, action: "shareItemClick", forControlEvents: .TouchUpInside)
+        share.action = {[weak self] in self?.shareItemClick()}
         rightItems = [share,collect]
     }
     

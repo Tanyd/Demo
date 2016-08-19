@@ -43,7 +43,7 @@ class NavigationBarAnimationViewController: BaseViewController {
         backItem.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         backItem.setImage(UIImage(named: "rejuBack"), forState: .Normal)
         backItem.setImage(UIImage(named: "rejuBackD"), forState: .Selected)
-        backItem.addTarget(self, action: "backItemClick", forControlEvents: .TouchUpInside)
+        backItem.action = {[weak self] in self?.backItemClick()}
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backItem)
     }
     

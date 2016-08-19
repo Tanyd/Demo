@@ -149,7 +149,7 @@ class marginView: UIView {
         btn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         btn.titleLabel?.font = UIFont(name: Constant.Common.BoldFont, size: 10)
         btn.sizeToFit()
-        btn.addTarget(self, action: "btnClick:", forControlEvents: .TouchUpInside)
+        btn.action = {[weak self] in self?.btnClick(self!.btn)}
         addSubview(btn)
     }
     

@@ -34,12 +34,12 @@ class HomeNavigationBar: UIView {
     private func setUI() {
         searchBtn = UIButton(type: .Custom)
         searchBtn.setImage(UIImage(named: "homepage_search"), forState: .Normal)
-        searchBtn.addTarget(self, action: "search", forControlEvents: .TouchUpInside)
+        searchBtn.action = {[weak self] in self?.search()}
         addSubview(searchBtn)
         
         bellBtn = UIButton(type: .Custom)
         bellBtn.setImage(UIImage(named: "homepage_bell"), forState: .Normal)
-        bellBtn.addTarget(self, action: "bell", forControlEvents: .TouchUpInside)
+        bellBtn.action = {[weak self] in self?.bell()}
         addSubview(bellBtn)
         
         leftItem = CustomButton(type: .Custom)
@@ -49,7 +49,7 @@ class HomeNavigationBar: UIView {
         leftItem.setTitleColor(UIColor.colorFromHex(0x070707), forState: .Normal)
         leftItem.setTitle("成都", forState: .Normal)
         leftItem.titleLabel!.font = UIFont.systemFontOfSize(13)
-        leftItem.addTarget(self, action: "cityChangeClick", forControlEvents: .TouchUpInside)
+        leftItem.action = {[weak self] in self?.cityChangeClick()}
         addSubview(leftItem)
 
         titleItem = UIImageView(image: UIImage(named: "title_logo"))

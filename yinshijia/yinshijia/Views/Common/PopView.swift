@@ -67,6 +67,7 @@ class PopView: UIView {
     }
     
     func show() {
+        if isShow {return}
         hidden = false
         isShow = true
         UIView.animateWithDuration(0.3) {

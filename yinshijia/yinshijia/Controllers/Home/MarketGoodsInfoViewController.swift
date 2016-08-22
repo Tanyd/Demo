@@ -15,25 +15,20 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
     private var tableView: UITableView!
     private var bannerViewHConstraint: NSLayoutConstraint?
     private let bannerViewH = 720.0.fitHeight()
-    private var goodsModel: MarketGoods?
+    private var goodsModel: MarketGoods?{
+        didSet{
+            PopView.shareView().configureView(scheduleView, contenH: 44 + 44 + (ceil(CGFloat((goodsModel?.data?.items?.count)!) / CGFloat(3)) + 1 ) * 44, bottomMargin: 90.0.fitHeight(), containerView: self.view, belowView: self.scheduleButton)
+            scheduleView.model = goodsModel?.data
+        }
+    }
     private var scheduleButton: UIButton!
 
     private lazy var scheduleView: MarketGoodsScheduleView = {
         let view = MarketGoodsScheduleView(frame: self.view.bounds)
-        view.model = self.goodsModel!.data
-        self.view.insertSubview(view, belowSubview: self.scheduleButton)
         return view
     }()
     
     private var testView: PopView!
-//        let tt = UIView()
-//        tt.backgroundColor = UIColor.redColor()
-//        let t = PopView.shareView()
-//        t.configureView(tt, contenH: 300, bottomMargin: 90.0.fitHeight())
-////        let t = PopView(view: tt, contenH: 300, bottomMargin: 90.0.fitHeight())
-//        self.view.insertSubview(t, belowSubview: self.scheduleButton)
-//        return t
-//    }()
     
     var goodsID: Int = 0 {
         didSet{
@@ -45,16 +40,13 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         super.viewDidLoad()
         SVProgressHUD.showWithStatus("加载中", maskType: .Clear, style: .Light)
         setUI()
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-//        if scheduleView.isShow {
-//            if scheduleView.isShow {
-//                scheduleView.dismiss()
-//            }
-//        }
+        if PopView.shareView().isShow {
+            PopView.shareView().dismiss()
+        }
     }
     
     private func loadBaseDate() {
@@ -111,25 +103,12 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         scheduleButton.titleLabel?.font = UIFont.systemFontOfSize(13)
         scheduleButton.action = {[weak self] in self?.showScheduleView(self!.scheduleButton)}
         view.addSubview(scheduleButton)
-        
-//        let tt = UIView()
-//        tt.backgroundColor = UIColor.redColor()
-//        PopView.shareView().hidden = true
-//        PopView.shareView().configureView(tt, contenH: 300, bottomMargin: 90.0.fitHeight())
-//        //        let t = PopView(view: tt, contenH: 300, bottomMargin: 90.0.fitHeight())
-//        self.view.insertSubview(PopView.shareView(), belowSubview: self.scheduleButton)
-        
         view.setNeedsUpdateConstraints()
     }
     
 
     func showScheduleView(sender: UIButton) {
-//        PopView.shareView().show()
-        if !scheduleView.isShow {
-            scheduleView.show()
-        }else{
-            print("订购");
-        }
+        PopView.shareView().show()
     }
     
     

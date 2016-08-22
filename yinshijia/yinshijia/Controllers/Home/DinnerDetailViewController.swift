@@ -90,6 +90,7 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
         }
         customeMadeView.hidden = true
         view.addSubview(customeMadeView)
+        PopView.shareView().configureView(SocialView(), contenH: 380.0.fitHeight(), bottomMargin: 0, containerView: nil)
     }
 
     
@@ -98,7 +99,8 @@ class DinnerDetailViewController: NavigationBarAnimationViewController {
     }
     
     func shareItemClick() {
-        SocialView.shareInstance().showSocialView()
+        PopView.shareView().show()
+//        SocialView.shareInstance().showSocialView()
     }
     
     override func didReceiveMemoryWarning() {

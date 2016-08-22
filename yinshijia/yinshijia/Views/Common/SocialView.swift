@@ -17,44 +17,13 @@ class SocialView: UIView {
     private var line: UIView!
     private var backGroudView: UIView!
     private var containerView: UIView!
-    
-    private static let share: SocialView =  SocialView(frame: UIScreen.mainScreen().bounds)
-    
-    class func shareInstance() -> SocialView{
-        return share
-    }
-    
-    func showSocialView() {
-        hidden = false
-        UIView.animateWithDuration(0.3) {
-            self.backGroudView.alpha = 0.4
-            self.containerView.transform = CGAffineTransformMakeTranslation(0, -380.0.fitHeight())
-        }
-    }
-    
-    func dismissSocialView() {
-        UIView.animateWithDuration(0.3, animations: {
-            self.backGroudView.alpha = 0.0
-            self.containerView.transform = CGAffineTransformIdentity
-            }) { (_) in
-                    self.hidden = true
-        }
-    }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
     }
     
     private func setUI() {
-        backGroudView = UIView()
-        backGroudView.backgroundColor = UIColor.blackColor()
-        backGroudView.alpha = 0.0
-        backGroudView.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: "backGroudViewClick:")
-        backGroudView.addGestureRecognizer(tap)
-        addSubview(backGroudView)
-        
         containerView = UIView()
         containerView.backgroundColor = UIColor.whiteColor()
         addSubview(containerView)
@@ -71,9 +40,7 @@ class SocialView: UIView {
         line = UIView()
         line.backgroundColor = UIColor.lightGrayColor()
         containerView.addSubview(line)
-       
         setNeedsUpdateConstraints()
-        UIApplication.sharedApplication().windows.last?.addSubview(self)
     }
     
     private func setSocialButton(title: String, image: String, tag: Int) -> CustomButton {
@@ -97,23 +64,15 @@ class SocialView: UIView {
             print("WechatTimeline")
         }
     }
-    
-    func backGroudViewClick(tap: UITapGestureRecognizer) {
-        dismissSocialView()
-    }
-    
+
     func cancel() {
-        dismissSocialView()
+        PopView.shareView().dismiss()
     }
-    
+
     override func updateConstraints() {
         if !didUpdateConstraints {
-            backGroudView.autoPinEdgesToSuperviewEdges()
-            
-            containerView.autoSetDimensionsToSize(CGSize(width: ScreenSize.SCREEN_WIDTH, height: 380.0.fitHeight()))
-            containerView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: -380.0.fitHeight())
-            containerView.autoPinEdgeToSuperviewEdge(.Left)
-            
+
+            containerView.autoPinEdgesToSuperviewEdges()
             weChat.autoPinEdgeToSuperviewEdge(.Left, withInset: 150.0.fitWidth())
             weChat.autoPinEdgeToSuperviewEdge(.Top, withInset: 60.0.fitHeight())
             

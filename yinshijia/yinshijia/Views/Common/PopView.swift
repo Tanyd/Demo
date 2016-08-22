@@ -15,7 +15,6 @@ class PopView: UIView {
     private var backGroudView: UIView = {
         let view = UIView.newAutoLayoutView()
         view.backgroundColor = UIColor.blackColor()
-//        view.alpha = 0.0
         return view
     }()
     
@@ -26,6 +25,7 @@ class PopView: UIView {
     
     private static var instance: PopView = {
         let temp = PopView(frame: UIScreen.mainScreen().bounds)
+        temp.hidden = true
         return temp
     }()
     
@@ -33,34 +33,35 @@ class PopView: UIView {
         return instance
     }
     
-    func configureView(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
+    func configureView(view: UIView,contenH: CGFloat,bottomMargin: CGFloat,containerView: UIView?) {
         self.contenH = contenH
         self.bottomMargin = bottomMargin
         self.contenView = view
-        setUI()
-    }
-    
-//    convenience init(view: UIView,contenH: CGFloat,bottomMargin: CGFloat) {
-//        self.init(frame: UIScreen.mainScreen().bounds)
-//        hidden = true
-//        self.contenH = contenH
-//        self.bottomMargin = bottomMargin
-//        self.contenView = view
-//        setUI()
-//    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    private func setUI(){
-        let tap = UITapGestureRecognizer(target: self, action: "backGroudViewClick:")
-        backGroudView.addGestureRecognizer(tap)
-        addSubview(backGroudView)
         addSubview(contenView)
+        if containerView == nil {
+            UIApplication.sharedApplication().windows.last?.addSubview(self)
+        }else{
+            containerView?.addSubview(self)
+        }
         setNeedsUpdateConstraints()
     }
     
+    func configureView(view: UIView,contenH: CGFloat,bottomMargin: CGFloat,containerView: UIView, belowView: UIView) {
+        self.contenH = contenH
+        self.bottomMargin = bottomMargin
+        self.contenView = view
+        addSubview(contenView)
+        containerView.insertSubview(self, belowSubview: belowView)
+        setNeedsUpdateConstraints()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PopView.backGroudViewClick(_:)))
+        backGroudView.addGestureRecognizer(tap)
+        addSubview(backGroudView)
+    }
+
     func backGroudViewClick(tap: UITapGestureRecognizer) {
         dismiss()
     }
@@ -85,14 +86,11 @@ class PopView: UIView {
     }
     
     override func updateConstraints() {
-//        if !didUpdateConstraints{
-            backGroudView.autoPinEdgesToSuperviewEdges()
-            contenView.autoPinEdgeToSuperviewEdge(.Top, withInset: ScreenSize.SCREEN_HEIGHT - bottomMargin)
-            contenView.autoPinEdgeToSuperviewEdge(.Left)
-            contenView.autoPinEdgeToSuperviewEdge(.Right)
-            contenView.autoSetDimension(.Height, toSize: contenH)
-            didUpdateConstraints = true
-//        }
+        backGroudView.autoPinEdgesToSuperviewEdges()
+        contenView.autoPinEdgeToSuperviewEdge(.Top, withInset: ScreenSize.SCREEN_HEIGHT - bottomMargin)
+        contenView.autoPinEdgeToSuperviewEdge(.Left)
+        contenView.autoPinEdgeToSuperviewEdge(.Right)
+        contenView.autoSetDimension(.Height, toSize: contenH)
         super.updateConstraints()
     }
     

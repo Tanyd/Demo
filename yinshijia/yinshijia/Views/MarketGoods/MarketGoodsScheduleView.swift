@@ -24,18 +24,10 @@ class MarketGoodsScheduleView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        hidden = true
         setUI()
     }
     
     private func setUI(){
-        backGroudView = UIView.newAutoLayoutView()
-        backGroudView.backgroundColor = UIColor.blackColor()
-        backGroudView.alpha = 0.0
-        let tap = UITapGestureRecognizer(target: self, action: "backGroudViewClick:")
-        backGroudView.addGestureRecognizer(tap)
-        addSubview(backGroudView)
-        
         tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView.scrollEnabled = false
         tableView.delegate = self
@@ -43,37 +35,10 @@ class MarketGoodsScheduleView: UIView {
         addSubview(tableView)
         setNeedsUpdateConstraints()
     }
-    
-    func backGroudViewClick(tap: UITapGestureRecognizer) {
-        dismiss()
-    }
-    
-    func show() {
-        hidden = false
-        isShow = true
-        UIView.animateWithDuration(0.3) {
-            self.backGroudView.alpha = 0.4
-            self.tableView.transform = CGAffineTransformMakeTranslation(0, -self.tableviewH)
-        }
-    }
-    
-    func dismiss(){
-        UIView.animateWithDuration(0.3, animations: { 
-            self.backGroudView.alpha = 0.0
-            self.tableView.transform = CGAffineTransformIdentity
-            }) { (_) in
-                self.hidden = true
-                self.isShow = false
-        }
-    }
-    
+
     override func updateConstraints() {
         if !didUpdateConstraints{
-            backGroudView.autoPinEdgesToSuperviewEdges()
-            tableView.autoPinEdgeToSuperviewEdge(.Top, withInset: ScreenSize.SCREEN_HEIGHT - 90.0.fitHeight())
-            tableView.autoPinEdgeToSuperviewEdge(.Left)
-            tableView.autoPinEdgeToSuperviewEdge(.Right)
-            tableView.autoSetDimension(.Height, toSize: tableviewH)
+            tableView.autoPinEdgesToSuperviewEdges()
             didUpdateConstraints = true
         }
         super.updateConstraints()
@@ -86,7 +51,7 @@ class MarketGoodsScheduleView: UIView {
 
 extension MarketGoodsScheduleView: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return model == nil ? 0 : 3
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

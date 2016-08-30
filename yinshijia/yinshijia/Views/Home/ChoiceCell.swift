@@ -74,7 +74,7 @@ class ChoiceCell: UITableViewCell {
         img.layer.borderWidth = 2.0
         img.layer.cornerRadius = 114.0.fitWidth() * 0.5
         img.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChoiceCell.userIconDidClick(_:)))
         img.addGestureRecognizer(tap)
         return img
     }()

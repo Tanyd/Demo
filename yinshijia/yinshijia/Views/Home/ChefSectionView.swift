@@ -36,13 +36,13 @@ class ChefSectionView: UICollectionReusableView {
         boldLine.backgroundColor = Constant.Common.OrangeColor
         addSubview(boldLine)
         
-        hotButton = setBtn("最热", action: "buttonClick:")
+        hotButton = setBtn("最热", action: #selector(ChefSectionView.buttonClick(_:)))
         hotButton.selected = true
         selectedBtn = hotButton
         hotButton.tag = ChefSectionViewType.chefHot.rawValue
         addSubview(hotButton)
         
-        newButton = setBtn("最新", action: "buttonClick:")
+        newButton = setBtn("最新", action: #selector(ChefSectionView.buttonClick(_:)))
         newButton.tag = ChefSectionViewType.chefNew.rawValue
         addSubview(newButton)
         

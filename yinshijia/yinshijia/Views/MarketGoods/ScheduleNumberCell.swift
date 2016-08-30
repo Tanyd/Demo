@@ -25,10 +25,11 @@ class ScheduleNumberCell: UITableViewCell {
                     removeBtn.selected = true
                 }
                 numberLabel.text = String(curretNumber)
+                NSNotificationCenter.defaultCenter().postNotificationName(Constant.NotificationName.MarketGoodsChooseNumber, object: nil, userInfo: [Constant.NotificationName.MarketGoodsChooseNumberKey:curretNumber])
             }else if curretNumber == 0 {
-                curretNumber++
+                curretNumber += 1
             }else if curretNumber == maxNumber + 1 {
-                curretNumber--
+                curretNumber -= 1
             }
         }
     }
@@ -65,25 +66,11 @@ class ScheduleNumberCell: UITableViewCell {
     }()
     
     func remove(sender: UIButton) {
-        --curretNumber
-//        if curretNumber < 1 {
-//            sender.selected = false
-//        }else{
-//            numberLabel.text = String(curretNumber)
-//        }
+        curretNumber -= 1
     }
     
     func add(sender: UIButton) {
-        ++curretNumber
-//        if curretNumber <= maxNumber {
-//            numberLabel.text = String(curretNumber)
-//            removeBtn.selected = true
-//            if curretNumber == maxNumber {
-//                sender.selected = false
-//            }
-//        }else{
-//            sender.selected = false
-//        }
+        curretNumber += 1
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

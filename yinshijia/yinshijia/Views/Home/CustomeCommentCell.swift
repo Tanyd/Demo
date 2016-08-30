@@ -66,7 +66,7 @@ class CustomeCommentCell: UITableViewCell {
         let img = UIImageView.newAutoLayoutView()
         img.aliCornerRadius = 85.0.fitHeight() * 0.5
         img.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: "userIconDidClick:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(CustomeCommentCell.userIconDidClick(_:)))
         img.addGestureRecognizer(tap)
         return img
     }()

@@ -50,7 +50,7 @@ class DiscoverViewController: BaseViewController {
     }
     
     private func setupRefresh() {
-        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "tableRefreshHeader")
+        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(DiscoverViewController.tableRefreshHeader))
         tableView.mj_header = header
     }
   

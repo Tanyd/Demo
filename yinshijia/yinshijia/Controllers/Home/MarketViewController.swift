@@ -58,7 +58,7 @@ class MarketViewController: TranslationCollectionViewController {
             self!.goodsList += (result as? Goods)!.data!
             self!.collectionView!.mj_footer.endRefreshing()
         }
-        ++page
+        page += 1
         Goods.loadGoodsData(callBack, page: page)
     }
 

@@ -713,7 +713,7 @@ extension NSObject {
         let myClass: AnyClass = self.classForCoder;
         let properties = class_copyPropertyList(myClass, &count);
         
-        for var i: UInt32 = 0; i < count; i++ {
+        for i: UInt32 in 0 ..< count {
             let property = properties[Int(i)];
             let cname = property_getName(property);
             let name = String.fromCString(cname);

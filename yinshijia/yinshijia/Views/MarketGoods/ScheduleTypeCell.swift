@@ -39,6 +39,8 @@ class ScheduleTypeCell: UITableViewCell {
         return label
     }()
     
+    private var choosedType: TypesCollectionViewCell?
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
@@ -96,7 +98,7 @@ extension ScheduleTypeCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(TypesCollectionViewCell), forIndexPath: indexPath) as? TypesCollectionViewCell
-        cell?.type = items![indexPath.item].title
+        cell?.model = items![indexPath.item]
         return cell!
     }
     
@@ -115,6 +117,19 @@ extension ScheduleTypeCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 30.0.fitWidth(), 0, 30.0.fitWidth())
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as? TypesCollectionViewCell
+        if choosedType != nil {
+            choosedType?.originalAppearance()
+            choosedType = nil
+        }
+        cell?.changeAppearance()
+        choosedType = cell
+        priceLabel.text = String(cell!.model!.price)
+        NSNotificationCenter.defaultCenter().postNotificationName(Constant.NotificationName.MarketGoodsChooseType, object: nil, userInfo: [Constant.NotificationName.MarketGoodsChooseTypeKey:(cell?.model)!])
     }
     
 }

@@ -11,9 +11,9 @@ import UIKit
 class TypesCollectionViewCell: UICollectionViewCell {
     
     private var didUpdateConstraints = false
-    var type: String?{
+    var model: Items?{
         didSet{
-            typeLabel.text = type
+            typeLabel.text = model?.title
         }
     }
     
@@ -24,7 +24,7 @@ class TypesCollectionViewCell: UICollectionViewCell {
         label.layer.cornerRadius = 5.0
         return label
     }()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(typeLabel)
@@ -33,6 +33,16 @@ class TypesCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func changeAppearance(){
+        typeLabel.backgroundColor = Constant.Common.OrangeColor
+        typeLabel.textColor = UIColor.whiteColor()
+    }
+    
+    func originalAppearance(){
+        typeLabel.backgroundColor = UIColor.colorFromHex(0xf5f5f5)
+        typeLabel.textColor = UIColor.blackColor()
     }
     
     override func updateConstraints() {

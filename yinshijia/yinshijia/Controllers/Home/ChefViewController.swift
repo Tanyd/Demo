@@ -134,10 +134,10 @@ class ChefViewController: TranslationCollectionViewController {
             self!.collectionView!.mj_footer.endRefreshing()
         }
         if cureentChefType == .chefHot {
-            hotPage++
+            hotPage += 1
             ChefList.loadChefListMoreData(callBack, page: hotPage, type: .chefHot)
         }else{
-            newPage++
+            newPage += 1
             ChefList.loadChefListMoreData(callBack, page: newPage, type: .chefNew)
         }
     }

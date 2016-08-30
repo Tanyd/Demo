@@ -63,13 +63,13 @@ class EnvironmentScrollCell: UITableViewCell, UIScrollViewDelegate {
     
     private func updatePageScrollView() {
       
-        for var i = 0; i < allImgs.count; i++ {
+        for i in 0 ..< allImgs.count {
             let imageView = allImgs[i]
             var index = currentIndex
             if i == 0 {
-                index--
+                index -= 1
             } else if i == 2 {
-                index++
+                index += 1
             }
             
             if index < 0 {

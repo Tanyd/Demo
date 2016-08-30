@@ -45,7 +45,6 @@ class ChefInfoViewController: UITableViewController {
     }
     
     private func setUI() {
-        automaticallyAdjustsScrollViewInsets = false
         tableView.backgroundColor = UIColor.whiteColor()
         headerView = ChefInfoHeaderView(frame: CGRectMake(0, 0, ScreenSize.SCREEN_WIDTH, 425.0.fitHeight()), commentAction: {
             

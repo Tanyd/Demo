@@ -100,7 +100,7 @@ class BannerView: UIView {
             imageView.contentMode = .ScaleAspectFill
             imageView.clipsToBounds = true
             imageView.userInteractionEnabled = true
-            let tap = UITapGestureRecognizer(target: self, action: "imageViewClick:")
+            let tap = UITapGestureRecognizer(target: self, action: #selector(BannerView.imageViewClick(_:)))
             imageView.addGestureRecognizer(tap)
             imageScrollView.addSubview(imageView)
             allImgs.append(imageView)
@@ -141,14 +141,14 @@ class BannerView: UIView {
     
     //MARK: 更新内容
     private func updatePageScrollView() {
-        for var i = 0; i < allImgs.count; i++ {
+        for i in 0 ..< allImgs.count {
             let imageView = allImgs[i]
             var index = pageControl.currentPage
             
             if i == 0 {
-                index--
+                index -= 1
             } else if i == 2 {
-                index++
+                index += 1
             }
             
             if index < 0 {
@@ -174,7 +174,7 @@ class BannerView: UIView {
     
     // MARK: Timer
     private func startTimer() {
-        timer = NSTimer(timeInterval: 5.0, target: self, selector: "next", userInfo: nil, repeats: true)
+        timer = NSTimer(timeInterval: 5.0, target: self, selector: #selector(BannerView.next), userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer!, forMode: NSRunLoopCommonModes)
     }
     

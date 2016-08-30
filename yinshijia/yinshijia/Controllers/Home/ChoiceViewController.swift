@@ -69,7 +69,7 @@ class ChoiceViewController: TranslationTableViewController {
     }
     
     override func tableRefreshFooter() {
-        ++choicePage
+        choicePage += 1
         
         if choicePage > choiceMaxPage || choiceModel == nil{
             tableView.mj_footer.endRefreshingWithNoMoreData()
@@ -78,7 +78,7 @@ class ChoiceViewController: TranslationTableViewController {
         let callBack: BaseApiCallBack = {[weak self] (result, error) in
             guard error == nil else {
                 self!.tableView.mj_footer.endRefreshing()
-                --self!.choicePage
+                self!.choicePage -= 1
                 return
             }
             let model = result as! ChoiceOnlyDinnerlists

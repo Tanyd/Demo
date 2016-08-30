@@ -15,20 +15,21 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
     private var tableView: UITableView!
     private var bannerViewHConstraint: NSLayoutConstraint?
     private let bannerViewH = 720.0.fitHeight()
+    private var currentType: Items?
+    private var currentNumber: Int = 0
+    private var scheduleButton: UIButton!
+    
     private var goodsModel: MarketGoods?{
         didSet{
             PopView.shareView().configureView(scheduleView, contenH: 44 + 44 + (ceil(CGFloat((goodsModel?.data?.items?.count)!) / CGFloat(3)) + 1 ) * 44, bottomMargin: 90.0.fitHeight(), containerView: self.view, belowView: self.scheduleButton)
             scheduleView.model = goodsModel?.data
         }
     }
-    private var scheduleButton: UIButton!
 
     private lazy var scheduleView: MarketGoodsScheduleView = {
         let view = MarketGoodsScheduleView(frame: self.view.bounds)
         return view
     }()
-    
-    private var testView: PopView!
     
     var goodsID: Int = 0 {
         didSet{
@@ -40,6 +41,7 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
         super.viewDidLoad()
         SVProgressHUD.showWithStatus("加载中", maskType: .Clear, style: .Light)
         setUI()
+        addObserver()
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -65,6 +67,22 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
             SVProgressHUD.dismiss()
         }
         MarketGoods.loadMarketGoodsDetail(callBack, id: goodsID)
+    }
+    
+    private func addObserver(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MarketGoodsInfoViewController.marketGoodsNumber(_:)), name: Constant.NotificationName.MarketGoodsChooseNumber, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MarketGoodsInfoViewController.marketGoodsType(_:)), name: Constant.NotificationName.MarketGoodsChooseType, object: nil)
+    }
+    
+    
+    func marketGoodsNumber(info: NSNotification){
+        let dic = info.userInfo
+        currentNumber = dic![Constant.NotificationName.MarketGoodsChooseNumberKey] as! Int
+    }
+    
+    func marketGoodsType(info: NSNotification){
+        let dic = info.userInfo
+        currentType = dic![Constant.NotificationName.MarketGoodsChooseTypeKey] as? Items
     }
     
     private func setUI() {
@@ -108,6 +126,9 @@ class MarketGoodsInfoViewController: NavigationBarAnimationViewController {
     
 
     func showScheduleView(sender: UIButton) {
+        if PopView.shareView().isShow {
+            
+        }
         PopView.shareView().show()
     }
     

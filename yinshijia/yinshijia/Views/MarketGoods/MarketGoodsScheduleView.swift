@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MarketGoodsScheduleViewDelegate: NSObjectProtocol {
+    func marketGoodsDidChoosed(model: Items,number: Int)
+}
+
 class MarketGoodsScheduleView: UIView {
 
     private var didUpdateConstraints = false
@@ -20,6 +24,8 @@ class MarketGoodsScheduleView: UIView {
     private var tableviewH: CGFloat = 0
     private var tableView: UITableView!
     private var backGroudView: UIView!
+    
+    var delegate: MarketGoodsScheduleViewDelegate?
     var isShow = false
     
     override init(frame: CGRect) {
@@ -35,7 +41,7 @@ class MarketGoodsScheduleView: UIView {
         addSubview(tableView)
         setNeedsUpdateConstraints()
     }
-
+    
     override func updateConstraints() {
         if !didUpdateConstraints{
             tableView.autoPinEdgesToSuperviewEdges()

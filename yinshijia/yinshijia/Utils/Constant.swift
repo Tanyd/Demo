@@ -60,6 +60,14 @@ struct Constant {
     struct NotificationName {
         
         static let TableDidScroll = "TableDidScroll"
+        
+        static let MarketGoodsChooseNumber = "MarketGoodsChooseNumber"
+        
+        static let MarketGoodsChooseNumberKey = "MarketGoodsChooseNumberKey"
+        
+        static let MarketGoodsChooseType = "MarketGoodsChooseType"
+        
+        static let MarketGoodsChooseTypeKey = "MarketGoodsChooseTypeKey"
     }
     
     

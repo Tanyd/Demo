@@ -50,7 +50,7 @@ class Tabbar: UITabBar {
         for btn in subviews {
             if btn.isKindOfClass(UIControl) && btn != centerBtn {
                 if barItemIndex == 2 {
-                    barItemIndex++
+                    barItemIndex += 1
                 }
                 btn.frame = CGRect(x: CGFloat(barItemIndex++) * btnWidth, y: 0, width: btnWidth, height: btnHeight)
             }

@@ -92,7 +92,7 @@ class CategoryView: UIScrollView {
                 view.removeFromSuperview()
             }
         }
-        for var index = 0; index < categorys.count; index++ {
+        for index in 0 ..< categorys.count {
             let model = categorys[index]
             let view = marginView(frame: CGRectZero, categoryBtnClick: btnClick)
             view.catalog = categorys[index]
@@ -104,7 +104,7 @@ class CategoryView: UIScrollView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        for var index = 0; index < views.count; index++ {
+        for index in 0 ..< views.count {
             let view = views[index]
             view.frame = CGRect(x: CGFloat(index) * btnWidth, y: 0, width: btnWidth, height: height)
         }

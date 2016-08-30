@@ -62,7 +62,7 @@ class ChoiceListTableViewController: UITableViewController {
 
     private func setUI() {
         tableView.registerClass(ChoiceListCell.self, forCellReuseIdentifier: String(ChoiceListCell))
-        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: "tableRefreshHeader")
+        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(ChoiceListTableViewController.tableRefreshHeader))
         tableView.mj_header = header
         tableView.tableFooterView = UIView()
     }

@@ -19,7 +19,7 @@ class EnvironmentInfoView: UIView {
     private lazy var topImg: UIImageView = {
         let img = UIImageView()
         img.userInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: "environmentImageDidClick:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(EnvironmentInfoView.environmentImageDidClick(_:)))
         img.addGestureRecognizer(tap)
        return img
     }()

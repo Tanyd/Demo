@@ -19,7 +19,7 @@ class CommentCell: UITableViewCell {
     
     private lazy var commentTable: CustomeCommentTableView = {
         let table = CustomeCommentTableView(frame: CGRectZero, style: .Plain, loadMoreComments: {[weak self] in
-            if self!.delegate != nil && (self!.delegate?.respondsToSelector("commentCellDidClick"))!{
+            if self!.delegate != nil && (self!.delegate?.respondsToSelector(#selector(DinnerDetailViewController.commentCellDidClick)))!{
                 self!.delegate!.commentCellDidClick()
             }
         })

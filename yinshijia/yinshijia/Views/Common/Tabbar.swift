@@ -43,8 +43,8 @@ class Tabbar: UITabBar {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        centerBtn.center.x = width * 0.5
-        centerBtn.center.y = 49 * 0.5 - 10
+        centerBtn.center.x = width * 0.5 - (centerBtn.currentImage?.size.width)! * 0.5
+        centerBtn.center.y = -20
         centerBtn.frame.size = CGSize(width: (centerBtn.currentImage?.size.width)!, height: btnHeight + 20)
         var barItemIndex = 0
         for btn in subviews {
